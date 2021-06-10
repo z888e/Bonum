@@ -17,6 +17,7 @@ struct ContentView: View {
             Text("Salut, ici Thomas !")
             Text("Salut, ici Wil !")
             Text("Salut, ici Zoé ! We did it")
+            Text("Not so easy...")
         }
     }
 }
