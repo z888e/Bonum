@@ -13,7 +13,6 @@ struct ContentView: View {
             Text("Hello, team!")
                 .padding()
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            Text("Salut, ici Alex !")
             Text("Start with Bonum !")
         }
     }
