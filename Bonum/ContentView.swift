@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack{
+        VStack {
             Text("Hello, team!")
                 .padding()
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+            Text("Salut, ici Alex !")
             Text("Start with Bonum !")
         }
     }
