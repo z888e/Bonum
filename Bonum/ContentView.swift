@@ -15,6 +15,7 @@ struct ContentView: View {
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
             Text("Salut, ici Alex !")
             Text("Salut, ici Thomas !")
+            Text("Salut, ici Wil !")
         }
     }
 }
