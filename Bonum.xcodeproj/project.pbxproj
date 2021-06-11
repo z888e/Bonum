@@ -342,6 +342,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Bonum/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Bonum/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -364,6 +365,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Bonum/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Bonum/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
