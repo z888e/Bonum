@@ -11,6 +11,18 @@
 		588EF594267248CC00A888DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EF593267248CC00A888DB /* ContentView.swift */; };
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
 		588EF599267248CF00A888DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF598267248CF00A888DB /* Preview Assets.xcassets */; };
+		66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F7E267349FE00EB3642 /* TestData.swift */; };
+		66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8026734A4900EB3642 /* Onboarding.swift */; };
+		66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8226734A9800EB3642 /* MoodTracker.swift */; };
+		66DD5F8526734AF000EB3642 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8426734AF000EB3642 /* Diary.swift */; };
+		66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8626734B2B00EB3642 /* Journey.swift */; };
+		66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */; };
+		66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8A26734BB400EB3642 /* DataCell.swift */; };
+		66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8C2673514A00EB3642 /* Mood.swift */; };
+		66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8E267357F600EB3642 /* TrackedData.swift */; };
+		66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DD5F9226735A5400EB3642 /* HealthKit.framework */; };
+		66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F942673674900EB3642 /* JourneyEvent.swift */; };
+		66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +32,18 @@
 		588EF595267248CF00A888DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66DD5F7E267349FE00EB3642 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		66DD5F8026734A4900EB3642 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		66DD5F8226734A9800EB3642 /* MoodTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTracker.swift; sourceTree = "<group>"; };
+		66DD5F8426734AF000EB3642 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		66DD5F8626734B2B00EB3642 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
+		66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetail.swift; sourceTree = "<group>"; };
+		66DD5F8A26734BB400EB3642 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
+		66DD5F8C2673514A00EB3642 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		66DD5F8E267357F600EB3642 /* TrackedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedData.swift; sourceTree = "<group>"; };
+		66DD5F9226735A5400EB3642 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		66DD5F942673674900EB3642 /* JourneyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEvent.swift; sourceTree = "<group>"; };
+		66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDataValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +63,7 @@
 			children = (
 				588EF590267248CC00A888DB /* Bonum */,
 				588EF58F267248CC00A888DB /* Products */,
+				66DD5F9126735A5400EB3642 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +78,8 @@
 		588EF590267248CC00A888DB /* Bonum */ = {
 			isa = PBXGroup;
 			children = (
+				66DD5F7D267349D700EB3642 /* View */,
+				66DD5F7C267349D300EB3642 /* Model */,
 				588EF591267248CC00A888DB /* BonumApp.swift */,
 				588EF593267248CC00A888DB /* ContentView.swift */,
 				588EF595267248CF00A888DB /* Assets.xcassets */,
@@ -67,6 +95,39 @@
 				588EF598267248CF00A888DB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		66DD5F7C267349D300EB3642 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66DD5F7E267349FE00EB3642 /* TestData.swift */,
+				66DD5F8E267357F600EB3642 /* TrackedData.swift */,
+				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
+				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
+				66DD5F8C2673514A00EB3642 /* Mood.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66DD5F7D267349D700EB3642 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
+				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
+				66DD5F8426734AF000EB3642 /* Diary.swift */,
+				66DD5F8626734B2B00EB3642 /* Journey.swift */,
+				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
+				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66DD5F9126735A5400EB3642 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66DD5F9226735A5400EB3642 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +199,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */,
+				66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */,
+				66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
+				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
+				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
+				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
+				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
+				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
+				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
+				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
+				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +339,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Bonum/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -288,6 +361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Bonum/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
