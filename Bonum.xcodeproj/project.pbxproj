@@ -23,7 +23,39 @@
 		66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DD5F9226735A5400EB3642 /* HealthKit.framework */; };
 		66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F942673674900EB3642 /* JourneyEvent.swift */; };
 		66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */; };
+		D82D47372673AA800099A58F /* WilTest01.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47362673AA800099A58F /* WilTest01.swift */; };
+		D82D473F2673AB8E0099A58F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D473E2673AB8E0099A58F /* WidgetKit.framework */; };
+		D82D47412673AB8E0099A58F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D47402673AB8E0099A58F /* SwiftUI.framework */; };
+		D82D47442673AB8E0099A58F /* Bonum_Test_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */; };
+		D82D47472673AB8E0099A58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D82D47462673AB8E0099A58F /* Assets.xcassets */; };
+		D82D47492673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
+		D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
+		D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D82D474B2673AB8E0099A58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 588EF586267248CC00A888DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D82D473C2673AB8D0099A58F;
+			remoteInfo = "Bonum Test WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D82D47512673AB8E0099A58F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		588EF58E267248CC00A888DB /* Bonum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bonum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +76,14 @@
 		66DD5F9226735A5400EB3642 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		66DD5F942673674900EB3642 /* JourneyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEvent.swift; sourceTree = "<group>"; };
 		66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDataValue.swift; sourceTree = "<group>"; };
+		D82D47362673AA800099A58F /* WilTest01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilTest01.swift; sourceTree = "<group>"; };
+		D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bonum Test WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D82D473E2673AB8E0099A58F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D82D47402673AB8E0099A58F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bonum_Test_Widget.swift; sourceTree = "<group>"; };
+		D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Bonum_Test_Widget.intentdefinition; sourceTree = "<group>"; };
+		D82D47462673AB8E0099A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D82D47482673AB8E0099A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +95,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D82D473A2673AB8D0099A58F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D82D47412673AB8E0099A58F /* SwiftUI.framework in Frameworks */,
+				D82D473F2673AB8E0099A58F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -62,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				588EF590267248CC00A888DB /* Bonum */,
+				D82D47422673AB8E0099A58F /* Bonum Test Widget */,
 				588EF58F267248CC00A888DB /* Products */,
 				66DD5F9126735A5400EB3642 /* Frameworks */,
 			);
@@ -71,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				588EF58E267248CC00A888DB /* Bonum.app */,
+				D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,10 +129,10 @@
 		588EF590267248CC00A888DB /* Bonum */ = {
 			isa = PBXGroup;
 			children = (
-				66DD5F7D267349D700EB3642 /* View */,
-				66DD5F7C267349D300EB3642 /* Model */,
 				588EF591267248CC00A888DB /* BonumApp.swift */,
 				588EF593267248CC00A888DB /* ContentView.swift */,
+				66DD5F7D267349D700EB3642 /* View */,
+				66DD5F7C267349D300EB3642 /* Model */,
 				588EF595267248CF00A888DB /* Assets.xcassets */,
 				588EF59A267248CF00A888DB /* Info.plist */,
 				588EF597267248CF00A888DB /* Preview Content */,
@@ -105,6 +156,7 @@
 				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
 				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
+				D82D47382673AA850099A58F /* SandBox */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,8 +178,29 @@
 			isa = PBXGroup;
 			children = (
 				66DD5F9226735A5400EB3642 /* HealthKit.framework */,
+				D82D473E2673AB8E0099A58F /* WidgetKit.framework */,
+				D82D47402673AB8E0099A58F /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D82D47382673AA850099A58F /* SandBox */ = {
+			isa = PBXGroup;
+			children = (
+				D82D47362673AA800099A58F /* WilTest01.swift */,
+			);
+			path = SandBox;
+			sourceTree = "<group>";
+		};
+		D82D47422673AB8E0099A58F /* Bonum Test Widget */ = {
+			isa = PBXGroup;
+			children = (
+				D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */,
+				D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */,
+				D82D47462673AB8E0099A58F /* Assets.xcassets */,
+				D82D47482673AB8E0099A58F /* Info.plist */,
+			);
+			path = "Bonum Test Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,15 +213,34 @@
 				588EF58A267248CC00A888DB /* Sources */,
 				588EF58B267248CC00A888DB /* Frameworks */,
 				588EF58C267248CC00A888DB /* Resources */,
+				D82D47512673AB8E0099A58F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D82D474C2673AB8E0099A58F /* PBXTargetDependency */,
 			);
 			name = Bonum;
 			productName = Bonum;
 			productReference = 588EF58E267248CC00A888DB /* Bonum.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D82D473C2673AB8D0099A58F /* Bonum Test WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D82D474E2673AB8E0099A58F /* Build configuration list for PBXNativeTarget "Bonum Test WidgetExtension" */;
+			buildPhases = (
+				D82D47392673AB8D0099A58F /* Sources */,
+				D82D473A2673AB8D0099A58F /* Frameworks */,
+				D82D473B2673AB8D0099A58F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bonum Test WidgetExtension";
+			productName = "Bonum Test WidgetExtension";
+			productReference = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -160,6 +252,9 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					588EF58D267248CC00A888DB = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					D82D473C2673AB8D0099A58F = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -178,6 +273,7 @@
 			projectRoot = "";
 			targets = (
 				588EF58D267248CC00A888DB /* Bonum */,
+				D82D473C2673AB8D0099A58F /* Bonum Test WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +288,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D82D473B2673AB8D0099A58F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D82D47472673AB8E0099A58F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -199,9 +303,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */,
 				66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */,
 				66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */,
 				66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */,
+				D82D47372673AA800099A58F /* WilTest01.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
 				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
@@ -215,7 +321,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D82D47392673AB8D0099A58F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D82D47492673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */,
+				D82D47442673AB8E0099A58F /* Bonum_Test_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D82D474C2673AB8E0099A58F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D82D473C2673AB8D0099A58F /* Bonum Test WidgetExtension */;
+			targetProxy = D82D474B2673AB8E0099A58F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		588EF59B267248CF00A888DB /* Debug */ = {
@@ -337,6 +460,7 @@
 		588EF59E267248CF00A888DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
@@ -359,6 +483,7 @@
 		588EF59F267248CF00A888DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
@@ -373,6 +498,46 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = c.Bonum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D82D474F2673AB8E0099A58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Bonum Test Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "c.Bonum.Bonum-Test-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D82D47502673AB8E0099A58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Bonum Test Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "c.Bonum.Bonum-Test-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -395,6 +560,15 @@
 			buildConfigurations = (
 				588EF59E267248CF00A888DB /* Debug */,
 				588EF59F267248CF00A888DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D82D474E2673AB8E0099A58F /* Build configuration list for PBXNativeTarget "Bonum Test WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D82D474F2673AB8E0099A58F /* Debug */,
+				D82D47502673AB8E0099A58F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
