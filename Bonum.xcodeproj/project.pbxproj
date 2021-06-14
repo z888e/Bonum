@@ -31,6 +31,7 @@
 		D82D47492673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D82D4755267796FB0099A58F /* ListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4754267796FB0099A58F /* ListDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Bonum_Test_Widget.intentdefinition; sourceTree = "<group>"; };
 		D82D47462673AB8E0099A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D82D47482673AB8E0099A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D82D4754267796FB0099A58F /* ListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +135,10 @@
 				588EF593267248CC00A888DB /* ContentView.swift */,
 				66DD5F7D267349D700EB3642 /* View */,
 				66DD5F7C267349D300EB3642 /* Model */,
-				588EF595267248CF00A888DB /* Assets.xcassets */,
-				588EF59A267248CF00A888DB /* Info.plist */,
+				D82D47382673AA850099A58F /* SandBox */,
 				588EF597267248CF00A888DB /* Preview Content */,
+				588EF59A267248CF00A888DB /* Info.plist */,
+				588EF595267248CF00A888DB /* Assets.xcassets */,
 			);
 			path = Bonum;
 			sourceTree = "<group>";
@@ -156,7 +159,6 @@
 				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
 				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
-				D82D47382673AA850099A58F /* SandBox */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				D82D47362673AA800099A58F /* WilTest01.swift */,
+				D82D4754267796FB0099A58F /* ListDetail.swift */,
 			);
 			path = SandBox;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
+				D82D4755267796FB0099A58F /* ListDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
