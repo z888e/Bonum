@@ -10,6 +10,7 @@ import SwiftUI
 struct Onboarding: View {
     
     @Binding var isOnboardingShowing: Bool
+    @Binding var userName: String
     
     // l'étape à afficher à l'écran
     @State var currentStep: Int = 0
@@ -18,12 +19,11 @@ struct Onboarding: View {
         
         VStack(alignment: .center) {
             
-            PageTab(currentStep: $currentStep)
+            PageTab(userName: $userName, currentStep: $currentStep)
             
-            Buttons(currentStep: $currentStep)
+            Buttons(currentStep: $currentStep, isOnboardingShowing: $isOnboardingShowing)
             
         }
-        .transition(.move(edge: .bottom))
         .padding()
         .multilineTextAlignment(.center)
         
@@ -34,6 +34,6 @@ struct Onboarding: View {
 
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding(isOnboardingShowing: .constant(true))
+        Onboarding(isOnboardingShowing: .constant(true), userName: .constant(""))
     }
 }

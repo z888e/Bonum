@@ -10,17 +10,18 @@ import SwiftUI
 struct ContentView: View {
     
     // Permet d'afficher l'onboarding au premier démarrage seulement
-//    @State private var isOnboardingShowing = UserDefaults.standard.bool(forKey: "isOnboardingShowing")
-    @State private var isOnboardingShowing = true
+    @AppStorage("isOnboardingShowing") private var isOnboardingShowing: Bool = true
+    
+    // Permet de stocker le nom de l'utilisateur
+    @AppStorage("userName") private var userName: String = ""
     
     var body: some View {
-
-//        if isOnboardingShowing {
-//            Onboarding(isOnboardingShowing: $isOnboardingShowing)
-//        } else {
-//            Diary()
-//        }
-        TabBarView()
+            
+            if isOnboardingShowing {
+                Onboarding(isOnboardingShowing: $isOnboardingShowing, userName: $userName)
+            } else {
+                TabBarView()
+            }
         
     }
 }
@@ -30,3 +31,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+
