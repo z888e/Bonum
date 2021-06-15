@@ -12,19 +12,15 @@ import Intents
 
 struct Provider: IntentTimelineProvider {
     
-    let widgetURL: URL = URL(string: "https://simplon.co")!
-    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), refreshNb: 0, widgetURL: widgetURL, configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), refreshNb: 0, configuration: ConfigurationIntent())
         
     }
 
     /// To show your widget in the widget gallery, WidgetKit asks the provider for a preview snapshot.
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         
-        let widgetURL: URL = URL(string: "https://simplon.co")!
-        
-        let entry = SimpleEntry(date: Date(), refreshNb: 0, widgetURL: widgetURL, configuration: configuration)
+        let entry = SimpleEntry(date: Date(), refreshNb: 0, configuration: configuration)
 
         completion(entry)
     }
@@ -33,13 +29,11 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
  
-        let widgetURL = URL(string: "kahoot://quiz/")!
-
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 4 {
             let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset*10, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, refreshNb: hourOffset, widgetURL: widgetURL, configuration: configuration)
+            let entry = SimpleEntry(date: entryDate, refreshNb: hourOffset, configuration: configuration)
             entries.append(entry)
         }
 
@@ -57,7 +51,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let refreshNb: Int
-    let widgetURL: URL
+//    let widgetURL: URL
     let configuration: ConfigurationIntent
 }
 
@@ -65,6 +59,11 @@ struct Bonum_Test_WidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
+        ZStack{
+            Image("storm")
+                .resizable()
+                .scaledToFill()
+        
         VStack{
             Text("Nous sommes le :")
             Text(entry.date, style: .date)
@@ -94,8 +93,10 @@ struct Bonum_Test_WidgetEntryView : View {
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
 
             }
+        .foregroundColor(.white)
         .font(.footnote)
-        .widgetURL(entry.widgetURL)
+//        .widgetURL(entry.widgetURL)
+    }
     }
 }
 
@@ -117,7 +118,7 @@ struct Bonum_Test_Widget: Widget {
 struct Bonum_Test_Widget_Previews: PreviewProvider {
     static var previews: some View {
         
-        let previewEntry: Provider.Entry = SimpleEntry(date: Date(), refreshNb: 0, widgetURL: URL(string: "https://simplon.co")!, configuration: ConfigurationIntent())
+        let previewEntry: Provider.Entry = SimpleEntry(date: Date(), refreshNb: 0, configuration: ConfigurationIntent())
 
         Group{
             Bonum_Test_WidgetEntryView(entry: previewEntry)
