@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+let DATECAL: Date =
+    Date(timeIntervalSince1970: 1*24*3600)
+
+let DATAVALUES: [DataValue] = [DataValue(count: <#Int#>, date: <#Date#>)]
+
+var GAPDATE: Int = 1291000 // Différence de secondes entre les référentiels de date Excel et SwitfUI
+
 var LARGEUR: Int = 300
 
 var HAUTEUR: Int = 200
@@ -25,6 +32,9 @@ struct ThomasTestGraphData: View {
         
     var body: some View {
         VStack {
+            
+            Text(DATECAL, style: .date)
+            
             GrapheView(color: currenColor)
                 .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
                 .cornerRadius(5)
