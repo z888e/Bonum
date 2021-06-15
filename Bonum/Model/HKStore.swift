@@ -1,3 +1,4 @@
+
 //
 //  HKStore.swift
 //  Bonum
@@ -11,12 +12,11 @@ import HealthKit
 let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
 let endDate = Date()
 
-class HealthStoreData {
+class HealthStoreData : ObservableObject {
     
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
-    //prépare HKStore quand dispo
     init() {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
@@ -49,7 +49,7 @@ class HealthStoreData {
         
         collectionQuery = HKStatisticsCollectionQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: anchorDate, intervalComponents: daily)
         
-        collectionQuery!.initialResultsHandler = { query, HKStatisticsCollection, error in
+        collectionQuery!.initialResultsHandler = { collectionQuery, HKStatisticsCollection, error in
             completion(HKStatisticsCollection)
         }
         
@@ -73,4 +73,3 @@ class HealthStoreData {
         }
     }
 }
-

@@ -12,3 +12,8 @@ struct DataValue: Identifiable {
     let count: Int
     let date: Date
 }
+
+let MYSTEPS : [DataValue] = [
+    DataValue(count: 1845, date: Date()),
+    DataValue(count: 54, date: Date() - 1000),
+]
