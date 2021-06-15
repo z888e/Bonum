@@ -38,6 +38,7 @@
 		D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D82D4755267796FB0099A58F /* ListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4754267796FB0099A58F /* ListDetail.swift */; };
+		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		D82D47462673AB8E0099A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D82D47482673AB8E0099A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D82D4754267796FB0099A58F /* ListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetail.swift; sourceTree = "<group>"; };
+		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			children = (
 				D82D47362673AA800099A58F /* WilTest01.swift */,
 				D82D4754267796FB0099A58F /* ListDetail.swift */,
+				E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */,
 			);
 			path = SandBox;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
 				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
+				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
 				58E6B76A26789577008643F7 /* HKStore.swift in Sources */,
 				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
