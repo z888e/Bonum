@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TrackedDataValue {
-    
-    // date, valeur
-    
+struct DataValue: Identifiable {
+    let id = UUID()
+    let count: Int
+    let date: Date
 }
