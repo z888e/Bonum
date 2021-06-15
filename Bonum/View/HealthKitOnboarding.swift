@@ -10,48 +10,51 @@ import HealthKit
 
 struct HealthKitOnboarding: View {
     
-    private var healthStore: HealthStoreData?
-    //replace with observable
-    @State private var steps = [DataValue]()
-
-    init() {
-        healthStore = HealthStoreData()
-    }
-
-    private func updateUIFromStatistics(_ statisticsCollection: HKStatisticsCollection){
-        
-        statisticsCollection.enumerateStatistics(from: startDate!, to: endDate) {
-            (statistics, stop) in
-            
-            let count = statistics.sumQuantity()?.doubleValue(for: .count())
-            
-            let step = DataValue(count: Int(count ?? 0), date: statistics.startDate)
-            steps.append(step)
+    @Binding var steps : [DataValue]
+    @EnvironmentObject var healthStore: HealthStoreData
+    
+        private func updateUIFromStatistics(_ statisticsCollection: HKStatisticsCollection){
+    
+            statisticsCollection.enumerateStatistics(from: startDate!, to: endDate) {
+                (statistics, stop) in
+    
+                let count = statistics.sumQuantity()?.doubleValue(for: .count())
+    
+                let step = DataValue(count: Double(count ?? 0), date: statistics.startDate)
+                steps.append(step)
+            }
         }
-    }
     
     var body: some View {
-        Text("Hello, HealthKit")
+        Text("HealthKit Auth")
             .onAppear{
-                if let healthStore = healthStore {
-                    healthStore.requestAuthorization { success in
-                        if success {
-                            healthStore.calculateSteps{ statisticsCollection in
-                                if let statisticsCollection = statisticsCollection {
-                                    //update ui
-                                    print(statisticsCollection)
-                                    updateUIFromStatistics(statisticsCollection)
-                                }
+                healthStore.requestAuthorization { success in
+                    if success {
+                        healthStore.calculateSteps{ statisticsCollection in
+                            if let statisticsCollection = statisticsCollection {
+                                print(statisticsCollection)
+                            updateUIFromStatistics(statisticsCollection)
                             }
                         }
                     }
+                    
                 }
             }
     }
 }
 
+struct HealthKitOnboardingPreview : View {
+    
+    @State private var testTab : [DataValue] = MYSTEPS
+    
+    var body: some View {
+        HealthKitOnboarding(steps: $testTab)
+    }
+    
+}
+
 struct HealthKitOnboarding_Previews: PreviewProvider {
     static var previews: some View {
-        HealthKitOnboarding()
+        HealthKitOnboardingPreview().environmentObject(HealthStoreData())
     }
 }
