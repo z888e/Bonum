@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BonumApp: App {
+    
+    @StateObject var healthStore = HealthStoreData()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(healthStore)
         }
     }
 }

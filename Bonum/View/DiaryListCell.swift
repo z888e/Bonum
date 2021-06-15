@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DiaryListCell: View {
+    
+    @Binding var steps : [DataValue]
+
     var body: some View {
         Text("Hello, World!")
     }
@@ -15,6 +18,6 @@ struct DiaryListCell: View {
 
 struct DiaryListCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListCell()
+        DiaryListCell(steps: .constant(MYSTEPS))
     }
 }

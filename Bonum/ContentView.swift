@@ -15,11 +15,12 @@ struct ContentView: View {
     
     var body: some View {
 
-        if isOnboardingShowing {
-            Onboarding(isOnboardingShowing: $isOnboardingShowing)
-        } else {
-            Diary()
-        }
+//        if isOnboardingShowing {
+//            Onboarding(isOnboardingShowing: $isOnboardingShowing)
+//        } else {
+//            Diary()
+//        }
+        Diary()
         
     }
 }
