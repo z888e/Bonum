@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // Permet d'afficher l'onboarding au premier démarrage seulement
+//    @State private var isOnboardingShowing = UserDefaults.standard.bool(forKey: "isOnboardingShowing")
+    @State private var isOnboardingShowing = true
+    
     var body: some View {
-        VStack {
-            Text("Hello, team!")
-                .padding()
-                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            Text("Salut, ici Alex !")
-            Text("Salut, ici Thomas !")
-            Text("Salut, ici Wil !")
-            Text("Salut, ici Zoé ! We did it")
-            Text("Not so easy...")
-            Text("Start with Bonum !")
+
+        if isOnboardingShowing {
+            Onboarding(isOnboardingShowing: $isOnboardingShowing)
+        } else {
+            Diary()
         }
+        
     }
 }
 
