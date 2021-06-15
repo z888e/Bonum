@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PageTab: View {
     
+    @Binding var userName: String
     @Binding var currentStep: Int
-    @State var userName: String = UserDefaults.standard.string(forKey: "name") ?? ""
     
     var body: some View {
         
@@ -100,10 +100,10 @@ struct PageTab: View {
 struct PageTab_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PageTab(currentStep: .constant(0))
-            PageTab(currentStep: .constant(1))
-            PageTab(currentStep: .constant(2))
-            PageTab(currentStep: .constant(3))
+            PageTab(userName: .constant("Alex"), currentStep: .constant(0))
+            PageTab(userName: .constant("Alex"), currentStep: .constant(1))
+            PageTab(userName: .constant("Alex"), currentStep: .constant(2))
+            PageTab(userName: .constant("Alex"), currentStep: .constant(3))
         }
     }
 }

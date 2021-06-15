@@ -9,6 +9,11 @@ import Foundation
 
 struct DataValue: Identifiable {
     let id = UUID()
-    let count: Int
+    let count: Double
     let date: Date
 }
+
+let MYSTEPS : [DataValue] = [
+    DataValue(count: 1845, date: Date()),
+    DataValue(count: 54, date: Date() - 1000),
+]

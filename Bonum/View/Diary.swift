@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct Diary: View {
+    
+    @State private var steps = [DataValue]()
+    
     var body: some View {
-        Text("Journal")
+        VStack{
+            HealthKitOnboarding(steps: $steps)
+            Text("Score Bonum ici")
+            DiaryList(steps: $steps)
+        }
     }
 }
 

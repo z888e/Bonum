@@ -4,6 +4,8 @@
 <dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Bonum needs to read your chosen HealthKit data to correlate it with your mood.</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>(opt) Bonum needs to read your chosen HealthKit data to correlate it with your mood.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

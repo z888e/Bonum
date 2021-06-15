@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct DiaryListCell: View {
+    
+    let displayedData : DataValue
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            Text("\(displayedData.count, specifier: "%.0f")")
+            Text(displayedData.date, style: .date)
+                .opacity(0.5)
+        }
+        
     }
 }
 
 struct DiaryListCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListCell()
+        DiaryListCell(displayedData: MYSTEPS[1])
     }
 }
