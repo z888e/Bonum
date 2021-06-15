@@ -21,7 +21,7 @@ struct Onboarding: View {
             
             PageTab(userName: $userName, currentStep: $currentStep)
             
-            Buttons(currentStep: $currentStep, userName: $userName, isOnboardingShowing: $isOnboardingShowing)
+            Buttons(currentStep: $currentStep, isOnboardingShowing: $isOnboardingShowing)
             
         }
         .padding()
@@ -34,6 +34,6 @@ struct Onboarding: View {
 
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding(isOnboardingShowing: .constant(true), userName: .constant("Alex"))
+        Onboarding(isOnboardingShowing: .constant(true), userName: .constant(""))
     }
 }

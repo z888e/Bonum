@@ -10,7 +10,6 @@ import SwiftUI
 struct Buttons: View {
     
     @Binding var currentStep: Int
-    @Binding var userName: String
     @Binding var isOnboardingShowing: Bool
     let buttons = ["Précédent", "Suivant"]
     
@@ -29,7 +28,6 @@ struct Buttons: View {
                 })
                 
             }
-            
         }
         .foregroundColor(.white)
         .padding()
@@ -47,8 +45,6 @@ struct Buttons: View {
                 isOnboardingShowing = false
             }
         }
-        
-        UserDefaults.standard.set(self.userName, forKey: "name")
 
     }
     
@@ -56,7 +52,7 @@ struct Buttons: View {
 
 struct Buttons_Previews: PreviewProvider {
     static var previews: some View {
-        Buttons(currentStep: .constant(0), userName: .constant("Alex"), isOnboardingShowing: .constant(true))
+        Buttons(currentStep: .constant(0), isOnboardingShowing: .constant(true))
             .previewLayout(.sizeThatFits)
     }
 }
