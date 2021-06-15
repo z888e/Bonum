@@ -9,15 +9,20 @@ import SwiftUI
 
 struct DiaryListCell: View {
     
-    @Binding var steps : [DataValue]
-
+    let displayedData : DataValue
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            Text("\(displayedData.count, specifier: "%.0f")")
+            Text(displayedData.date, style: .date)
+                .opacity(0.5)
+        }
+        
     }
 }
 
 struct DiaryListCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListCell(steps: .constant(MYSTEPS))
+        DiaryListCell(displayedData: MYSTEPS[1])
     }
 }
