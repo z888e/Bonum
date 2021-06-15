@@ -8,9 +8,6 @@
 import Foundation
 import HealthKit
 
-import Foundation
-import HealthKit
-
 let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
 let endDate = Date()
 
@@ -71,7 +68,7 @@ class HealthStoreData {
         guard let healthStore = self.healthStore else { return completion(false)}
         
         //authorisation de lire
-        healthStore.requestAuthorization(toShare: [stepType], read: [stepType]) { (success, error) in
+        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
             completion(success)
         }
     }
