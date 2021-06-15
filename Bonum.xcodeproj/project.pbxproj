@@ -11,6 +11,7 @@
 		588EF594267248CC00A888DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EF593267248CC00A888DB /* ContentView.swift */; };
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
 		588EF599267248CF00A888DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF598267248CF00A888DB /* Preview Assets.xcassets */; };
+		58E6B76A26789577008643F7 /* HKStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76926789577008643F7 /* HKStore.swift */; };
 		66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F7E267349FE00EB3642 /* TestData.swift */; };
 		66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8026734A4900EB3642 /* Onboarding.swift */; };
 		66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8226734A9800EB3642 /* MoodTracker.swift */; };
@@ -65,6 +66,7 @@
 		588EF595267248CF00A888DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58E6B76926789577008643F7 /* HKStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKStore.swift; sourceTree = "<group>"; };
 		66DD5F7E267349FE00EB3642 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		66DD5F8026734A4900EB3642 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		66DD5F8226734A9800EB3642 /* MoodTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTracker.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
 				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
+				58E6B76926789577008643F7 /* HKStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
 				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
+				58E6B76A26789577008643F7 /* HKStore.swift in Sources */,
 				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
