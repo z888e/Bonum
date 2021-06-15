@@ -11,19 +11,19 @@ import SwiftUI
 struct DiaryList: View {
     
     @Binding var steps : [DataValue]
+    @EnvironmentObject var healthStore: HealthStoreData
 
     var body: some View {
-        NavigationView{
             List(steps, id: \.id){ el in
                 
                 NavigationLink(
                     destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
                     label: {
-                        DiaryListCell(steps: $steps)
+                        DiaryListCell(displayedData: el)
                     })
         
             }
-        }
+        
     }
 }
 

@@ -20,7 +20,7 @@ struct ContentView: View {
 //        } else {
 //            Diary()
 //        }
-        Diary()
+        TabBarView()
         
     }
 }
