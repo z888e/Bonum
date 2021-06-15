@@ -20,7 +20,7 @@ struct HealthKitOnboarding: View {
     
                 let count = statistics.sumQuantity()?.doubleValue(for: .count())
     
-                let step = DataValue(count: Int(count ?? 0), date: statistics.startDate)
+                let step = DataValue(count: Double(count ?? 0), date: statistics.startDate)
                 steps.append(step)
             }
         }

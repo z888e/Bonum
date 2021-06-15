@@ -9,7 +9,7 @@ import Foundation
 
 struct DataValue: Identifiable {
     let id = UUID()
-    let count: Int
+    let count: Double
     let date: Date
 }
 

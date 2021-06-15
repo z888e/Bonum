@@ -12,6 +12,7 @@
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
 		588EF599267248CF00A888DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF598267248CF00A888DB /* Preview Assets.xcassets */; };
 		589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBEE2678D73700E6C5FC /* TabBarView.swift */; };
+		589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */; };
 		58E6B76A26789577008643F7 /* HKStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76926789577008643F7 /* HKStore.swift */; };
 		58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */; };
 		58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */; };
@@ -74,6 +75,7 @@
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		589FBBEE2678D73700E6C5FC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListDetails.swift; sourceTree = "<group>"; };
 		58E6B76926789577008643F7 /* HKStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKStore.swift; sourceTree = "<group>"; };
 		58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitOnboarding.swift; sourceTree = "<group>"; };
 		58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				58E6B76F2678A756008643F7 /* DiaryList.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
+				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
 				58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */,
 				66DD5F8626734B2B00EB3642 /* Journey.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
@@ -339,6 +342,7 @@
 				D82D47372673AA800099A58F /* WilTest01.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
 				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
+				589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */,
 				58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */,
 				589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */,
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,

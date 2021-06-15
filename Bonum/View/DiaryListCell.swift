@@ -13,7 +13,7 @@ struct DiaryListCell: View {
     
     var body: some View {
         VStack{
-            Text("\(displayedData.count)")
+            Text("\(displayedData.count, specifier: "%.0f")")
             Text(displayedData.date, style: .date)
                 .opacity(0.5)
         }
