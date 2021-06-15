@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListDetail: View {
+struct WilListDetail: View {
     let imageName: String
     let textToDDisplay: String
     
@@ -19,8 +19,8 @@ struct ListDetail: View {
     }
 }
 
-struct ListDetail_Previews: PreviewProvider {
+struct WilListDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ListDetail(imageName: "point", textToDDisplay: "Hello team")
+        WilListDetail(imageName: "play", textToDDisplay: "Hello team")
     }
 }
