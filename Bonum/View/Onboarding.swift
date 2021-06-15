@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct Onboarding: View {
+    
+    @Binding var isOnboardingShowing: Bool
+    
+    // l'étape à afficher à l'écran
+    @State var currentStep: Int = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack(alignment: .center) {
+            
+            PageTab(currentStep: $currentStep)
+            
+            Buttons(currentStep: $currentStep)
+            
+        }
+        .transition(.move(edge: .bottom))
+        .padding()
+        .multilineTextAlignment(.center)
+        
     }
+
 }
+
 
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding()
+        Onboarding(isOnboardingShowing: .constant(true))
     }
 }
