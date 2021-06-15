@@ -11,9 +11,7 @@ import SwiftUI
 struct BonumApp: App {
     var body: some Scene {
         WindowGroup {
-            WilTest01()
-                .onOpenURL { url in
-                    print("Received deep link: \(url)")}
+            ContentView()
         }
     }
 }
