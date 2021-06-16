@@ -20,19 +20,19 @@ struct HealthKitOnboarding: View {
     
                 let count = statistics.sumQuantity()?.doubleValue(for: .count())
     
-                let step = DataValue(count: Double(count ?? 0), date: statistics.startDate)
-                steps.append(step)
+                let stepsFromHK = DataValue(count: Double(count ?? 0), date: statistics.startDate)
+                print(stepsFromHK)
+                steps = [stepsFromHK]
             }
         }
     
     var body: some View {
-        Text("HealthKit Auth")
+        Text("")
             .onAppear{
                 healthStore.requestAuthorization { success in
                     if success {
                         healthStore.calculateSteps{ statisticsCollection in
                             if let statisticsCollection = statisticsCollection {
-                                print(statisticsCollection)
                             updateUIFromStatistics(statisticsCollection)
                             }
                         }
