@@ -18,6 +18,8 @@ import SwiftUI
 
 struct TabBarView: View {
 
+    @State private var testEvents = JourneyEvent.events
+    
     var body: some View {
             TabView{
                 Diary()
@@ -30,7 +32,7 @@ struct TabBarView: View {
                     Label(" ", systemImage: "plus.circle")
                    }
 
-                Journey()
+                Journey(events: testEvents)
                     .tabItem {
                         Label("Parcours", systemImage: "arrow.triangle.pull")
                     }
