@@ -39,6 +39,8 @@
 		D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475A2678FACD0099A58F /* UserNotifications.swift */; };
+		D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475C2679DD9F0099A58F /* WilSampleList.swift */; };
+		D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475E2679DDC40099A58F /* WilListDetail.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,8 @@
 		D82D47462673AB8E0099A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D82D47482673AB8E0099A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D82D475A2678FACD0099A58F /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		D82D475C2679DD9F0099A58F /* WilSampleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilSampleList.swift; sourceTree = "<group>"; };
+		D82D475E2679DDC40099A58F /* WilListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilListDetail.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */,
+				D82D475C2679DD9F0099A58F /* WilSampleList.swift */,
+				D82D475E2679DDC40099A58F /* WilListDetail.swift */,
 			);
 			path = SandBox;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
+				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				58E6B76A26789577008643F7 /* HKStore.swift in Sources */,
 				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
@@ -352,6 +359,7 @@
 				662ACCD52678994B00287EB8 /* Buttons.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
+				D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */,
 				D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */,
 				662ACCD1267896C400287EB8 /* PageTab.swift in Sources */,
 			);
