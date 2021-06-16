@@ -17,6 +17,7 @@ struct ContentView: View {
     
     var body: some View {
             
+            // Si l'utilisateur a déjà complété l'onboarding, alors on affiche l'écran principal de l'app
             if isOnboardingShowing {
                 Onboarding(isOnboardingShowing: $isOnboardingShowing, userName: $userName)
             } else {

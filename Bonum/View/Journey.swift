@@ -62,7 +62,9 @@ class LocalFileManager {
 class FileManagerViewModel: ObservableObject {
     
     @Published var image: UIImage? = nil
-    let imageName: String = "salle-sport"
+
+    @State private var imageName: String = ""
+    
     let manager = LocalFileManager.instance
     
     init() {
@@ -122,10 +124,6 @@ struct TestsFileManager: View {
 
 struct Journey: View {
     
-    @State var isShowingImagePicker = false
-    
-    @State var shownImage = UIImage()
-    
     let events: [JourneyEvent]
     
     var body: some View {
@@ -135,52 +133,15 @@ struct Journey: View {
             List {
                 ForEach(events, id: \.self) { event in
                     
-                    HStack(spacing: 20) {
-                        
-                        Text("Date")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        Button(action: {
-                            self.isShowingImagePicker.toggle()
-                        }, label: {
-                            
-                            Image(uiImage: shownImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60)
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.gray))
-                            
-                        })
-                        .sheet(isPresented: $isShowingImagePicker, content: {
-                            ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$shownImage)
-                        })
-                        
-                        VStack(alignment: .leading) {
-                            Text(event.title)
-                                .foregroundColor(.black)
-                                .fontWeight(.semibold)
-                            Text("Nom de la nouvelle donnée suivie")
-                                .foregroundColor(.gray)
-                                .font(.callout)
-                        }
-                        
-                    }
+                    JourneyCell(event: event)
                     
                 }
-                
-                
-                .padding()
             }
             
         }
-        
+        .navigationTitle("Parcours")
     }
-    
 }
-
-
 
 struct ImagePickerView: UIViewControllerRepresentable {
     
@@ -200,6 +161,9 @@ struct ImagePickerView: UIViewControllerRepresentable {
     // classe qui permet de gérer la sélection de l'image
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
+        // TEST
+        @StateObject var vm = FileManagerViewModel()
+        
         let parent: ImagePickerView
         init(parent: ImagePickerView) {
             self.parent = parent
@@ -208,6 +172,8 @@ struct ImagePickerView: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let selectedImageFromPicker = info[.originalImage] as? UIImage {
                 print(selectedImageFromPicker)
+                // TEST
+                //                vm.saveImage()
                 self.parent.selectedImage = selectedImageFromPicker
             }
             self.parent.isPresented = false
