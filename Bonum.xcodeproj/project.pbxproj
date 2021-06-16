@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5861C6D8267A2BC100C5C0B1 /* UserData.swift */; };
 		588EF592267248CC00A888DB /* BonumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EF591267248CC00A888DB /* BonumApp.swift */; };
 		588EF594267248CC00A888DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EF593267248CC00A888DB /* ContentView.swift */; };
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5861C6D8267A2BC100C5C0B1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		588EF58E267248CC00A888DB /* Bonum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bonum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		588EF591267248CC00A888DB /* BonumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonumApp.swift; sourceTree = "<group>"; };
 		588EF593267248CC00A888DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				66DD5F7E267349FE00EB3642 /* TestData.swift */,
 				66DD5F8E267357F600EB3642 /* TrackedData.swift */,
+				5861C6D8267A2BC100C5C0B1 /* UserData.swift */,
 				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
 				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
@@ -357,6 +360,7 @@
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
 				662ACCD52678994B00287EB8 /* Buttons.swift in Sources */,
+				5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
 				D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */,

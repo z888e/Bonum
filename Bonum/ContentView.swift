@@ -15,6 +15,7 @@ struct ContentView: View {
     // Permet de stocker le nom de l'utilisateur
     @AppStorage("userName") private var userName: String = ""
     
+    
     var body: some View {
             
             if isOnboardingShowing {

@@ -1,19 +1,19 @@
+////
+////  TrackedDataValue.swift
+////  Bonum
+////
+////  Created by Alexandre Dias Da Silva on 11/06/2021.
+////
 //
-//  TrackedDataValue.swift
-//  Bonum
+//import Foundation
 //
-//  Created by Alexandre Dias Da Silva on 11/06/2021.
+//struct DataValue: Identifiable {
+//    let id = UUID()
+//    let count: Double
+//    let date: Date
+//}
 //
-
-import Foundation
-
-struct DataValue: Identifiable {
-    let id = UUID()
-    let count: Double
-    let date: Date
-}
-
-let MYSTEPS : [DataValue] = [
-    DataValue(count: 1845, date: Date()),
-    DataValue(count: 54, date: Date() - 1000),
-]
+//let MYSTEPS : [DataValue] = [
+//    DataValue(count: 1845, date: Date()),
+//    DataValue(count: 54, date: Date() - 1000),
+//]

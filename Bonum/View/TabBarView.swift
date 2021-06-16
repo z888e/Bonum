@@ -20,7 +20,7 @@ struct TabBarView: View {
 
     var body: some View {
             TabView{
-               Diary()
+                Diary()
                    .tabItem {
                        Label("Journal", systemImage: "book.closed")
                    }
