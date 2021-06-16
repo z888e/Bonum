@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WilTest01: View {
+struct WilSampleList: View {
     
     @State private var hailActive: Bool = false
     @State private var thunderActive: Bool = false
@@ -21,17 +21,17 @@ struct WilTest01: View {
 
         NavigationView {
               List {
-                NavigationLink(destination: ListDetail(imageName: "cloud.hail", textToDDisplay: "Pluvieux"),
+                NavigationLink(destination: WilListDetail(imageName: "cloud.hail", textToDDisplay: "Pluvieux"),
                                  isActive: $hailActive) {
                       Label("Pluvieux", systemImage: "cloud.hail")
                   }
                 
-                NavigationLink(destination:  ListDetail(imageName: "cloud.bolt.rain", textToDDisplay: "Orageux"),
+                NavigationLink(destination:  WilListDetail(imageName: "cloud.bolt.rain", textToDDisplay: "Orageux"),
                             isActive: $thunderActive) {
                       Label("Orageux", systemImage: "cloud.bolt.rain")
                   }
                   
-                NavigationLink(destination: ListDetail(imageName: "tropicalstorm", textToDDisplay: "Tempête tropicale"),
+                NavigationLink(destination: WilListDetail(imageName: "tropicalstorm", textToDDisplay: "Tempête tropicale"),
                             isActive: $tropicalActive) {
                       Label("Tempête tropicale", systemImage: "tropicalstorm")
                   }
@@ -47,8 +47,8 @@ struct WilTest01: View {
     }
 }
 
-struct WilTest01_Previews: PreviewProvider {
+struct WilSampleList_Previews: PreviewProvider {
     static var previews: some View {
-        WilTest01()
+        WilSampleList()
     }
 }
