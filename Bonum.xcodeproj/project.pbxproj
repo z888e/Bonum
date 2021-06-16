@@ -31,7 +31,6 @@
 		66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DD5F9226735A5400EB3642 /* HealthKit.framework */; };
 		66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F942673674900EB3642 /* JourneyEvent.swift */; };
 		66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */; };
-		D82D47372673AA800099A58F /* WilTest01.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47362673AA800099A58F /* WilTest01.swift */; };
 		D82D473F2673AB8E0099A58F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D473E2673AB8E0099A58F /* WidgetKit.framework */; };
 		D82D47412673AB8E0099A58F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D47402673AB8E0099A58F /* SwiftUI.framework */; };
 		D82D47442673AB8E0099A58F /* Bonum_Test_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */; };
@@ -39,7 +38,6 @@
 		D82D47492673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */; };
 		D82D474D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D82D4755267796FB0099A58F /* ListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4754267796FB0099A58F /* ListDetail.swift */; };
 		D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475A2678FACD0099A58F /* UserNotifications.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
@@ -95,7 +93,6 @@
 		66DD5F9226735A5400EB3642 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		66DD5F942673674900EB3642 /* JourneyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEvent.swift; sourceTree = "<group>"; };
 		66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDataValue.swift; sourceTree = "<group>"; };
-		D82D47362673AA800099A58F /* WilTest01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilTest01.swift; sourceTree = "<group>"; };
 		D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bonum Test WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82D473E2673AB8E0099A58F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D82D47402673AB8E0099A58F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -103,7 +100,6 @@
 		D82D47452673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Bonum_Test_Widget.intentdefinition; sourceTree = "<group>"; };
 		D82D47462673AB8E0099A58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D82D47482673AB8E0099A58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D82D4754267796FB0099A58F /* ListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetail.swift; sourceTree = "<group>"; };
 		D82D475A2678FACD0099A58F /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,8 +214,6 @@
 		D82D47382673AA850099A58F /* SandBox */ = {
 			isa = PBXGroup;
 			children = (
-				D82D47362673AA800099A58F /* WilTest01.swift */,
-				D82D4754267796FB0099A58F /* ListDetail.swift */,
 				E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */,
 			);
 			path = SandBox;
@@ -342,7 +336,6 @@
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
 				58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */,
 				66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */,
-				D82D47372673AA800099A58F /* WilTest01.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
 				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
 				589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */,
@@ -361,7 +354,6 @@
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
 				D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */,
 				662ACCD1267896C400287EB8 /* PageTab.swift in Sources */,
-				D82D4755267796FB0099A58F /* ListDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
