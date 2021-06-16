@@ -151,10 +151,10 @@
 		588EF590267248CC00A888DB /* Bonum */ = {
 			isa = PBXGroup;
 			children = (
-				588EF59A267248CF00A888DB /* Info.plist */,
 				588EF591267248CC00A888DB /* BonumApp.swift */,
 				588EF593267248CC00A888DB /* ContentView.swift */,
 				588EF595267248CF00A888DB /* Assets.xcassets */,
+				588EF59A267248CF00A888DB /* Info.plist */,
 				66DD5F7C267349D300EB3642 /* Model */,
 				66DD5F7D267349D700EB3642 /* View */,
 				588EF597267248CF00A888DB /* Preview Content */,
@@ -187,9 +187,11 @@
 		66DD5F7D267349D700EB3642 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
+				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
+				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
 				662ACCD0267896C400287EB8 /* PageTab.swift */,
 				662ACCD42678994B00287EB8 /* Buttons.swift */,
+				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				58E6B76F2678A756008643F7 /* DiaryList.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
@@ -198,8 +200,6 @@
 				66DD5F8626734B2B00EB3642 /* Journey.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
-				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
-				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 			);
 			path = View;
