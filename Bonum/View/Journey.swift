@@ -126,6 +126,18 @@ class LocalFileManager {
         
     }
     
+    func getPathForJson(name: String) -> URL? {
+        
+        guard
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(name).json") else {
+            print("Error getting path.")
+            return nil
+        }
+        
+        return path
+        
+    }
+    
 }
 
 class FileManagerViewModel: ObservableObject {

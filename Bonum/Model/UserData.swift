@@ -18,13 +18,13 @@ func dateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     return date
 }
 
-struct DataValue: Identifiable {
-    let id = UUID()
+struct DataValue: Identifiable, Codable {
+    var id = UUID()
     let count: Double
     let date: Date
 }
 
-struct DataElement : Identifiable {
+struct DataElement : Identifiable, Codable {
     
     var id = UUID()
     var identifierInHK : String
@@ -35,7 +35,7 @@ struct DataElement : Identifiable {
     var values : [DataValue]
 }
 
-struct JourneyEvent: Hashable {
+struct JourneyEvent: Hashable, Codable {
     
     var title: String
     var date: Date
@@ -44,10 +44,15 @@ struct JourneyEvent: Hashable {
     
 }
 
+
 let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
 let endDate = Date()
 
-class UserData: ObservableObject {
+
+final class UserData: ObservableObject {
+//    @Published var userElementsList: [DataElement] = load("userElementsList.json")
+//    @Published var userJourneyEvent: [JourneyEvent] = load("userJourneyEvent.json")
+
     var name : String
     var userElementsList = [DataElement]()
     var userJourneyEvent = [JourneyEvent]()
@@ -60,8 +65,44 @@ class UserData: ObservableObject {
             healthStore = HKHealthStore()
         }
         self.name = name
-        self.userElementsList = userElementsList
-        self.userJourneyEvent = userJourneyEvent
+        self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
+        self.userJourneyEvent = readJson(filename: "JourneyList") ?? [JourneyEvent]()
+    }
+    
+//    writeJson(tab: userElementsList, filename: "ElementsList")
+//    writeJson(tab: userJourneyEvent, filename: "JourneyList")
+    
+    func writeJson<MonType: Codable>(tab : [MonType], filename : String) -> Void {
+        let encoder = JSONEncoder()
+        do {
+            let json = try encoder.encode(tab)
+            let jsonString = String(data: json, encoding: .utf8) ?? "error"
+            print(jsonString)
+            if let url = LocalFileManager.instance.getPathForJson(name: filename){
+                try json.write(to: url)
+            }
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    func readJson<MonType: Codable>(filename : String) -> MonType?{
+        let decoder = JSONDecoder()
+        do{
+            if let url = LocalFileManager.instance.getPathForJson(name: filename) {
+                let data = try Data(contentsOf: url)
+                let result = try decoder.decode(MonType.self, from: data)
+                return result
+            }
+            
+            return nil
+            
+        } catch {
+            print(error)
+            return nil
+        }
+        
     }
     
     func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
@@ -153,3 +194,4 @@ let MYJOURNEY : [JourneyEvent] = [
             JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
             JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
         ]
+
