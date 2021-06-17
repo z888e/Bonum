@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct BonumApp: App {
     
-    @StateObject var userData = UserData(name: "Albert", userElementsList: MYELEMENTS)
+    @StateObject var userData = UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvent: MYJOURNEY)
     
     var body: some Scene {
         WindowGroup {

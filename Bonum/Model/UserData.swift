@@ -8,7 +8,7 @@
 import Foundation
 import HealthKit
 
-func startDateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
+func dateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     let calendar = Calendar.current
     let dateComponents = DateComponents(calendar: calendar,
                                         year: y,
@@ -35,22 +35,33 @@ struct DataElement : Identifiable {
     var values : [DataValue]
 }
 
+struct JourneyEvent: Hashable {
+    
+    var title: String
+    var date: Date
+    let imageName: String
+    var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
+    
+}
+
 let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
 let endDate = Date()
 
 class UserData: ObservableObject {
     var name : String
     var userElementsList = [DataElement]()
+    var userJourneyEvent = [JourneyEvent]()
     
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
-    init(name: String, userElementsList: [DataElement]) {
+    init(name: String, userElementsList: [DataElement], userJourneyEvent : [JourneyEvent]) {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
         }
         self.name = name
         self.userElementsList = userElementsList
+        self.userJourneyEvent = userJourneyEvent
     }
     
     func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
@@ -112,7 +123,7 @@ let MYSTEPSDATA : [DataValue] = [
 let MYSTEPSELEMENT = DataElement (
     identifierInHK: "stepCount",
     customName: "Marche",
-    begin: startDateFormatter(year: 2021, month: 06, day: 10),
+    begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
     values: MYSTEPSDATA
 )
@@ -125,10 +136,20 @@ let MYHRDATA : [DataValue] = [
 let MYHRELEMENT = DataElement (
     identifierInHK: "heartRate",
     customName: "Rythme Cardiaque",
-    begin: startDateFormatter(year: 2021, month: 06, day: 10),
+    begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
     values: MYHRDATA
 )
 
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
+let MYJOURNEY : [JourneyEvent] = [
+            JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
+            JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
+            JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
+            JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
+            JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
+            JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
+            JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
+            JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
+        ]

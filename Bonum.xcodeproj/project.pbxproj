@@ -30,7 +30,6 @@
 		66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8A26734BB400EB3642 /* DataCell.swift */; };
 		66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8C2673514A00EB3642 /* Mood.swift */; };
 		66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DD5F9226735A5400EB3642 /* HealthKit.framework */; };
-		66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F942673674900EB3642 /* JourneyEvent.swift */; };
 		D82D473F2673AB8E0099A58F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D473E2673AB8E0099A58F /* WidgetKit.framework */; };
 		D82D47412673AB8E0099A58F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D47402673AB8E0099A58F /* SwiftUI.framework */; };
 		D82D47442673AB8E0099A58F /* Bonum_Test_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */; };
@@ -94,7 +93,6 @@
 		66DD5F8A26734BB400EB3642 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		66DD5F8C2673514A00EB3642 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		66DD5F9226735A5400EB3642 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		66DD5F942673674900EB3642 /* JourneyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEvent.swift; sourceTree = "<group>"; };
 		D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bonum Test WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82D473E2673AB8E0099A58F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D82D47402673AB8E0099A58F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -176,7 +174,6 @@
 			children = (
 				66DD5F7E267349FE00EB3642 /* TestData.swift */,
 				5861C6D8267A2BC100C5C0B1 /* UserData.swift */,
-				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
 			);
 			path = Model;
@@ -352,7 +349,6 @@
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
-				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
 				662ACCD52678994B00287EB8 /* Buttons.swift in Sources */,

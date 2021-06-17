@@ -9,14 +9,14 @@ import SwiftUI
 
 struct Journey: View {
     
-    let events: [JourneyEvent]
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         
         VStack(alignment: .leading) {
             
             List {
-                ForEach(events, id: \.self) { event in
+                ForEach(userData.userJourneyEvent, id: \.self) { event in
                     
                     JourneyCell(event: event)
                     
@@ -159,7 +159,7 @@ class FileManagerViewModel: ObservableObject {
 struct Journey_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            Journey(events: JourneyEvent.events)
+            Journey()
         }
     }
 }

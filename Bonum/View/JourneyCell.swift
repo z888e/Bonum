@@ -62,9 +62,8 @@ struct JourneyCell: View {
 
 
 struct JourneyCell_Previews: PreviewProvider {
-    static var event = JourneyEvent.events[0]
     static var previews: some View {
-        JourneyCell(event: event)
+        JourneyCell(event: MYJOURNEY[0])
             .previewLayout(.sizeThatFits)
     }
 }
