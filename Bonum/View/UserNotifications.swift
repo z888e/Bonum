@@ -131,7 +131,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         
         /// Le trigger défini quand la notification sera envoyée
         /// Option n°1 :avec dateMatching, elle sera envoyée à une heure précise (et tous les jours ici car repeats = true)
-        //    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         /// Option n°2 pour tester :avec timeInterval, elle sera envoyée 5 secondes après sa planification (et une seule fois ici)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         

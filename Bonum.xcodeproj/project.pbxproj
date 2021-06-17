@@ -43,6 +43,7 @@
 		D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475A2678FACD0099A58F /* UserNotifications.swift */; };
 		D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475C2679DD9F0099A58F /* WilSampleList.swift */; };
 		D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475E2679DDC40099A58F /* WilListDetail.swift */; };
+		D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4760267B85200099A58F /* WilJsonTest.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,7 @@
 		D82D475A2678FACD0099A58F /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		D82D475C2679DD9F0099A58F /* WilSampleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilSampleList.swift; sourceTree = "<group>"; };
 		D82D475E2679DDC40099A58F /* WilListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilListDetail.swift; sourceTree = "<group>"; };
+		D82D4760267B85200099A58F /* WilJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilJsonTest.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +229,7 @@
 				E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */,
 				D82D475C2679DD9F0099A58F /* WilSampleList.swift */,
 				D82D475E2679DDC40099A58F /* WilListDetail.swift */,
+				D82D4760267B85200099A58F /* WilJsonTest.swift */,
 			);
 			path = SandBox;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
+				D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */,
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
 				58E6B76A26789577008643F7 /* HKStore.swift in Sources */,
