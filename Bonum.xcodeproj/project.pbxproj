@@ -12,9 +12,9 @@
 		588EF594267248CC00A888DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588EF593267248CC00A888DB /* ContentView.swift */; };
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
 		588EF599267248CF00A888DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF598267248CF00A888DB /* Preview Assets.xcassets */; };
+		5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */; };
 		589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBEE2678D73700E6C5FC /* TabBarView.swift */; };
 		589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */; };
-		58E6B76A26789577008643F7 /* HKStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76926789577008643F7 /* HKStore.swift */; };
 		58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */; };
 		58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */; };
 		58E6B7702678A756008643F7 /* DiaryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76F2678A756008643F7 /* DiaryList.swift */; };
@@ -29,10 +29,8 @@
 		66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */; };
 		66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8A26734BB400EB3642 /* DataCell.swift */; };
 		66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8C2673514A00EB3642 /* Mood.swift */; };
-		66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8E267357F600EB3642 /* TrackedData.swift */; };
 		66DD5F9326735A5400EB3642 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DD5F9226735A5400EB3642 /* HealthKit.framework */; };
 		66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F942673674900EB3642 /* JourneyEvent.swift */; };
-		66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */; };
 		D82D473F2673AB8E0099A58F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D473E2673AB8E0099A58F /* WidgetKit.framework */; };
 		D82D47412673AB8E0099A58F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82D47402673AB8E0099A58F /* SwiftUI.framework */; };
 		D82D47442673AB8E0099A58F /* Bonum_Test_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D47432673AB8E0099A58F /* Bonum_Test_Widget.swift */; };
@@ -79,9 +77,9 @@
 		588EF595267248CF00A888DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBonum.swift; sourceTree = "<group>"; };
 		589FBBEE2678D73700E6C5FC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListDetails.swift; sourceTree = "<group>"; };
-		58E6B76926789577008643F7 /* HKStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKStore.swift; sourceTree = "<group>"; };
 		58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitOnboarding.swift; sourceTree = "<group>"; };
 		58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
 		58E6B76F2678A756008643F7 /* DiaryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryList.swift; sourceTree = "<group>"; };
@@ -96,10 +94,8 @@
 		66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetail.swift; sourceTree = "<group>"; };
 		66DD5F8A26734BB400EB3642 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		66DD5F8C2673514A00EB3642 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
-		66DD5F8E267357F600EB3642 /* TrackedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedData.swift; sourceTree = "<group>"; };
 		66DD5F9226735A5400EB3642 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		66DD5F942673674900EB3642 /* JourneyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEvent.swift; sourceTree = "<group>"; };
-		66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDataValue.swift; sourceTree = "<group>"; };
 		D82D473D2673AB8E0099A58F /* Bonum Test WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bonum Test WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82D473E2673AB8E0099A58F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D82D47402673AB8E0099A58F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -181,12 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				66DD5F7E267349FE00EB3642 /* TestData.swift */,
-				66DD5F8E267357F600EB3642 /* TrackedData.swift */,
 				5861C6D8267A2BC100C5C0B1 /* UserData.swift */,
-				66DD5F9626736DEC00EB3642 /* TrackedDataValue.swift */,
 				66DD5F942673674900EB3642 /* JourneyEvent.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
-				58E6B76926789577008643F7 /* HKStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +198,7 @@
 				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
 				58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */,
 				66DD5F8626734B2B00EB3642 /* Journey.swift */,
+				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
 				66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
@@ -345,25 +339,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */,
 				D82D474A2673AB8E0099A58F /* Bonum_Test_Widget.intentdefinition in Sources */,
 				66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */,
 				66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */,
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
 				58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */,
-				66DD5F8F267357F600EB3642 /* TrackedData.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
 				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
 				589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */,
 				58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */,
 				589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */,
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
-				66DD5F9726736DEC00EB3642 /* TrackedDataValue.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
 				D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */,
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
-				58E6B76A26789577008643F7 /* HKStore.swift in Sources */,
 				66DD5F952673674900EB3642 /* JourneyEvent.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,

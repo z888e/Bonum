@@ -16,14 +16,15 @@ struct Diary: View {
         VStack{
             HealthKitOnboarding(stepsVariable: $stepsVariable)
             Text("Bonjour, \(userData.name)")
-            Text("Score Bonum ici")
+            ScoreBonum()
             
             VStack{
                 List{
                     ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
                         index, el in
+                        //TODO : Navlink
 //                        DiaryListCell(element: userData.userElementsList[index])
-                        Text(el.customName)
+                        DiaryListCell(element: el)
                     }
                 }
             }

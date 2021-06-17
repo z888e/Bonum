@@ -8,7 +8,6 @@
 import Foundation
 import HealthKit
 
-
 func startDateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     let calendar = Calendar.current
     let dateComponents = DateComponents(calendar: calendar,
@@ -89,8 +88,6 @@ class UserData: ObservableObject {
         }
     }
     
-    
-    
     func requestAuthorization(completion : @escaping (Bool) -> Void){
         //selectionne stepCount
         let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
@@ -114,12 +111,24 @@ let MYSTEPSDATA : [DataValue] = [
 
 let MYSTEPSELEMENT = DataElement (
     identifierInHK: "stepCount",
-    customName: "Pas à pas",
+    customName: "Marche",
     begin: startDateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
-    values: []
+    values: MYSTEPSDATA
 )
 
-let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT]
+let MYHRDATA : [DataValue] = [
+    DataValue(count: 60, date: Date()),
+    DataValue(count: 62, date: Date() - 1000),
+]
 
-let MYUSER = UserData(name: "Albert", userElementsList: MYELEMENTS)
+let MYHRELEMENT = DataElement (
+    identifierInHK: "heartRate",
+    customName: "Rythme Cardiaque",
+    begin: startDateFormatter(year: 2021, month: 06, day: 10),
+    impact: 1,
+    values: MYHRDATA
+)
+
+let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
+
