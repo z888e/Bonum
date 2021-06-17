@@ -16,7 +16,7 @@ struct Diary: View {
         VStack{
             HealthKitOnboarding(stepsVariable: $stepsVariable)
             Text("Bonjour, \(userData.name)")
-            Text("Score Bonum ici")
+            ScoreBonum()
             
             VStack{
                 List{
