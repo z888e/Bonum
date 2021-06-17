@@ -27,10 +27,19 @@ struct ThomasTestGraphData: View {
     
     var body: some View {
         VStack {
+            
             HStack {
                 Text("Début de la période :")
                 Text(DATAVALUES[0].date, style: .date)
+                Spacer()
             }
+            
+            HStack {
+                Text("Fin de la période :")
+                Text(DATAVALUES.last!.date, style: .date)
+                Spacer()
+            }
+            
             GrapheView(color: currenColor)
                 .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
                 .cornerRadius(5)
@@ -42,7 +51,13 @@ struct ThomasTestGraphData: View {
                 }
                 currenColor = newColor
             }) {
-                Text("Tracer le graph")
+                Text("Tracer")
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .frame(width: 150, height: 44)
+                    .background(Color.accentColor)
+                    .cornerRadius(12)
             }
             .padding(.top, 20)
         }
@@ -184,6 +199,7 @@ struct Graphe: Shape {
 struct ThomasTestGraphData_Previews: PreviewProvider {
     static var previews: some View {
         ThomasTestGraphData()
+            .previewDevice("iPhone 11 Pro")
             .preferredColorScheme(.dark)
     }
 }
