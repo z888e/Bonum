@@ -1,4 +1,4 @@
-//
+
 //  UserData.swift
 //  Bonum
 //
@@ -18,7 +18,15 @@ func dateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     return date
 }
 
+struct MoodValue : Hashable, Codable {
+    
+    var timestamp: Date
+    var rating: Int? // si c'est nil, c'est joker
+    var source: Int // 0: tab view, 1: widget, 2: notification
+}
+
 struct DataValue: Identifiable, Codable {
+    
     var id = UUID()
     let count: Double
     let date: Date
@@ -44,33 +52,38 @@ struct JourneyEvent: Hashable, Codable {
     
 }
 
-
-let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
+//var startDate
+let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
 let endDate = Date()
 
+//TODO: nom defaut pour les variables suivies
 
 final class UserData: ObservableObject {
-//    @Published var userElementsList: [DataElement] = load("userElementsList.json")
-//    @Published var userJourneyEvent: [JourneyEvent] = load("userJourneyEvent.json")
-
+    
     var name : String
+    
     var userElementsList = [DataElement]()
-    var userJourneyEvent = [JourneyEvent]()
+    var userJourneyEvents = [JourneyEvent]()
+    var userMoodHistory = [MoodValue]()
     
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
-    init(name: String, userElementsList: [DataElement], userJourneyEvent : [JourneyEvent]) {
+    init(name: String, userElementsList: [DataElement], userJourneyEvents : [JourneyEvent], userMoodHistory : [MoodValue]) {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
         }
         self.name = name
+        writeJson(tab: userElementsList, filename: "ElementsList")
+        writeJson(tab: userJourneyEvents, filename: "JourneyList")
+        writeJson(tab: userMoodHistory, filename: "MoodsList")
+        
         self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
-        self.userJourneyEvent = readJson(filename: "JourneyList") ?? [JourneyEvent]()
+        self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
+        
+        self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
     }
     
-//    writeJson(tab: userElementsList, filename: "ElementsList")
-//    writeJson(tab: userJourneyEvent, filename: "JourneyList")
     
     func writeJson<MonType: Codable>(tab : [MonType], filename : String) -> Void {
         let encoder = JSONEncoder()
@@ -185,13 +198,25 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-            JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
-            JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
-            JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
-            JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
-            JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
-            JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
-            JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
-            JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
-        ]
+    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
+    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
+    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
+    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
+    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
+]
+
+let MYMOODS : [MoodValue] = [
+    MoodValue(timestamp: Date()-(86400*7), rating: 7, source: 0),
+    MoodValue(timestamp: Date()-(86400*6), rating: 9, source: 0),
+    MoodValue(timestamp: Date()-(86400*5), rating: 8, source: 0),
+    MoodValue(timestamp: Date()-(86400*4), rating: 6, source: 0),
+    MoodValue(timestamp: Date()-(86400*3), rating: 7, source: 0),
+    MoodValue(timestamp: Date()-(86400*2), rating: 3, source: 0),
+    MoodValue(timestamp: Date()-(86400), rating: 8, source: 0)
+]
+
+
 
