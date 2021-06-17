@@ -9,19 +9,30 @@ import SwiftUI
 
 struct Diary: View {
     
-    @State private var steps = [DataValue]()
-    
+    @State var stepsVariable : DataElement = MYSTEPSELEMENT
+    @EnvironmentObject var userData: UserData
+
     var body: some View {
         VStack{
-            HealthKitOnboarding(steps: $steps)
+            HealthKitOnboarding(stepsVariable: $stepsVariable)
+            Text("Bonjour, \(userData.name)")
             Text("Score Bonum ici")
-            DiaryList(steps: $steps)
+            
+            VStack{
+                List{
+                    ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
+                        index, el in
+//                        DiaryListCell(element: userData.userElementsList[index])
+                        Text(el.customName)
+                    }
+                }
+            }
         }
     }
 }
 
-struct Diary_Previews: PreviewProvider {
-    static var previews: some View {
-        Diary()
-    }
-}
+//struct Diary_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Diary()
+//    }
+//}

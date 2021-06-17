@@ -9,13 +9,14 @@ import SwiftUI
 
 struct DiaryListCell: View {
     
-    let displayedData : DataValue
+    let element : DataElement
     
     var body: some View {
         VStack{
-            Text("\(displayedData.count, specifier: "%.0f")")
-            Text(displayedData.date, style: .date)
-                .opacity(0.5)
+//            Text("\(element[0].count, specifier: "%.0f")")
+//            Text(element[0].count, style: .date)
+//                .opacity(0.5)
+            Text(element.customName)
         }
         
     }
@@ -23,6 +24,6 @@ struct DiaryListCell: View {
 
 struct DiaryListCell_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListCell(displayedData: MYSTEPS[1])
+        DiaryListCell(element: MYSTEPSELEMENT)
     }
 }

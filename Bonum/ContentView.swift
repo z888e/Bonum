@@ -15,8 +15,10 @@ struct ContentView: View {
     // Permet de stocker le nom de l'utilisateur
     @AppStorage("userName") private var userName: String = ""
     
+    
     var body: some View {
             
+            // Si l'utilisateur a déjà complété l'onboarding, alors on affiche l'écran principal de l'app
             if isOnboardingShowing {
                 Onboarding(isOnboardingShowing: $isOnboardingShowing, userName: $userName)
             } else {
