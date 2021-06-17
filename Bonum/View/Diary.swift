@@ -22,8 +22,9 @@ struct Diary: View {
                 List{
                     ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
                         index, el in
+                        //TODO : Navlink
 //                        DiaryListCell(element: userData.userElementsList[index])
-                        Text(el.customName)
+                        DiaryListCell(element: el)
                     }
                 }
             }
