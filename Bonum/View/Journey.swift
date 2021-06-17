@@ -5,6 +5,9 @@
 //  Created by Alexandre Dias Da Silva on 11/06/2021.
 //
 
+
+
+
 import SwiftUI
 
 struct Journey: View {
@@ -16,7 +19,7 @@ struct Journey: View {
         VStack(alignment: .leading) {
             
             List {
-                ForEach(userData.userJourneyEvent, id: \.self) { event in
+                ForEach(userData.userJourneyEvents, id: \.self) { event in
                     
                     JourneyCell(event: event)
                     
