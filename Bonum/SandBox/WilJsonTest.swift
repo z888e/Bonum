@@ -45,7 +45,7 @@ let personne = try! JSONDecoder().decode(Personne.self, from: jsonData)
 
 
 
-let jsonString2 = String(data: jsonData, encoding: UTF8)
+// let jsonString2 = String(data: jsonData, encoding: UTF8)
 
 
 struct WilJsonTest: View {
