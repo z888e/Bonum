@@ -11,31 +11,38 @@ struct Diary: View {
     
     @State var stepsVariable : DataElement = MYSTEPSELEMENT
     @EnvironmentObject var userData: UserData
-
+    
     var body: some View {
-        VStack{
-            //TODO: variables
-            HealthKitOnboarding(stepsVariable: $stepsVariable)
-            Text("Bonjour, \(userData.name)")
-            
-            //TODO : display score calculé
-            ScoreBonum()
-                        
-            //TODO: mettre dans son composant propre
+        NavigationView{
             VStack{
+                //TODO: Switch J/S/M/A
+                
+                //TODO: variables
+                HealthKitOnboarding(stepsVariable: $stepsVariable)
+                
+                HStack{
+                    Text("Aujourd'hui,").font(.title)
+                        .padding()
+                    Spacer()
+                }
+                
+                //TODO : display score calculé
+                ScoreBonum()
+                
                 List{
                     ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
                         index, el in
-                        //TODO : Navlink marche pas
+                        
                         NavigationLink(
-                            destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+                            destination: DiaryListDetails(element:el),
                             label: {
                                 DiaryListCell(element: el)
                             }
                         )
                     }
                 }
-            }
+            }.navigationBarHidden(true)
+            .navigationTitle("Journal")
         }
     }
 }
