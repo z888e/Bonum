@@ -9,24 +9,24 @@ import SwiftUI
 import HealthKit
 
 struct HealthKitOnboarding: View {
-
+    
     @Binding var stepsVariable : DataElement
     @EnvironmentObject var userData:UserData
-
+    
     private func updateUIFromStatistics(_ statisticsCollection: HKStatisticsCollection){
-
-            statisticsCollection.enumerateStatistics(from: startDate!, to: endDate) {
-                (statistics, stop) in
-
-                let count = statistics.sumQuantity()?.doubleValue(for: .count())
-
-                let stepsFromHK = DataValue(count: Double(count ?? 0), date: statistics.startDate)
-                print(stepsFromHK)
-                stepsVariable.values = [stepsFromHK]
-                userData.userElementsList.append(stepsVariable)
-            }
+        
+        statisticsCollection.enumerateStatistics(from: startDate!, to: endDate) {
+            (statistics, stop) in
+            
+            let count = statistics.sumQuantity()?.doubleValue(for: .count())
+            
+            let stepsFromHK = DataValue(count: Double(count ?? 0), date: statistics.startDate)
+            print(stepsFromHK)
+            stepsVariable.values = [stepsFromHK]
+            userData.userElementsList.append(stepsVariable)
         }
-
+    }
+    
     var body: some View {
         Text("")
             .onAppear(){
@@ -34,25 +34,25 @@ struct HealthKitOnboarding: View {
                     if success {
                         userData.calculateSteps{ statisticsCollection in
                             if let statisticsCollection = statisticsCollection {
-                            updateUIFromStatistics(statisticsCollection)
+                                updateUIFromStatistics(statisticsCollection)
                             }
                         }
                     }
-
+                    
                 }
             }
     }
 }
 
 struct HealthKitOnboardingPreview : View {
-
+    
     @State private var testTab : [DataValue] = MYSTEPSDATA
-
+    
     var body: some View {
         HealthKitOnboarding(stepsVariable: .constant(MYSTEPSELEMENT))
-//        HealthKitOnboarding()
+        //        HealthKitOnboarding()
     }
-
+    
 }
 
 struct HealthKitOnboarding_Previews: PreviewProvider {

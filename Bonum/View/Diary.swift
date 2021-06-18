@@ -14,16 +14,25 @@ struct Diary: View {
 
     var body: some View {
         VStack{
+            //TODO: variables
             HealthKitOnboarding(stepsVariable: $stepsVariable)
             Text("Bonjour, \(userData.name)")
-            Text("Score Bonum ici")
             
+            //TODO : display score calculé
+            ScoreBonum()
+                        
+            //TODO: mettre dans son composant propre
             VStack{
                 List{
                     ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
                         index, el in
-//                        DiaryListCell(element: userData.userElementsList[index])
-                        Text(el.customName)
+                        //TODO : Navlink marche pas
+                        NavigationLink(
+                            destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+                            label: {
+                                DiaryListCell(element: el)
+                            }
+                        )
                     }
                 }
             }

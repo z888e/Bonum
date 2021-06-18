@@ -45,7 +45,7 @@ struct PageTab: View {
             .tag(1)
             
             VStack {
-                Text("Quelle donnée de forme souhaitez-vous suivre, \(userName) ?")
+                Text("\(userName), quelle donnée de forme souhaitez-vous suivre pour commencer ?")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding()
@@ -53,10 +53,10 @@ struct PageTab: View {
                 Button(action: {
                     
                 }) {
-                    Text("Utiliser une donnée Santé")
+                    Text("Une donnée depuis Santé")
                         .fontWeight(.semibold)
                         .padding()
-                        .frame(width: 250, height: 44)
+                        .frame(width: 300, height: 44)
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .cornerRadius(12, antialiased: true)
@@ -67,10 +67,10 @@ struct PageTab: View {
                 Button(action: {
                     
                 }) {
-                    Text("Saisir manuellement")
+                    Text("Une donnée saisie manuellement")
                         .fontWeight(.semibold)
                         .padding()
-                        .frame(width: 250, height: 44)
+                        .frame(width: 300, height: 44)
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .cornerRadius(12, antialiased: true)
@@ -81,7 +81,7 @@ struct PageTab: View {
             .tag(2)
             
             VStack {
-                Text("Bravo, vous pourrez ajouter par la suite d'autres données à suivre.")
+                Text("Bravo \(userName),\n\nVous pourrez ajouter par la suite d'autres données à suivre.\nMais pour commencer, nous allons estimer ensemble votre niveau de forme du moment !")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding()

@@ -11,8 +11,9 @@ struct JourneyCell: View {
     
     let event: JourneyEvent
     
-    @State var isShowingImagePicker = false
-    @State var shownImage = UIImage()
+    @State private var isShowingImagePicker = false
+    @State private var shownImage = UIImage()
+    @State private var pickedImage = UIImage()
     
     var body: some View {
         
@@ -35,7 +36,14 @@ struct JourneyCell: View {
                 
             })
             .sheet(isPresented: $isShowingImagePicker, content: {
-                ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$shownImage)
+                ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
+            })
+            .onChange(of: pickedImage, perform: { value in
+                LocalFileManager.instance.saveImage(image: value, name: event.imageName)
+                shownImage = pickedImage
+            })
+            .onAppear(perform: {
+                shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
             })
             
             VStack(alignment: .leading) {
@@ -54,9 +62,8 @@ struct JourneyCell: View {
 
 
 struct JourneyCell_Previews: PreviewProvider {
-    static var event = JourneyEvent.events[0]
     static var previews: some View {
-        JourneyCell(event: event)
+        JourneyCell(event: MYJOURNEY[0])
             .previewLayout(.sizeThatFits)
     }
 }

@@ -1,4 +1,4 @@
-//
+
 //  UserData.swift
 //  Bonum
 //
@@ -8,8 +8,7 @@
 import Foundation
 import HealthKit
 
-
-func startDateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
+func dateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     let calendar = Calendar.current
     let dateComponents = DateComponents(calendar: calendar,
                                         year: y,
@@ -19,13 +18,21 @@ func startDateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
     return date
 }
 
-struct DataValue: Identifiable {
-    let id = UUID()
+struct MoodValue : Hashable, Codable {
+    
+    var timestamp: Date
+    var rating: Int? // si c'est nil, c'est joker
+    var source: Int // 0: tab view, 1: widget, 2: notification
+}
+
+struct DataValue: Identifiable, Codable {
+    
+    var id = UUID()
     let count: Double
     let date: Date
 }
 
-struct DataElement : Identifiable {
+struct DataElement : Identifiable, Codable {
     
     var id = UUID()
     var identifierInHK : String
@@ -36,22 +43,78 @@ struct DataElement : Identifiable {
     var values : [DataValue]
 }
 
-let startDate = Calendar.current.date(byAdding: .day, value: -6, to: Date())
+struct JourneyEvent: Hashable, Codable {
+    
+    var title: String
+    var date: Date
+    let imageName: String
+    var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
+    
+}
+
+//var startDate
+let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
 let endDate = Date()
 
-class UserData: ObservableObject {
+//TODO: nom defaut pour les variables suivies
+
+final class UserData: ObservableObject {
+    
     var name : String
+    
     var userElementsList = [DataElement]()
+    var userJourneyEvents = [JourneyEvent]()
+    var userMoodHistory = [MoodValue]()
     
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
-    init(name: String, userElementsList: [DataElement]) {
+    init(name: String, userElementsList: [DataElement], userJourneyEvents : [JourneyEvent], userMoodHistory : [MoodValue]) {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
         }
         self.name = name
-        self.userElementsList = userElementsList
+//        writeJson(tab: userElementsList, filename: "ElementsList")
+//        writeJson(tab: userJourneyEvents, filename: "JourneyList")
+//        writeJson(tab: userMoodHistory, filename: "MoodsList")
+        
+        self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
+        self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
+        self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
+    }
+    
+    
+    func writeJson<MonType: Codable>(tab : [MonType], filename : String) -> Void {
+        let encoder = JSONEncoder()
+        do {
+            let json = try encoder.encode(tab)
+            let jsonString = String(data: json, encoding: .utf8) ?? "error"
+            print(jsonString)
+            if let url = LocalFileManager.instance.getPathForJson(name: filename){
+                try json.write(to: url)
+            }
+        } catch {
+            print(error)
+        }
+        print("`written Json : \(filename)")
+    }
+    
+    func readJson<MonType: Codable>(filename : String) -> MonType?{
+        let decoder = JSONDecoder()
+        do{
+            if let url = LocalFileManager.instance.getPathForJson(name: filename) {
+                let data = try Data(contentsOf: url)
+                let result = try decoder.decode(MonType.self, from: data)
+                return result
+            }
+            
+            return nil
+            
+        } catch {
+            print(error)
+            return nil
+        }
+        
     }
     
     func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
@@ -89,8 +152,6 @@ class UserData: ObservableObject {
         }
     }
     
-    
-    
     func requestAuthorization(completion : @escaping (Bool) -> Void){
         //selectionne stepCount
         let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
@@ -114,12 +175,47 @@ let MYSTEPSDATA : [DataValue] = [
 
 let MYSTEPSELEMENT = DataElement (
     identifierInHK: "stepCount",
-    customName: "Pas à pas",
-    begin: startDateFormatter(year: 2021, month: 06, day: 10),
+    customName: "Marche",
+    begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
-    values: []
+    values: MYSTEPSDATA
 )
 
-let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT]
+let MYHRDATA : [DataValue] = [
+    DataValue(count: 60, date: Date()),
+    DataValue(count: 62, date: Date() - 1000),
+]
 
-let MYUSER = UserData(name: "Albert", userElementsList: MYELEMENTS)
+let MYHRELEMENT = DataElement (
+    identifierInHK: "heartRate",
+    customName: "Rythme Cardiaque",
+    begin: dateFormatter(year: 2021, month: 06, day: 10),
+    impact: 1,
+    values: MYHRDATA
+)
+
+let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
+
+let MYJOURNEY : [JourneyEvent] = [
+    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
+    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
+    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
+    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
+    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
+]
+
+let MYMOODS : [MoodValue] = [
+    MoodValue(timestamp: Date()-(86400*7), rating: 7, source: 0),
+    MoodValue(timestamp: Date()-(86400*6), rating: 9, source: 0),
+    MoodValue(timestamp: Date()-(86400*5), rating: 8, source: 0),
+    MoodValue(timestamp: Date()-(86400*4), rating: 6, source: 0),
+    MoodValue(timestamp: Date()-(86400*3), rating: 7, source: 0),
+    MoodValue(timestamp: Date()-(86400*2), rating: 3, source: 0),
+    MoodValue(timestamp: Date()-(86400), rating: 8, source: 0)
+]
+
+
+
