@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//TODO: intégrer à Journal Cell
+
 var LARGEUR: Int = 300
 
 var HAUTEUR: Int = 200
