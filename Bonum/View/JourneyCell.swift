@@ -19,9 +19,9 @@ struct JourneyCell: View {
         
         HStack(spacing: 20) {
             
-            Text("Date")
-                .font(.title3)
+            Text("\(event.date, style: .date)")
                 .fontWeight(.semibold)
+                .font(.caption)
             
             Button(action: {
                 self.isShowingImagePicker.toggle()
@@ -48,11 +48,12 @@ struct JourneyCell: View {
             
             VStack(alignment: .leading) {
                 Text(event.title)
+                    .font(.callout)
                     .foregroundColor(.black)
                     .fontWeight(.semibold)
                 Text("Nom de la nouvelle donnée suivie")
                     .foregroundColor(.gray)
-                    .font(.callout)
+                    .font(.caption)
             }
             
         }
@@ -65,5 +66,6 @@ struct JourneyCell_Previews: PreviewProvider {
     static var previews: some View {
         JourneyCell(event: MYJOURNEY[0])
             .previewLayout(.sizeThatFits)
+            .environment(\.locale, Locale(identifier: "fr"))
     }
 }

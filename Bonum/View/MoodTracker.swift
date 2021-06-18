@@ -72,7 +72,7 @@ struct MoodTracker: View {
             
             
             //uniquement pour verifier que le JSON est chargé
-            Text("Historique des Notes").padding()
+            Text("Historique des Etats de Forme").padding()
             
             List {
                 ForEach(sortedMoodHistory, id: \.self) { moodEntry in
