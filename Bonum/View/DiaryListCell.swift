@@ -12,11 +12,19 @@ struct DiaryListCell: View {
     let element : DataElement
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10){
-            Text(element.customName)
-            Text(element.identifierInHK)
-            Text("impact niveau" + String(element.impact))
-        }
+        HStack{
+            VStack(alignment: .leading, spacing: 10){
+                Text(element.customName)
+                Text("impact niveau" + String(element.impact))
+                Spacer()
+                Text("Graph")
+            }
+            Spacer()
+        }.padding()
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.gray, lineWidth: 1)
+        )
     }
 }
 
