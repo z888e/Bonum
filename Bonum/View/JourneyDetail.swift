@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct JourneyDetail: View {
+    
+    let event: JourneyEvent
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+
+            Text("\(event.title)")
+            
+        }
+        .navigationTitle(event.title)
+
     }
+    
 }
 
 struct JourneyDetail_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyDetail()
+        NavigationView {
+            JourneyDetail(event: MYJOURNEY[0])
+        }
     }
 }

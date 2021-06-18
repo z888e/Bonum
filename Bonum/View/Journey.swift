@@ -13,25 +13,36 @@ import SwiftUI
 struct Journey: View {
     
     @EnvironmentObject var userData: UserData
+    @State private var newEventData = JourneyEvent.Data()
+    @State private var isPresented = false
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            List {
-                ForEach(userData.userJourneyEvents, id: \.self) { event in
-                    
-                    JourneyCell(event: event)
-                    
+        NavigationView {
+            VStack(alignment: .leading) {
+                
+                List {
+                    ForEach(userData.userJourneyEvents, id: \.self) { event in
+                        
+                        NavigationLink(destination: JourneyDetail(event: event)) {
+                            JourneyCell(event: event)
+                        }
+                        
+                    }
                 }
+                .listStyle(PlainListStyle())
+                
             }
-            .listStyle(PlainListStyle())
-            
+            .navigationTitle("Parcours")
+            .navigationBarItems(trailing: Button(action: {
+                isPresented = true
+            }) {
+                Image(systemName: "plus")
+            })
+            .sheet(isPresented: $isPresented) {
+                JourneyEdit()
+            }
         }
-        .navigationTitle("Parcours")
-        .navigationBarItems(trailing:
-                                NavigationLink("Nouveau jalon", destination: Text("Ajout d'un nouveau jalon"))
-        )
     }
 }
 
@@ -172,9 +183,9 @@ class FileManagerViewModel: ObservableObject {
 
 
 struct Journey_Previews: PreviewProvider {
+    
     static var previews: some View {
-        NavigationView {
-            Journey()
-        }
+            Journey().environmentObject(UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS))
     }
+    
 }

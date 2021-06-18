@@ -50,6 +50,19 @@ struct JourneyEvent: Hashable, Codable {
     let imageName: String
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
     
+    // nested struct qui permet le stockage d'un nouvel event en cours de création
+    struct Data {
+        var title: String = ""
+        var date: Date = Date()
+        var imageName: String = ""
+        var type: Int = 0
+    }
+    
+    // propriété calculée qui retourn Data avec les propriétés de JourneyEvent
+    var data: Data {
+        return Data(title: title, date: date, imageName: imageName, type: type)
+    }
+
 }
 
 //var startDate

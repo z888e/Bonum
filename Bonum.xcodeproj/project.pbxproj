@@ -20,8 +20,8 @@
 		58E6B7702678A756008643F7 /* DiaryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76F2678A756008643F7 /* DiaryList.swift */; };
 		662ACCD1267896C400287EB8 /* PageTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662ACCD0267896C400287EB8 /* PageTab.swift */; };
 		662ACCD52678994B00287EB8 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662ACCD42678994B00287EB8 /* Buttons.swift */; };
+		662E8F30267C87EF005657CB /* JourneyEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E8F2F267C87EF005657CB /* JourneyEdit.swift */; };
 		66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */; };
-		66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F7E267349FE00EB3642 /* TestData.swift */; };
 		66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8026734A4900EB3642 /* Onboarding.swift */; };
 		66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8226734A9800EB3642 /* MoodTracker.swift */; };
 		66DD5F8526734AF000EB3642 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD5F8426734AF000EB3642 /* Diary.swift */; };
@@ -84,8 +84,8 @@
 		58E6B76F2678A756008643F7 /* DiaryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryList.swift; sourceTree = "<group>"; };
 		662ACCD0267896C400287EB8 /* PageTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTab.swift; sourceTree = "<group>"; };
 		662ACCD42678994B00287EB8 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		662E8F2F267C87EF005657CB /* JourneyEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyEdit.swift; sourceTree = "<group>"; };
 		66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCell.swift; sourceTree = "<group>"; };
-		66DD5F7E267349FE00EB3642 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		66DD5F8026734A4900EB3642 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		66DD5F8226734A9800EB3642 /* MoodTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTracker.swift; sourceTree = "<group>"; };
 		66DD5F8426734AF000EB3642 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
@@ -174,7 +174,6 @@
 		66DD5F7C267349D300EB3642 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				66DD5F7E267349FE00EB3642 /* TestData.swift */,
 				5861C6D8267A2BC100C5C0B1 /* UserData.swift */,
 				66DD5F8C2673514A00EB3642 /* Mood.swift */,
 			);
@@ -194,10 +193,11 @@
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
 				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
 				58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */,
-				66DD5F8626734B2B00EB3642 /* Journey.swift */,
 				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
+				66DD5F8626734B2B00EB3642 /* Journey.swift */,
 				66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
+				662E8F2F267C87EF005657CB /* JourneyEdit.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 			);
@@ -343,7 +343,6 @@
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
 				58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
-				66DD5F7F267349FE00EB3642 /* TestData.swift in Sources */,
 				589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */,
 				58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */,
 				589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */,
@@ -351,6 +350,7 @@
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
 				D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */,
+				662E8F30267C87EF005657CB /* JourneyEdit.swift in Sources */,
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
