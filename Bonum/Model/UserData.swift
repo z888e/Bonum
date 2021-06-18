@@ -160,21 +160,6 @@ final class UserData: ObservableObject {
         }
     }
     
-//    func requestAuthorization(completion : @escaping (Bool) -> Void){
-//        //selectionne stepCount
-//        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-//
-//        //guard, unwrap
-//        guard let healthStore = self.healthStore else { return completion(false)}
-//
-//        //authorisation de lire
-//        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
-//            completion(success)
-//        }
-//    }
-
-    
-    
 }
 
 //DONNEES TEST
