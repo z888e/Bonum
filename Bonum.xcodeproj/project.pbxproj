@@ -41,6 +41,7 @@
 		D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475C2679DD9F0099A58F /* WilSampleList.swift */; };
 		D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475E2679DDC40099A58F /* WilListDetail.swift */; };
 		D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4760267B85200099A58F /* WilJsonTest.swift */; };
+		D847BEE9267C8C8200F420E7 /* MoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D847BEE8267C8C8200F420E7 /* MoodCell.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		D82D475C2679DD9F0099A58F /* WilSampleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilSampleList.swift; sourceTree = "<group>"; };
 		D82D475E2679DDC40099A58F /* WilListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilListDetail.swift; sourceTree = "<group>"; };
 		D82D4760267B85200099A58F /* WilJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilJsonTest.swift; sourceTree = "<group>"; };
+		D847BEE8267C8C8200F420E7 /* MoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCell.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				662E8F2F267C87EF005657CB /* JourneyEdit.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
+				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 			);
 			path = View;
@@ -359,6 +362,7 @@
 				5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
+				D847BEE9267C8C8200F420E7 /* MoodCell.swift in Sources */,
 				D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */,
 				D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */,
 				662ACCD1267896C400287EB8 /* PageTab.swift in Sources */,

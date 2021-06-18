@@ -87,13 +87,12 @@ final class UserData: ObservableObject {
             healthStore = HKHealthStore()
         }
         self.name = name
-        writeJson(tab: userElementsList, filename: "ElementsList")
-        writeJson(tab: userJourneyEvents, filename: "JourneyList")
-        writeJson(tab: userMoodHistory, filename: "MoodsList")
+//        writeJson(tab: userElementsList, filename: "ElementsList")
+//        writeJson(tab: userJourneyEvents, filename: "JourneyList")
+//        writeJson(tab: userMoodHistory, filename: "MoodsList")
         
         self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
         self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
-        
         self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
     }
     
@@ -110,7 +109,7 @@ final class UserData: ObservableObject {
         } catch {
             print(error)
         }
-        
+        print("`written Json : \(filename)")
     }
     
     func readJson<MonType: Codable>(filename : String) -> MonType?{

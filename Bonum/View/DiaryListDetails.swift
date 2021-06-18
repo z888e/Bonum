@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct DiaryListDetails: View {
+
+    var element : DataElement
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(element.customName).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            Spacer()
+
+            Text("impact niveau" + String(element.impact))
+            Text("Graphique/Analyse de la variable suivie")
+            Spacer()
+
+        }
     }
 }
 
 struct DiaryListDetails_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListDetails()
+        DiaryListDetails(element: MYSTEPSELEMENT)
     }
 }
