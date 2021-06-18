@@ -42,6 +42,8 @@
 		D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D475E2679DDC40099A58F /* WilListDetail.swift */; };
 		D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D4760267B85200099A58F /* WilJsonTest.swift */; };
 		D847BEE9267C8C8200F420E7 /* MoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D847BEE8267C8C8200F420E7 /* MoodCell.swift */; };
+		D847BEEB267CA3AA00F420E7 /* PulsingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */; };
+		D847BEED267CC04F00F420E7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,8 @@
 		D82D475E2679DDC40099A58F /* WilListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilListDetail.swift; sourceTree = "<group>"; };
 		D82D4760267B85200099A58F /* WilJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilJsonTest.swift; sourceTree = "<group>"; };
 		D847BEE8267C8C8200F420E7 /* MoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCell.swift; sourceTree = "<group>"; };
+		D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsingButton.swift; sourceTree = "<group>"; };
+		D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +207,8 @@
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
 				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
+				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
+				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				D82D4761267B85200099A58F /* WilJsonTest.swift in Sources */,
 				662E8F30267C87EF005657CB /* JourneyEdit.swift in Sources */,
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
+				D847BEEB267CA3AA00F420E7 /* PulsingButton.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,
@@ -366,6 +373,7 @@
 				D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */,
 				D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */,
 				662ACCD1267896C400287EB8 /* PageTab.swift in Sources */,
+				D847BEED267CC04F00F420E7 /* CustomTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
