@@ -42,20 +42,26 @@ struct AddElement: View {
     var ourAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque"]
     
     //    var dataType : HKObjectType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-    //    func authorizationStatus(for type: HKObjectType) -> HKAuthorizationStatus
+    
     
     //TODO: JSON reload
     
     var body: some View {
         NavigationView{
             VStack{
-                Text("Ajouter une donnée à suivre").font(.title).padding()
-                
-                Picker("Element à suivre", selection: $customName) {
-                    ForEach(ourAvailableHKTypes, id: \.self) {
-                        Text($0)
+                if !authorized {
+                    Text("Ajouter une donnée à suivre").font(.title).padding()
+
+                    Picker("Element à suivre", selection: $customName) {
+                        ForEach(ourAvailableHKTypes, id: \.self) {
+                            Text($0)
+                        }
                     }
+                } else {
+                    Text("Ajouter " + customName).font(.title2)
                 }
+                
+                //TODO: l'action du boutton jusqu'à la requete d'autorisation doit se faire au changement du picker
                 
                 if customName != "Choisir" && !authorized {
                     Text("Utiliser \(customName) nécessite votre autorisation.")
@@ -65,7 +71,6 @@ struct AddElement: View {
                             let healthStore = HKHealthStore()
                             var dataType : HKObjectType = HKObjectType.quantityType(forIdentifier: .heartRate)!
                             
-                            //la fonction n'est pas appellée
                             func setDataType(name : String = customName) -> HKObjectType{
                                 if name == "Nombre de pas" {
                                     dataType = HKObjectType.quantityType(forIdentifier: .stepCount)!
@@ -79,8 +84,17 @@ struct AddElement: View {
                                 return dataType
                             }
                             
+                            dataType = setDataType()
                             let unwrappedDataType = Set([dataType])
                             
+                           let authorizationStatus = healthStore.authorizationStatus(for: dataType)
+
+                            switch authorizationStatus {
+                            case .sharingAuthorized: authorized = true
+                            case .sharingDenied: print("Changer dans Santé")
+                            default: print("not determined")
+                            }
+                                
                             healthStore.requestAuthorization(toShare: nil, read: unwrappedDataType) { (result, error) in
                                 if let error = error {
                                     print(error)
@@ -90,7 +104,6 @@ struct AddElement: View {
                                     print("Failed request")
                                     return
                                 }
-                                
                                 authorized = true
                             }
                         }
@@ -101,9 +114,8 @@ struct AddElement: View {
                             Spacer()
                         }
                     }
-                    )//fin button
+                    )
                 }
-                
                 
                 if authorized {
                     VStack(alignment: .leading){
