@@ -32,23 +32,21 @@ struct AddElement: View {
     @State private var values = [DataValue]()
     
     @State private var authorized : Bool = false
-    @State private var alreadyUnauthorized : Bool = false
+    @State private var showingAlert = false
     
-    //?
-    //remplir ce tab
+    //TODO remplir ce tab
     let allHTDataTypes: [String] = []
-    // get tous les elements que l'user suit
-    //    userData.userElementsList.
-    //comparer
-    var unusedAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque", "Masse grasse"]
-    
+    // get tous les elements que l'user suit TODO juste le nom
+//    let alreadyTrackedElements = userData.userElementsList
+    //TODO comparer
+    var unusedAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque", "Activité en exercice"]
     
     //TODO: JSON reload
     
     var body: some View {
         NavigationView{
             VStack{
-                if !authorized && !alreadyUnauthorized{
+                if !authorized {
                     Text("Ajouter une donnée à suivre").font(.title).padding()
                     
                     Picker(selection: $customName, label: Text("Color")) {
@@ -56,12 +54,29 @@ struct AddElement: View {
                             Text(el)
                         }
                     }
-                } else if !alreadyUnauthorized {
+                } else  {
                     Text("Ajouter " + customName).font(.title2)
                 }
                 
-                if customName != "Choisir" && !authorized && !alreadyUnauthorized {
+                if customName != "Choisir" && !authorized {
                     Text("Utiliser \(customName) nécessite votre autorisation.")
+                                        
+                    Button(action: {
+                        showingAlert = true
+                    }) {
+                        HStack{
+                            Text("Besoin d'aide ")
+                            Image(systemName: "questionmark.circle")
+                        }.padding()
+                    }
+                    .alert(isPresented: self.$showingAlert) {
+                        Alert(title: Text("Aide"), message:   Text("""
+Bonum utilise les données correspondant à l'élément choisi dans Santé.
+Si vous suivez cette donnée pour la première fois, une demande d'autorisation apparaitra.
+Si vous avec déjà autorisé cet élément dans Santé, vous pourrez passer à la prochaine étape.
+Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Réglages > Santé > Accès aux données et appareils > Bonum" et modifier sa permission afin de pouvoir l'utiliser.
+"""), dismissButton: .default(Text("D'accord")))
+                    }
                     
                     Button(action: {
                         if HKHealthStore.isHealthDataAvailable() {
@@ -78,8 +93,8 @@ struct AddElement: View {
                                 if name == "Variabilité Cardiaque" {
                                     dataType = HKObjectType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
                                 }
-                                if name == "Masse grasse" {
-                                    dataType = HKObjectType.quantityType(forIdentifier: .bodyFatPercentage)!
+                                if name == "Activité en exercice" {
+                                    dataType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!
                                 }
                                 return dataType
                             }
@@ -99,16 +114,6 @@ struct AddElement: View {
                                 authorized = true
                             }
                             
-//                           let authorizationStatus = healthStore.authorizationStatus(for: dataType)
-//                            print(authorizationStatus.rawValue)
-//
-//                            switch authorizationStatus.rawValue {
-//                            case 2: authorized = true
-//                            case 1: alreadyUnauthorized = true
-//                            case 0: print("launch of HK auth by Apple")
-//                            default:
-//                                print("unknown status")
-//                            }
                         }
                     }, label: {
                         HStack{
@@ -120,13 +125,7 @@ struct AddElement: View {
                     )
                 }
                 
-//                if !authorized && alreadyUnauthorized {
-//                    if alreadyUnauthorized {
-//                        Text("Vous avez refusé l'autorisation pour l'element \(customName). Veuillez aller dans Réglages > Santé > Accès aux données et appareils > Bonum afin de pouvoir l'utiliser.").padding()
-//                    }
-//                }
-                
-                if !alreadyUnauthorized && authorized {
+                if authorized {
                     VStack(alignment: .leading){
                         Text("A partir de quelle date analyser cet élément?")
                         DatePicker("A partir de", selection: $begin, in: ...Date(), displayedComponents: .date)
