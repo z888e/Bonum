@@ -6,6 +6,7 @@
 // Affiche la date et l'heure avec 3 refresh successifs toutes les 10s, relancé toutes les 3 minutes
 //
 
+/*
 import WidgetKit
 import SwiftUI
 import Intents
@@ -131,3 +132,5 @@ struct Bonum_Test_Widget_Previews: PreviewProvider {
         }
     }
 }
+
+ */
