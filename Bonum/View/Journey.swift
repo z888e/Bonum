@@ -13,6 +13,7 @@ struct Journey: View {
     @State private var newEventData = JourneyEvent.Data()
     @State private var isPresented = false
     
+    
     var body: some View {
         
         NavigationView {
@@ -21,12 +22,12 @@ struct Journey: View {
                 
                 HStack {
                     
-                    VStack {
-                        
-                        LinearGradient(gradient: Gradient(colors: [.green, .yellow, .green, .red]), startPoint: .top, endPoint: .bottom)
-                            .frame(width: 10)
-
-                    }
+//                    VStack {
+//                        
+//                        LinearGradient(gradient: Gradient(colors: [.green, .yellow, .green, .red]), startPoint: .top, endPoint: .bottom)
+//                            .frame(width: 10)
+//
+//                    }
                     
                     VStack {
                         
