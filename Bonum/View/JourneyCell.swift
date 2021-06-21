@@ -9,8 +9,8 @@ import SwiftUI
 
 struct JourneyCell: View {
     
+    let previousMoodValue: Int
     let event: JourneyEvent
-    
     let ratingColorMapping = [
         0: Color(#colorLiteral(red: 1, green: 0.1863677502, blue: 0.05024763197, alpha: 1)),
         1: Color(#colorLiteral(red: 1, green: 0.3130919337, blue: 0, alpha: 1)),
@@ -25,6 +25,16 @@ struct JourneyCell: View {
         10: Color(#colorLiteral(red: 0, green: 0.7668917179, blue: 0.2233996391, alpha: 1))
     ]
     
+    var currentMoodColor: Color {
+        ratingColorMapping[event.moodValue] ?? .purple
+    }
+    var previousMoodColor: Color {
+        ratingColorMapping[previousMoodValue] ?? .purple
+    }
+    var gradient: LinearGradient {
+        LinearGradient(gradient: Gradient(colors: [previousMoodColor, currentMoodColor]), startPoint: .top, endPoint: .bottom)
+    }
+    
     @State private var isShowingImagePicker = false
     @State private var shownImage = UIImage()
     @State private var pickedImage = UIImage()
@@ -33,54 +43,59 @@ struct JourneyCell: View {
         
         HStack(spacing: 20) {
             
-            VStack {
-                Rectangle()
-                    .fill(ratingColorMapping[10] ?? Color(.white))
-                    .frame(width: 10, height: 100)
-                // Thomas conseille de prendre l'event le plus proche de la date de l'event
-            }
+            Rectangle()
+                .fill(gradient)
+                .frame(width: 10, height: 150)
             
-            HStack {
+            VStack {
                 
-                Text("\(event.date, style: .date)")
-                    .fontWeight(.semibold)
-                    .font(.caption)
+                Image(systemName: "arrow.up")
+                    .font(.system(size: 20))
+                    .foregroundColor(.gray)
                 
-                Button(action: {
-                    self.isShowingImagePicker.toggle()
-                }, label: {
+                HStack {
                     
-                    Image(uiImage: shownImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray))
-                    
-                })
-                .sheet(isPresented: $isShowingImagePicker, content: {
-                    ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
-                })
-                .onChange(of: pickedImage, perform: { value in
-                    LocalFileManager.instance.saveImage(image: value, name: event.imageName)
-                    shownImage = pickedImage
-                })
-                .onAppear(perform: {
-                    shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
-                })
-                
-                VStack(alignment: .leading) {
-                    Text(event.title)
-                        .font(.callout)
-                        .foregroundColor(.black)
+                    Text("\(event.date, style: .date)")
                         .fontWeight(.semibold)
-                    Text("Nom de la nouvelle donnée suivie")
-                        .foregroundColor(.gray)
                         .font(.caption)
+                    
+                    Button(action: {
+                        self.isShowingImagePicker.toggle()
+                    }, label: {
+                        
+                        Image(uiImage: shownImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.gray))
+                        
+                    })
+                    .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
+                    })
+                    .onChange(of: pickedImage, perform: { value in
+                        LocalFileManager.instance.saveImage(image: value, name: event.imageName)
+                        shownImage = pickedImage
+                    })
+                    .onAppear(perform: {
+                        shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
+                    })
+                    
+                    VStack(alignment: .leading) {
+                        Text(event.title)
+                            .font(.callout)
+                            .foregroundColor(.black)
+                            .fontWeight(.semibold)
+                        Text("Nom de la nouvelle donnée suivie")
+                            .foregroundColor(.gray)
+                            .font(.caption)
+                    }
+                    
                 }
+                .padding([.top, .bottom, .trailing])
                 
             }
-            .padding([.top, .bottom, .trailing])
         }
     }
 }
@@ -88,7 +103,7 @@ struct JourneyCell: View {
 
 struct JourneyCell_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyCell(event: MYJOURNEY[0])
+        JourneyCell(previousMoodValue: 5, event: MYJOURNEY[0])
             .previewLayout(.sizeThatFits)
             .environment(\.locale, Locale(identifier: "fr"))
     }

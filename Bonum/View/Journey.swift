@@ -13,6 +13,13 @@ struct Journey: View {
     @State private var newEventData = JourneyEvent.Data()
     @State private var isPresented = false
     
+    var events: [JourneyEvent] {
+        userData.userJourneyEvents.reversed()
+    }
+    
+    var eventsIndices: [Int] {
+        Array(events.indices)
+    }
     
     var body: some View {
         
@@ -20,78 +27,69 @@ struct Journey: View {
             
             ScrollView {
                 
-                HStack {
-                    
-//                    VStack {
-//                        
-//                        LinearGradient(gradient: Gradient(colors: [.green, .yellow, .green, .red]), startPoint: .top, endPoint: .bottom)
-//                            .frame(width: 10)
-//
-//                    }
+                VStack {
                     
                     VStack {
                         
-                        VStack {
-                            
-                            NavigationLink(destination: JourneyEdit()) {
-                                ZStack {
-                                    
-                                    Circle()
-                                        .strokeBorder(Color(#colorLiteral(red: 0, green: 0.5871291161, blue: 0.9982084632, alpha: 1)))
-                                        .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
-                                        .frame(width: 180, height: 180)
-                                    
-                                    VStack(spacing: 10) {
-                                        HStack(alignment: .top, spacing: -15) {
-                                            
-                                            Image(systemName: "flag")
-                                                .font(.system(size: 50))
-                                            
-                                            Image(systemName: "plus.circle")
-                                                .font(.system(size: 20))
-                                                .background(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1)))
-                                                .mask(Circle())
-                                            
-                                        }
+                        NavigationLink(destination: JourneyEdit()) {
+                            ZStack {
+                                
+                                Circle()
+                                    .strokeBorder(Color(#colorLiteral(red: 0, green: 0.5871291161, blue: 0.9982084632, alpha: 1)))
+                                    .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
+                                    .frame(width: 180, height: 180)
+                                
+                                VStack(spacing: 10) {
+                                    HStack(alignment: .top, spacing: -15) {
                                         
-                                        Text("Aujourd'hui")
-                                            .font(.title3)
+                                        Image(systemName: "flag")
+                                            .font(.system(size: 50))
+                                        
+                                        Image(systemName: "plus.circle")
+                                            .font(.system(size: 20))
+                                            .background(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1)))
+                                            .mask(Circle())
+                                        
                                     }
                                     
+                                    Text("Aujourd'hui")
+                                        .font(.title3)
                                 }
-                                .padding()
+                                
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            .padding()
                         }
-                        
-                        
-                        ForEach(userData.userJourneyEvents.reversed(), id: \.self) { event in
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    
+                    
+                    VStack(spacing: 0) {
+                        ForEach(eventsIndices, id: \.self) { index in
                             
-                            Image(systemName: "arrow.up")
-                                .font(.system(size: 20))
-                                .foregroundColor(.gray)
+                            let event = events[index]
+                            let previousMood = events[max(0, index - 1)].moodValue
                             
                             NavigationLink(destination: JourneyDetail(event: event)) {
-                                JourneyCell(event: event)
+                                JourneyCell(previousMoodValue: previousMood, event: event)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
-                        
-                        Image(systemName: "arrow.up")
-                            .font(.system(size: 20))
+                    }
+                    
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray)
+                    
+                    VStack(spacing: 10) {
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 30))
                             .foregroundColor(.gray)
                         
-                        VStack(spacing: 10) {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 30))
-                                .foregroundColor(.gray)
-                            
-                            Text("Début")
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        
+                        Text("Début")
+                            .foregroundColor(.gray)
                     }
+                    .padding()
+                    
                 }
                 .padding(.vertical)
                 .navigationTitle("Parcours")
@@ -104,7 +102,7 @@ struct Journey: View {
                 //                    JourneyEdit()
                 //                }
             }
-            
+
         }
     }
 }
