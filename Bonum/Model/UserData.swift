@@ -49,6 +49,7 @@ struct JourneyEvent: Hashable, Codable {
     var date: Date
     let imageName: String
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
+    var moodValue: Int
     
     // nested struct qui permet le stockage d'un nouvel event en cours de création
     struct Data {
@@ -81,14 +82,15 @@ final class UserData: ObservableObject {
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
+    // TODO: init à réparer - pb avec le readJson et il ne faut pas retourner de tableau vide
     init(name: String, userElementsList: [DataElement], userJourneyEvents : [JourneyEvent], userMoodHistory : [MoodValue]) {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
         }
         self.name = name
-        self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
-        self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
-        self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
+        self.userElementsList = readJson(filename: "ElementsList") ?? userElementsList
+        self.userJourneyEvents = readJson(filename: "JourneyList") ?? userJourneyEvents
+        self.userMoodHistory = readJson(filename: "MoodsList") ?? userMoodHistory
         
     }
     
@@ -193,14 +195,14 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
-    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
-    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
-    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
-    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
-    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
-    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
-    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
+    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
+    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
+    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0, moodValue: 8),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0, moodValue: 6),
+    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0, moodValue: 7),
+    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0, moodValue: 3),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0, moodValue: 8),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0, moodValue: 7)
 ]
 
 let MYMOODS : [MoodValue] = [
