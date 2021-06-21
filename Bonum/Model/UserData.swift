@@ -25,17 +25,18 @@ struct MoodValue : Hashable, Codable {
     var source: Int // 0: tab view, 1: widget, 2: notification
 }
 
-struct DataValue: Identifiable, Codable {
+struct DataValue: Identifiable, Hashable, Codable, Equatable{
     
     var id = UUID()
-    let count: Double
+    let value: Double
     let date: Date
 }
 
-struct DataElement : Identifiable, Codable {
+struct DataElement : Identifiable, Codable, Equatable {
     
     var id = UUID()
-    var identifierInHK : String
+    var identifierInHK : HKQuantityTypeIdentifier
+    var isDiscrete : Bool //false = cumulative, true = discrete
     var customName: String
     var begin: Date
     var end: Date?
@@ -71,9 +72,9 @@ struct JourneyEvent: Hashable, Codable {
 
 }
 
-//var startDate
-let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-let endDate = Date()
+////var startDate
+//let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+//let endDate = Date()
 
 //TODO: nom defaut pour les variables suivies
 
@@ -81,17 +82,16 @@ final class UserData: ObservableObject {
     
     var name : String
     
-    var userElementsList = [DataElement]()
-    var userJourneyEvents = [JourneyEvent]()
-    var userMoodHistory = [MoodValue]()
+    @Published var userElementsList = [DataElement]()
+    @Published var userJourneyEvents = [JourneyEvent]()
+    @Published var userMoodHistory = [MoodValue]()
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
     // TODO: init à réparer - pb avec le readJson et il ne faut pas retourner de tableau vide
     init(name: String, userElementsList: [DataElement], userJourneyEvents : [JourneyEvent], userMoodHistory : [MoodValue]) {
         if HKHealthStore.isHealthDataAvailable(){
-            healthStore = HKHealthStore()
-        }
+            healthStore = HKHealthStore()}
         self.name = name
         self.userElementsList = readJson(filename: "ElementsList") ?? userElementsList
         self.userJourneyEvents = readJson(filename: "JourneyList") ?? userJourneyEvents
@@ -132,22 +132,14 @@ final class UserData: ObservableObject {
         
     }
     
-    func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
-        //selectionne stepCount
-        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+    func writeNewCumulativeValues(cumulativeTypeDataToRead : HKQuantityTypeIdentifier, startDate : Date, endDate : Date, completion: @escaping (HKStatisticsCollection?) -> Void) {
+        let dataType = HKQuantityType.quantityType(forIdentifier: cumulativeTypeDataToRead)!
         
         //anchorDate, moment où le .comp commence
-        //creer calendrier
         let calendar = NSCalendar.current
-        //définir l'unité de temps voulue
-        //creer comp dates
         var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
-        //se placer lundi
         let offset = (7 + anchorComponents.weekday! - 2) % 7
         anchorComponents.day! -= offset
-        //à 2h matin
-        anchorComponents.hour = 2
-        //générer l'anchor date, utilisée comme ref
         guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
             fatalError("*** Unable to create valid Date from the given components ***")
         }
@@ -156,7 +148,7 @@ final class UserData: ObservableObject {
         
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictEndDate)
         
-        collectionQuery = HKStatisticsCollectionQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: anchorDate, intervalComponents: daily)
+        collectionQuery = HKStatisticsCollectionQuery(quantityType: dataType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: anchorDate, intervalComponents: daily)
         
         collectionQuery!.initialResultsHandler = { collectionQuery, HKStatisticsCollection, error in
             completion(HKStatisticsCollection)
@@ -167,32 +159,44 @@ final class UserData: ObservableObject {
         }
     }
     
-//    func requestAuthorization(completion : @escaping (Bool) -> Void){
-//        //selectionne stepCount
-//        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-//
-//        //guard, unwrap
-//        guard let healthStore = self.healthStore else { return completion(false)}
-//
-//        //authorisation de lire
-//        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
-//            completion(success)
-//        }
-//    }
-
-    
+    func writeNewDiscreteValues(discreteTypeDataToRead : HKQuantityTypeIdentifier, startDate : Date, endDate : Date, completion: @escaping (HKStatisticsCollection?) -> Void) {
+        let dataType = HKQuantityType.quantityType(forIdentifier: discreteTypeDataToRead)!
+        
+        let calendar = NSCalendar.current
+        var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
+        let offset = (7 + anchorComponents.weekday! - 2) % 7
+        anchorComponents.day! -= offset
+        guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
+            fatalError("*** Unable to create valid Date from the given components ***")
+        }
+        
+        let daily = DateComponents(day: 1)
+        
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictEndDate)
+        
+        collectionQuery = HKStatisticsCollectionQuery(quantityType: dataType, quantitySamplePredicate: predicate, options: .discreteAverage, anchorDate: anchorDate, intervalComponents: daily)
+        
+        collectionQuery!.initialResultsHandler = { collectionQuery, HKStatisticsCollection, error in
+            completion(HKStatisticsCollection)
+        }
+        
+        if let healthStore = healthStore, let collectionQuery = self.collectionQuery {
+            healthStore.execute(collectionQuery)
+        }
+    }
     
 }
 
 //DONNEES TEST
 
 let MYSTEPSDATA : [DataValue] = [
-    DataValue(count: 1845, date: Date()),
-    DataValue(count: 54, date: Date() - 1000),
+    DataValue(value: 1845, date: Date()),
+    DataValue(value: 54, date: Date() - 1000),
 ]
 
 let MYSTEPSELEMENT = DataElement (
-    identifierInHK: "stepCount",
+    identifierInHK: .stepCount,
+    isDiscrete: false,
     customName: "Marche",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
@@ -200,12 +204,13 @@ let MYSTEPSELEMENT = DataElement (
 )
 
 let MYHRDATA : [DataValue] = [
-    DataValue(count: 60, date: Date()),
-    DataValue(count: 62, date: Date() - 1000),
+    DataValue(value: 60, date: Date()),
+    DataValue(value: 62, date: Date() - 1000),
 ]
 
 let MYHRELEMENT = DataElement (
-    identifierInHK: "heartRate",
+    identifierInHK: .heartRate,
+    isDiscrete: true,
     customName: "Rythme Cardiaque",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,

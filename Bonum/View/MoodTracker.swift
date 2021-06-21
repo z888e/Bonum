@@ -11,14 +11,20 @@ import SwiftUI
 struct MoodTracker: View {
     
     @EnvironmentObject var userData: UserData
-    @State private var scoreEntered : Double = 5
+    @State private var scoreEntered : Int = 0
     // Permet de stocker le dernier score et sa date
-    @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
+    @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
+    @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
+
     let noticationManager = NotificationDelegate()
     
     let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
 
+//    var lastMood: Int {
+//        return userData.userMoodHistory.last?.rating ?? 0
+//    }
+    
     // Pour afficher l'historique par date de saisie la plus récente
     var sortedMoodHistory: [MoodValue] {
         return userData.userMoodHistory.sorted {
@@ -26,79 +32,57 @@ struct MoodTracker: View {
         }
     }
     
+//    init() {
+//        self.lastMood = userData.userMoodHistory[1].rating ?? 0
+//    }
+    
     var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack {
             
-            VStack{
-                
-                HStack{
-                    HStack{
-                        Text("1")
-                        Spacer()
-                        Text("2")
-                        Spacer()
-                        Text("3")
-                        Spacer()
-                        Text("4")
-                        Spacer()
-                        Text("5")
-                        Spacer()
-                    }
-                    HStack{
-                        Text("6")
-                        Spacer()
-                        Text("7")
-                        Spacer()
-                        Text("8")
-                        Spacer()
-                        Text("9")
-                        Spacer()
-                        Text("10")
-                    }
-                }
-                .padding(.horizontal, 20.0)
-                
-                Text(dateW)
+            Image("forme8")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .padding()
+            
+//            VStack{
+              
+            WheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: lastMoodRating, scoreEntered: $scoreEntered)
+                    .onChange(of: scoreEntered, perform: { value in
 
-                
-                Slider(value: $scoreEntered, in: 1...10, step: 1).padding()
-                //TODO : valeurs/sensibilite du slider, ou stepper avec style custom?
-                
-                Button(action: {
-                    // Ajoute le mood au Json, avec la date et le type + stocke dans les userdefault la date de dernière notation + màj les relances
-                    newMoodValue = MoodValue(timestamp: Date(), rating: Int(scoreEntered), source: 0)
+                    newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
                     userData.userMoodHistory.append(newMoodValue)
                     userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
-                    lastMoodDate = Date()
-                    noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
                     UserDefaults.group.set(dateToString(date: Date()), forKey: "dateW")
-                    
+                    lastMoodDate = Date()
+                    lastMoodRating = lastMoodRating
 
-                }, label: {
-                    //TODO: texte
-                    Text("Valider")
+                    // Réinitialisation des notifications
+                    noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
+
                 })
+                    .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
-            }
+//            }
             
             //uniquement pour tester le stockage de dernière notation
             //            Text(lastMoodDate, style: .date)
             //            Text(lastMoodDate, style: .time)
             
             //uniquement pour verifier que le JSON est chargé
-            Text("Historique des Etats de Forme").padding()
+//            Text("Historique des Etats de Forme").padding()
             
             List {
                 ForEach(sortedMoodHistory, id: \.self) { moodEntry in
                     MoodCell(mood: moodEntry)
-                    
+                        .listRowInsets(.init(top: 0, leading: 1, bottom: 1, trailing: 1))
                 }
             }
-            .listStyle(PlainListStyle())
-            .onChange(of: newMoodValue, perform: { value in
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-            }) // Permet de rafraichir la liste quand on ajoute un nouvel état de forme
+//            .listStyle(PlainListStyle())
+//            .onChange(of: newMoodValue, perform: { value in
+//                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+//            }) // Permet de rafraichir la liste quand on ajoute un nouvel état de forme
             
         }
         
@@ -112,8 +96,10 @@ extension UserDefaults {
 struct MoodTracker_Previews: PreviewProvider {
     
     static var previews: some View {
+        let userData = UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS)
+        
         MoodTracker()
-            .environmentObject(UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS))
+            .environmentObject(userData)
     }
 }
 

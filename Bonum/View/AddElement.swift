@@ -8,15 +8,8 @@
 import SwiftUI
 import HealthKit
 
-extension View {
-    @ViewBuilder
-    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
-        if conditional {
-            content(self)
-        } else {
-            self
-        }
-    }
+extension HKQuantityTypeIdentifier : Codable {
+    
 }
 
 struct AddElement: View {
@@ -24,88 +17,119 @@ struct AddElement: View {
     @EnvironmentObject var userData: UserData
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var showingAddForm = false
-    @State private var newElement : DataElement = DataElement(identifierInHK: " ", customName: " ", begin: Date(), impact: 0, values: [DataValue]())
-    @State private var identifierInHK = " "
+    @State private var newElement : DataElement = DataElement(identifierInHK: .heartRate, isDiscrete: false, customName: " ", begin: Date(), impact: 0, values: [DataValue]())
+    @State private var identifierInHK : HKQuantityTypeIdentifier = .heartRate
     @State private var customName = "Choisir"
+    @State private var isDiscrete = false
     @State private var begin = Date()
     @State private var values = [DataValue]()
+    @State private var authorized = false
+    @State private var dataRetreived : Bool = false
+    @State private var showingAlert = false
+    @State private var unwrappedDataType : Set<HKObjectType> = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
+    @State private var idType : HKQuantityTypeIdentifier = .heartRate
     
-    @State private var authorized : Bool = false
+    //TODO remplir ce tab
+    //    let allHTDataTypes: [String] = []
+    // get tous les elements que l'user suit TODO juste le nom
+    //    let alreadyTrackedElements = userData.userElementsList
+    //TODO comparer
+    var unusedAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque", "Activité en exercice"]
     
-    //?
-    //remplir ce tab
-    let allHTDataTypes: [String] = []
-    // get tous les elements que l'user suit
-    //    userData.userElementsList.
-    //comparer
-    var ourAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque"]
-    
-    //    var dataType : HKObjectType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-    //    func authorizationStatus(for type: HKObjectType) -> HKAuthorizationStatus
-    
-    //TODO: JSON reload
+    private func populateElementValues(_ statisticsCollection: HKStatisticsCollection) {
+        
+        statisticsCollection.enumerateStatistics(from: begin, to: Date()) {
+            (statistics, stop) in
+            
+            let count = statistics.sumQuantity()?.doubleValue(for: .count())
+            
+            let newDataValue = DataValue(value: count ?? 0, date: statistics.startDate)
+            values.append(newDataValue)
+        }
+    }
     
     var body: some View {
         NavigationView{
             VStack{
-                Text("Ajouter une donnée à suivre").font(.title).padding()
-                
-                Picker("Element à suivre", selection: $customName) {
-                    ForEach(ourAvailableHKTypes, id: \.self) {
-                        Text($0)
+                if !authorized {
+                    Text("Ajouter une donnée à suivre").font(.title).padding()
+                    
+                    Picker(selection: $customName, label: Text("Color")) {
+                        ForEach(unusedAvailableHKTypes, id: \.self) { el in
+                            Text(el)
+                        }
                     }
+                } else if !dataRetreived {
+                    Text("Ajouter " + customName).font(.title2)
                 }
                 
                 if customName != "Choisir" && !authorized {
                     Text("Utiliser \(customName) nécessite votre autorisation.")
                     
                     Button(action: {
-                        if HKHealthStore.isHealthDataAvailable() {
-                            let healthStore = HKHealthStore()
-                            var dataType : HKObjectType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-                            
-                            //la fonction n'est pas appellée
-                            func setDataType(name : String = customName) -> HKObjectType{
-                                if name == "Nombre de pas" {
-                                    dataType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-                                }
-                                if name == "Rythme Cardiaque" {
-                                    dataType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-                                }
-                                if name == "Variabilité Cardiaque" {
-                                    dataType = HKObjectType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
-                                }
-                                return dataType
+                        showingAlert = true
+                    }) {
+                        HStack{
+                            Text("Besoin d'aide ")
+                            Image(systemName: "questionmark.circle")
+                        }.padding()
+                    }
+                    .alert(isPresented: self.$showingAlert) {
+                        Alert(title: Text("Aide"), message:   Text("""
+Bonum utilise les données correspondant à l'élément choisi dans Santé.
+Si vous suivez cette donnée pour la première fois, une demande d'autorisation apparaitra.
+Si vous avec déjà autorisé cet élément dans Santé, vous pourrez passer à la prochaine étape.
+Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Réglages > Santé > Accès aux données et appareils > Bonum" et modifier sa permission afin de pouvoir l'utiliser.
+"""), dismissButton: .default(Text("Ok")))
+                    }
+                    
+                    Button(action: {
+                        func setIdType(name : String = customName) -> HKQuantityTypeIdentifier {
+                            if name == "Nombre de pas" {
+                                idType = .stepCount
                             }
-                            
-                            let unwrappedDataType = Set([dataType])
-                            
-                            healthStore.requestAuthorization(toShare: nil, read: unwrappedDataType) { (result, error) in
-                                if let error = error {
-                                    print(error)
-                                    return
-                                }
-                                guard result else {
-                                    print("Failed request")
-                                    return
-                                }
-                                
-                                authorized = true
+                            if name == "Rythme Cardiaque" {
+                                idType = .heartRate
+                                isDiscrete = true
                             }
+                            if name == "Variabilité Cardiaque" {
+                                idType = .heartRateVariabilitySDNN
+                                isDiscrete = true
+                            }
+                            if name == "Activité en exercice" {
+                                idType = .activeEnergyBurned
+                            }
+                            return idType
                         }
-                    }, label: {
+                        
+                        idType = setIdType()
+                        let dataType : HKObjectType = HKObjectType.quantityType(forIdentifier: idType)!
+                        let unwrappedDataType = Set([dataType])
+                        identifierInHK = idType
+
+                        userData.healthStore!.requestAuthorization(toShare: nil, read: unwrappedDataType) { (result, error) in
+                            if let error = error {
+                                print(error)
+                                return
+                            }
+                            guard result else {
+                                return
+                            }
+                            authorized = true
+                        }
+                        
+                    }
+                    , label: {
                         HStack{
                             Spacer()
                             Text("Autoriser").padding(30)
                             Spacer()
                         }
                     }
-                    )//fin button
+                    )
                 }
                 
-                
-                if authorized {
+                if authorized && !dataRetreived {
                     VStack(alignment: .leading){
                         Text("A partir de quelle date analyser cet élément?")
                         DatePicker("A partir de", selection: $begin, in: ...Date(), displayedComponents: .date)
@@ -113,21 +137,55 @@ struct AddElement: View {
                     } .padding(30)
                     
                     Button(action: {
-                        newElement = DataElement(
-                            identifierInHK: identifierInHK,
-                            customName: customName,
-                            begin: Date(),
-                            impact:0,
-                            values: values
-                        )
-                        userData.userElementsList.append(newElement)
-                        userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
-                        presentationMode.wrappedValue.dismiss()
+                        if let healthStore = userData.healthStore {
+                            healthStore.requestAuthorization(toShare: [], read: unwrappedDataType) { success,error  in
+                                if success {
+                                    if isDiscrete {
+                                        userData.writeNewDiscreteValues(discreteTypeDataToRead: idType, startDate: begin, endDate: Date()){ statisticsCollection in
+                                            if let statisticsCollection = statisticsCollection {
+                                                populateElementValues(statisticsCollection)
+                                            }
+                                        }
+                                    }
+                                    if !isDiscrete {
+                                        userData.writeNewCumulativeValues(cumulativeTypeDataToRead: idType, startDate: begin, endDate: Date()){ statisticsCollection in
+                                            if let statisticsCollection = statisticsCollection {
+                                                populateElementValues(statisticsCollection)
+                                            }
+                                        }
+                                    }
+                                    dataRetreived = true
+                                }
+                            }
+                        }
+                        
                     }, label: {
                         Text("Valider").padding(20)
                     })
                 }
                 
+                if dataRetreived {
+
+                    Button(action: {
+                        newElement = DataElement(
+                            identifierInHK: identifierInHK,
+                            isDiscrete: isDiscrete,
+                            customName: customName,
+                            begin: begin,
+                            impact:0,
+                            values: values
+                        )
+                        
+                        print(newElement.values)
+                        
+                        userData.userElementsList.append(newElement)
+                        userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Ajouter \(customName) comme élément Bonum")
+                    })
+                    
+                }
             }.navigationBarHidden(true)
         }
     }
