@@ -9,32 +9,7 @@ import SwiftUI
 
 struct Diary: View {
     
-    @EnvironmentObject var userData: UserData
-    
-    func delete(at offsets: IndexSet) {
-        userData.userElementsList.remove(atOffsets: offsets)
-        userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
-        userData.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
-    }
-    
-    func readJson<MonType: Codable>(filename : String) -> MonType?{
-        let decoder = JSONDecoder()
-        do{
-            if let url = LocalFileManager.instance.getPathForJson(name: filename) {
-                let data = try Data(contentsOf: url)
-                let result = try decoder.decode(MonType.self, from: data)
-                return result
-            }
-            
-            return nil
-            
-        } catch {
-            print(error)
-            return nil
-        }
-        
-    }
-    
+    @EnvironmentObject var userData: UserData    
     @State private var showingAddForm = false
     
     //mène à rien
@@ -71,32 +46,26 @@ struct Diary: View {
                 }
                 
                 //TODO : display score calculé
-                ScoreBonum()
+                ScoreBonum().padding(.vertical, 20)
                 
-                List{
-                    ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
-                        
-                        NavigationLink(
-                            destination: DiaryListDetails(element: userData.userElementsList[index]),
-                            label: {
-                                HStack{
-                                    DiaryListCell(element: userData.userElementsList[index])
-                                    
-                                    Button {
-                                        delete(at: [index])
-                                    } label: {Image(systemName: "xmark")
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                    
+                ScrollView{
+                    VStack(spacing: 20){
+                        ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
+                            
+                            NavigationLink(
+                                destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
+                                label: {
+//                                    ZStack{
+                                        DiaryListCell(element: userData.userElementsList[index])
+//                                    }
                                 }
-                            }
-                        )
-                    }.onDelete(perform: delete)
-                    
+                            )
+                        }
+                    }.padding(.horizontal, 20)
+                    .foregroundColor(Color.black)
                 }
             }.navigationBarHidden(true)
             .navigationTitle("Journal")
-            .listStyle(PlainListStyle())
         }
     }
 }

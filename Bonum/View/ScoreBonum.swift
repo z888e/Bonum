@@ -8,12 +8,30 @@
 import SwiftUI
 
 struct ScoreBonum: View {
+    
+    @EnvironmentObject var userData: UserData
+    
+    var lastMood: Int {
+           userData.userMoodHistory.last?.rating ?? 0
+        }
+
+    var lastMoodDate: Date {
+        userData.userMoodHistory.last?.timestamp ?? Date()
+        }
+
     var body: some View {
         ZStack{
             Circle()
                 .foregroundColor(.yellow)
                 .frame(width: 200, height: 200)
-            Text("Score Ici")
+            VStack(spacing: 10){
+                Text("Score Bonum").font(.system(size: 20.0))
+                if lastMood == 0 {
+                    Text("").font(.system(size: 20.0))
+                } else {
+                    Text(String(lastMood)).font(.system(size: 60.0))
+                }
+            }.foregroundColor(.white).shadow(radius: 1)
         }
     }
 }

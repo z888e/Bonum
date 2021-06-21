@@ -25,17 +25,17 @@ struct MoodValue : Hashable, Codable {
     var source: Int // 0: tab view, 1: widget, 2: notification
 }
 
-struct DataValue: Identifiable, Codable {
+struct DataValue: Identifiable, Codable, Equatable{
     
     var id = UUID()
     let count: Double
     let date: Date
 }
 
-struct DataElement : Identifiable, Codable {
+struct DataElement : Identifiable, Codable, Equatable {
     
     var id = UUID()
-    var identifierInHK : String
+    var identifierInHK : HKQuantityTypeIdentifier
     var customName: String
     var begin: Date
     var end: Date?
@@ -49,6 +49,7 @@ struct JourneyEvent: Hashable, Codable {
     var date: Date
     let imageName: String
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
+    var moodValue: Int
     
     // nested struct qui permet le stockage d'un nouvel event en cours de création
     struct Data {
@@ -75,20 +76,21 @@ final class UserData: ObservableObject {
     
     var name : String
     
-    var userElementsList = [DataElement]()
-    var userJourneyEvents = [JourneyEvent]()
-    var userMoodHistory = [MoodValue]()
+    @Published var userElementsList = [DataElement]()
+    @Published var userJourneyEvents = [JourneyEvent]()
+    @Published var userMoodHistory = [MoodValue]()
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
+    // TODO: init à réparer - pb avec le readJson et il ne faut pas retourner de tableau vide
     init(name: String, userElementsList: [DataElement], userJourneyEvents : [JourneyEvent], userMoodHistory : [MoodValue]) {
         if HKHealthStore.isHealthDataAvailable(){
             healthStore = HKHealthStore()
         }
         self.name = name
-        self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
-        self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
-        self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
+        self.userElementsList = readJson(filename: "ElementsList") ?? userElementsList
+        self.userJourneyEvents = readJson(filename: "JourneyList") ?? userJourneyEvents
+        self.userMoodHistory = readJson(filename: "MoodsList") ?? userMoodHistory
         
     }
     
@@ -160,21 +162,6 @@ final class UserData: ObservableObject {
         }
     }
     
-//    func requestAuthorization(completion : @escaping (Bool) -> Void){
-//        //selectionne stepCount
-//        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-//
-//        //guard, unwrap
-//        guard let healthStore = self.healthStore else { return completion(false)}
-//
-//        //authorisation de lire
-//        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
-//            completion(success)
-//        }
-//    }
-
-    
-    
 }
 
 //DONNEES TEST
@@ -185,7 +172,7 @@ let MYSTEPSDATA : [DataValue] = [
 ]
 
 let MYSTEPSELEMENT = DataElement (
-    identifierInHK: "stepCount",
+    identifierInHK: .stepCount,
     customName: "Marche",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
@@ -198,7 +185,7 @@ let MYHRDATA : [DataValue] = [
 ]
 
 let MYHRELEMENT = DataElement (
-    identifierInHK: "heartRate",
+    identifierInHK: .heartRate,
     customName: "Rythme Cardiaque",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
@@ -208,14 +195,14 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0),
-    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0),
-    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0),
-    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0),
-    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0),
-    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0),
-    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0),
-    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0)
+    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
+    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
+    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0, moodValue: 8),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0, moodValue: 6),
+    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0, moodValue: 7),
+    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0, moodValue: 3),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0, moodValue: 8),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0, moodValue: 7)
 ]
 
 let MYMOODS : [MoodValue] = [
