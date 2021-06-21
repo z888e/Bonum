@@ -14,7 +14,7 @@ struct PulsingButton: View {
     let minimumRatioB: CGFloat
     let durationB: Double
     
-    @State var animate = false
+    @State private var animate = false
     
     var body: some View {
         
@@ -25,7 +25,7 @@ struct PulsingButton: View {
                 
                 Circle().fill(colorB.opacity(0.45)).frame(width: sizeB*0.5, height: sizeB*0.5).scaleEffect(self.animate ? 1 : minimumRatioB)
                 
-                Circle().fill(Color.white).frame(width: sizeB*0.4, height: sizeB*0.4)
+                Circle().fill(Color.white).frame(width: sizeB*0.53, height: sizeB*0.53)
                 
                 Image(systemName: "plus.circle.fill")
                     .font(.system(size: sizeB*0.5))
