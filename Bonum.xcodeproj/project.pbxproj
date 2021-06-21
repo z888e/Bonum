@@ -46,6 +46,9 @@
 		D8938D76267FA8EE00FDD277 /* BonumWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D8938D71267FA8EE00FDD277 /* BonumWidget.intentdefinition */; };
 		D8938D79267FA8EE00FDD277 /* BonumWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D8938D6B267FA8EE00FDD277 /* BonumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D8938D82267FB0E500FDD277 /* BonumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8938D6F267FA8EE00FDD277 /* BonumWidget.swift */; };
+		D8938D852680785800FDD277 /* WilAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8938D842680785800FDD277 /* WilAnimation.swift */; };
+		D8938D8926808E9800FDD277 /* WilWheelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8938D8826808E9800FDD277 /* WilWheelButton.swift */; };
+		D8F189702680C22300DB9C7B /* WheelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1896F2680C22300DB9C7B /* WheelButton.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +119,9 @@
 		D8938D72267FA8EE00FDD277 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8938D74267FA8EE00FDD277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8938D7D267FAEE900FDD277 /* BonumWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonumWidgetExtension.entitlements; sourceTree = "<group>"; };
+		D8938D842680785800FDD277 /* WilAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilAnimation.swift; sourceTree = "<group>"; };
+		D8938D8826808E9800FDD277 /* WilWheelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilWheelButton.swift; sourceTree = "<group>"; };
+		D8F1896F2680C22300DB9C7B /* WheelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelButton.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +222,7 @@
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
 				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
+				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +245,8 @@
 				D82D475E2679DDC40099A58F /* WilListDetail.swift */,
 				D82D4760267B85200099A58F /* WilJsonTest.swift */,
 				D847BEEE267FA58D00F420E7 /* WilTestWidget.swift */,
+				D8938D842680785800FDD277 /* WilAnimation.swift */,
+				D8938D8826808E9800FDD277 /* WilWheelButton.swift */,
 			);
 			path = SandBox;
 			sourceTree = "<group>";
@@ -354,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */,
+				D8F189702680C22300DB9C7B /* WheelButton.swift in Sources */,
 				66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */,
 				66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */,
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
@@ -378,8 +388,10 @@
 				662ACCD52678994B00287EB8 /* Buttons.swift in Sources */,
 				5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
+				D8938D852680785800FDD277 /* WilAnimation.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
 				D847BEE9267C8C8200F420E7 /* MoodCell.swift in Sources */,
+				D8938D8926808E9800FDD277 /* WilWheelButton.swift in Sources */,
 				D82D475D2679DD9F0099A58F /* WilSampleList.swift in Sources */,
 				D82D475B2678FACD0099A58F /* UserNotifications.swift in Sources */,
 				662ACCD1267896C400287EB8 /* PageTab.swift in Sources */,

@@ -55,11 +55,13 @@ struct BonumWidgetEntryView : View {
                 .scaledToFill()
             
 //Text(userName)
-            VStack (alignment: .leading){
-            Text("Date de dernière mise à jour de l'état de forme :")
+            VStack (alignment: .center){
+                Text("La dernière mise à jour de votre état de forme date du :\n")
+                    .multilineTextAlignment(.center)
                 Text(dateW)
                     .fontWeight(.bold)
     }
+            .font(.system(size: 14))
         }
 }
 }
