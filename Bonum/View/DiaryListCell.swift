@@ -14,6 +14,7 @@ struct DiaryListCell: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
             Text(element.customName)
+            Text(element.identifierInHK)
             Text("impact niveau" + String(element.impact))
         }
     }

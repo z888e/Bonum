@@ -50,6 +50,19 @@ struct JourneyEvent: Hashable, Codable {
     let imageName: String
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
     
+    // nested struct qui permet le stockage d'un nouvel event en cours de création
+    struct Data {
+        var title: String = ""
+        var date: Date = Date()
+        var imageName: String = ""
+        var type: Int = 0
+    }
+    
+    // propriété calculée qui retourn Data avec les propriétés de JourneyEvent
+    var data: Data {
+        return Data(title: title, date: date, imageName: imageName, type: type)
+    }
+
 }
 
 //var startDate
@@ -65,7 +78,6 @@ final class UserData: ObservableObject {
     var userElementsList = [DataElement]()
     var userJourneyEvents = [JourneyEvent]()
     var userMoodHistory = [MoodValue]()
-    
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
@@ -74,15 +86,11 @@ final class UserData: ObservableObject {
             healthStore = HKHealthStore()
         }
         self.name = name
-//        writeJson(tab: userElementsList, filename: "ElementsList")
-//        writeJson(tab: userJourneyEvents, filename: "JourneyList")
-//        writeJson(tab: userMoodHistory, filename: "MoodsList")
-        
         self.userElementsList = readJson(filename: "ElementsList") ?? [DataElement]()
         self.userJourneyEvents = readJson(filename: "JourneyList") ?? [JourneyEvent]()
         self.userMoodHistory = readJson(filename: "MoodsList") ?? [MoodValue]()
+        
     }
-    
     
     func writeJson<MonType: Codable>(tab : [MonType], filename : String) -> Void {
         let encoder = JSONEncoder()
@@ -152,18 +160,21 @@ final class UserData: ObservableObject {
         }
     }
     
-    func requestAuthorization(completion : @escaping (Bool) -> Void){
-        //selectionne stepCount
-        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-        
-        //guard, unwrap
-        guard let healthStore = self.healthStore else { return completion(false)}
-        
-        //authorisation de lire
-        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
-            completion(success)
-        }
-    }
+//    func requestAuthorization(completion : @escaping (Bool) -> Void){
+//        //selectionne stepCount
+//        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+//
+//        //guard, unwrap
+//        guard let healthStore = self.healthStore else { return completion(false)}
+//
+//        //authorisation de lire
+//        healthStore.requestAuthorization(toShare: [], read: [stepType]) { (success, error) in
+//            completion(success)
+//        }
+//    }
+
+    
+    
 }
 
 //DONNEES TEST
@@ -216,6 +227,4 @@ let MYMOODS : [MoodValue] = [
     MoodValue(timestamp: Date()-(86400*2), rating: 3, source: 0),
     MoodValue(timestamp: Date()-(86400), rating: 8, source: 0)
 ]
-
-
 
