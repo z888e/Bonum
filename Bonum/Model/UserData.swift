@@ -25,17 +25,17 @@ struct MoodValue : Hashable, Codable {
     var source: Int // 0: tab view, 1: widget, 2: notification
 }
 
-struct DataValue: Identifiable, Codable {
+struct DataValue: Identifiable, Codable, Equatable{
     
     var id = UUID()
     let count: Double
     let date: Date
 }
 
-struct DataElement : Identifiable, Codable {
+struct DataElement : Identifiable, Codable, Equatable {
     
     var id = UUID()
-    var identifierInHK : String
+    var identifierInHK : HKQuantityTypeIdentifier
     var customName: String
     var begin: Date
     var end: Date?
@@ -75,9 +75,9 @@ final class UserData: ObservableObject {
     
     var name : String
     
-    var userElementsList = [DataElement]()
-    var userJourneyEvents = [JourneyEvent]()
-    var userMoodHistory = [MoodValue]()
+    @Published var userElementsList = [DataElement]()
+    @Published var userJourneyEvents = [JourneyEvent]()
+    @Published var userMoodHistory = [MoodValue]()
     var healthStore: HKHealthStore?
     var collectionQuery: HKStatisticsCollectionQuery?
     
@@ -170,7 +170,7 @@ let MYSTEPSDATA : [DataValue] = [
 ]
 
 let MYSTEPSELEMENT = DataElement (
-    identifierInHK: "stepCount",
+    identifierInHK: .stepCount,
     customName: "Marche",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,
@@ -183,7 +183,7 @@ let MYHRDATA : [DataValue] = [
 ]
 
 let MYHRELEMENT = DataElement (
-    identifierInHK: "heartRate",
+    identifierInHK: .heartRate,
     customName: "Rythme Cardiaque",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
     impact: 1,

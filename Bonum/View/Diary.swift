@@ -55,9 +55,9 @@ struct Diary: View {
                             NavigationLink(
                                 destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
                                 label: {
-                                    ZStack{
+//                                    ZStack{
                                         DiaryListCell(element: userData.userElementsList[index])
-                                    }
+//                                    }
                                 }
                             )
                         }

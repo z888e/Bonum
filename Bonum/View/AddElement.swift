@@ -19,29 +19,44 @@ extension View {
     }
 }
 
+extension HKQuantityTypeIdentifier : Codable {
+    
+}
+
 struct AddElement: View {
     
     @EnvironmentObject var userData: UserData
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var showingAddForm = false
-    @State private var newElement : DataElement = DataElement(identifierInHK: " ", customName: " ", begin: Date(), impact: 0, values: [DataValue]())
-    @State private var identifierInHK = " "
+    @State private var newElement : DataElement = DataElement(identifierInHK: .heartRate, customName: " ", begin: Date(), impact: 0, values: [DataValue]())
+    @State private var identifierInHK : HKQuantityTypeIdentifier = .heartRate
     @State private var customName = "Choisir"
     @State private var begin = Date()
     @State private var values = [DataValue]()
-    
     @State private var authorized : Bool = false
     @State private var showingAlert = false
+    @State private var unwrappedDataType : Set<HKObjectType> = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
+    
+    var healthStore: HKHealthStore?
     
     //TODO remplir ce tab
-    let allHTDataTypes: [String] = []
+//    let allHTDataTypes: [String] = []
     // get tous les elements que l'user suit TODO juste le nom
 //    let alreadyTrackedElements = userData.userElementsList
     //TODO comparer
     var unusedAvailableHKTypes = ["Choisir", "Nombre de pas", "Rythme Cardiaque", "Variabilité Cardiaque", "Activité en exercice"]
-    
-    //TODO: JSON reload
+        
+    private func populateElementValues(_ statisticsCollection: HKStatisticsCollection){
+        
+        statisticsCollection.enumerateStatistics(from: begin, to: Date()) {
+            (statistics, stop) in
+            
+            let count = statistics.sumQuantity()?.doubleValue(for: .count())
+            
+            let step = DataValue(count: count ?? 0, date: statistics.startDate)
+            newElement.values = [step]
+        }
+    }
     
     var body: some View {
         NavigationView{
@@ -75,7 +90,7 @@ Bonum utilise les données correspondant à l'élément choisi dans Santé.
 Si vous suivez cette donnée pour la première fois, une demande d'autorisation apparaitra.
 Si vous avec déjà autorisé cet élément dans Santé, vous pourrez passer à la prochaine étape.
 Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Réglages > Santé > Accès aux données et appareils > Bonum" et modifier sa permission afin de pouvoir l'utiliser.
-"""), dismissButton: .default(Text("D'accord")))
+"""), dismissButton: .default(Text("Ok")))
                     }
                     
                     Button(action: {
@@ -136,10 +151,23 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                         newElement = DataElement(
                             identifierInHK: identifierInHK,
                             customName: customName,
-                            begin: Date(),
+                            begin: begin,
                             impact:0,
                             values: values
                         )
+                        if let healthStore = healthStore {
+                            healthStore.requestAuthorization(toShare: [], read: unwrappedDataType) { success,error  in
+                                if success {
+                                    userData.calculateSteps{ statisticsCollection in
+                                        if let statisticsCollection = statisticsCollection {
+                                            print(statisticsCollection)
+                                            populateElementValues(statisticsCollection)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
                         userData.userElementsList.append(newElement)
                         userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
                         presentationMode.wrappedValue.dismiss()
