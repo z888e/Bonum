@@ -31,7 +31,7 @@ struct Journey: View {
                     
                     VStack {
                         
-                        NavigationLink(destination: JourneyEdit()) {
+                        NavigationLink(destination: EmptyView()) {
                             ZStack {
                                 
                                 Circle()
@@ -58,6 +58,14 @@ struct Journey: View {
                                 
                             }
                             .padding()
+//                            .navigationBarItems(trailing: Button(action: {
+//                                isPresented = true
+//                            }) {
+//                                Image(systemName: "plus")
+//                            })
+//                            .sheet(isPresented: $isPresented) {
+//                                JourneyEdit()
+//                            }
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
@@ -102,7 +110,7 @@ struct Journey: View {
                 //                    JourneyEdit()
                 //                }
             }
-
+            
         }
     }
 }

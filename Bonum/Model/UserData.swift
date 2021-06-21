@@ -63,6 +63,11 @@ struct JourneyEvent: Hashable, Codable {
     var data: Data {
         return Data(title: title, date: date, imageName: imageName, type: type)
     }
+    
+    mutating func update(from data: Data) {
+        title = data.title
+        date = data.date
+    }
 
 }
 
@@ -210,8 +215,8 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
-    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
+    JourneyEvent(title: "Premier job", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
+    JourneyEvent(title: "Inscription à la salle", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
     JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0, moodValue: 8),
     JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0, moodValue: 6),
     JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0, moodValue: 7),
