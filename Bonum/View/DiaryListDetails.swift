@@ -35,16 +35,7 @@ struct DiaryListDetails: View {
                             .stroke(Color.gray, lineWidth: 0.2)
                     )
                 
-                Text("Graphique/Analyse de la variable suivie")
-//                List(element, id: \.id){ el in
-//
-//                    VStack{
-//                        Text("\(el.count)")
-//                        Text(el.date, style: .date)
-//                            .opacity(0.5)
-//                    }
-//
-//                }
+                DiaryListDetailsGraph(element : element)
                 
                 Spacer()
                 
@@ -64,6 +55,7 @@ struct DiaryListDetails: View {
                             .stroke(Color.gray, lineWidth: 0.2)
                     )
                 }.buttonStyle(PlainButtonStyle())
+                .padding(.bottom, 70)
             }
             
         }

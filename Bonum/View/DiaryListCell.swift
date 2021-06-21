@@ -15,15 +15,14 @@ struct DiaryListCell: View {
         HStack{
             VStack(alignment: .leading, spacing: 10){
                 Text(element.customName)
-                Text("impact niveau" + String(element.impact))
+                Text("impact niveau " + String(element.impact))
                 Spacer()
-                Text("Graph")
             }
             Spacer()
         }.padding()
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Color.gray, lineWidth: 1).shadow(radius: 1.0)
         )
     }
 }
