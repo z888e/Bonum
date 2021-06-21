@@ -11,7 +11,7 @@ import SwiftUI
 struct MoodTracker: View {
     
     @EnvironmentObject var userData: UserData
-    @State private var scoreEntered : Double = 5
+    @State private var scoreEntered : Int = 0
     // Permet de stocker le dernier score et sa date
     @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
@@ -48,8 +48,8 @@ struct MoodTracker: View {
             
 //            VStack{
               
-            WheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: lastMoodRating)
-                    .onChange(of: lastMoodRating, perform: { value in
+            WheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: lastMoodRating, scoreEntered: $scoreEntered)
+                    .onChange(of: scoreEntered, perform: { value in
 
                     newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
                     userData.userMoodHistory.append(newMoodValue)
@@ -80,9 +80,9 @@ struct MoodTracker: View {
                 }
             }
 //            .listStyle(PlainListStyle())
-            .onChange(of: newMoodValue, perform: { value in
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-            }) // Permet de rafraichir la liste quand on ajoute un nouvel état de forme
+//            .onChange(of: newMoodValue, perform: { value in
+//                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+//            }) // Permet de rafraichir la liste quand on ajoute un nouvel état de forme
             
         }
         

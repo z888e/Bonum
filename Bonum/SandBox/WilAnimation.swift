@@ -12,7 +12,12 @@ struct WilAnimation: View {
     @State private var animate: Bool = false
     @State private var icon = "😁"
     
+    @State private var currentAmount: Angle = .degrees(0)
+    @State private var finalAmount: Angle = .degrees(0)
+    
     var body: some View {
+        VStack{
+        
         VStack{
             Text(icon)
                 .font(.system(size: 56.0))
@@ -40,6 +45,20 @@ struct WilAnimation: View {
         .onChange(of: animate, perform: { value in
             /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
         })
+        
+        Text("hffgffihfich")
+        .rotationEffect(currentAmount + finalAmount)
+        .gesture(
+            RotationGesture()
+                .onChanged { angle in
+                    self.currentAmount = angle
+                }
+                .onEnded { angle in
+                    self.finalAmount += self.currentAmount
+                    self.currentAmount = .degrees(0)
+                }
+        )
+        }
     }
 }
 
