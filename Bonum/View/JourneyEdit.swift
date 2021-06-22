@@ -14,7 +14,7 @@ struct JourneyEdit: View {
     
     @State private var isShowingImagePicker = false
     @State private var shownImage = UIImage()
-    @State private var pickedImage = UIImage()
+    @Binding var pickedImage: UIImage
     
     var body: some View {
         
@@ -59,6 +59,6 @@ struct JourneyEdit: View {
 
 struct JourneyEdit_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyEdit(event: MYJOURNEY[0], JourneyData: .constant(MYJOURNEY[0].data))
+        JourneyEdit(event: MYJOURNEY[0], JourneyData: .constant(MYJOURNEY[0].data), pickedImage: .constant(UIImage()))
     }
 }

@@ -9,10 +9,9 @@ import SwiftUI
 
 struct JourneyDetail: View {
     
-    var event: JourneyEvent
+    @Binding var event: JourneyEvent
     @State private var journeyData: JourneyEvent.Data = JourneyEvent.Data()
     @State private var shownImage = UIImage()
-    @State private var pickedImage = UIImage()
     @State private var isPresented = false
     
     var body: some View {
@@ -38,11 +37,12 @@ struct JourneyDetail: View {
                 )
 
                 .onAppear(perform: {
+                    journeyData = event.data
                     shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
                 })
-                .onChange(of: pickedImage, perform: { value in
+                .onChange(of: event.image, perform: { value in
                     LocalFileManager.instance.saveImage(image: value, name: event.imageName)
-                    shownImage = pickedImage
+                    shownImage = event.image
                 })
             
             Spacer()
@@ -53,13 +53,13 @@ struct JourneyDetail: View {
         })
         .fullScreenCover(isPresented: $isPresented) {
             NavigationView {
-                JourneyEdit(event: event, JourneyData: $journeyData)
+                JourneyEdit(event: event, JourneyData: $journeyData, pickedImage: $event.image)
                     .navigationTitle(event.title)
                     .navigationBarItems(leading: Button("Annuler") {
                         isPresented = false
                     }, trailing: Button("Terminé") {
                         isPresented = false
-//                        event.update(from: journeyData)
+                        event.update(from: journeyData)
                     })
             }
         }
@@ -71,7 +71,7 @@ struct JourneyDetail: View {
 struct JourneyDetail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            JourneyDetail(event: MYJOURNEY[0])
+            JourneyDetail(event: .constant(MYJOURNEY[0]))
                 .environment(\.locale, Locale(identifier: "fr"))
         }
     }
