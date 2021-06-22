@@ -21,6 +21,8 @@ struct WilAnimation: View {
             .repeatForever(autoreverses: false)
     }
     
+    @State private var opacity = 1.0
+    
     var body: some View {
         VStack{
             
@@ -72,13 +74,24 @@ struct WilAnimation: View {
             Text("ROTATION auto")
                 .rotationEffect(.degrees(rotationDegree))
                 .onAppear{
-                    self.animate.toggle()
+//                    self.animate.toggle()
                     withAnimation(self.timeCurveAnimation) {
                         self.rotationDegree = 1800.0
                     }
                 }
             
             Spacer().frame(height: 30)
+            
+            Button("Efface-moi") {
+                withAnimation {
+                    opacity -= 0.2
+                }
+            }
+            .padding()
+            .opacity(opacity)
+            
+            Spacer().frame(height: 30)
+            
         } // Fin VStack 1
     }
 }
