@@ -5,6 +5,7 @@
 //  Created by Zoé Hartman on 16/06/2021.
 //
 
+import SwiftUI
 import Foundation
 import HealthKit
 
@@ -50,8 +51,13 @@ struct JourneyEvent: Hashable, Codable {
     var title: String
     var date: Date
     let imageName: String
+    var image: UIImage = UIImage()
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
     var moodValue: Int
+    
+    enum CodingKeys: CodingKey {
+        case title, date, imageName, type, moodValue
+    }
     
     // nested struct qui permet le stockage d'un nouvel event en cours de création
     struct Data {
@@ -61,9 +67,14 @@ struct JourneyEvent: Hashable, Codable {
         var type: Int = 0
     }
     
-    // propriété calculée qui retourn Data avec les propriétés de JourneyEvent
+    // propriété calculée qui retourne Data avec les propriétés de JourneyEvent
     var data: Data {
         return Data(title: title, date: date, imageName: imageName, type: type)
+    }
+    
+    mutating func update(from data: Data) {
+        title = data.title
+        date = data.date
     }
 
 }
@@ -213,8 +224,8 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Début dans la vie active", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
-    JourneyEvent(title: "Inscription à la salle de sport", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
+    JourneyEvent(title: "Premier job", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
+    JourneyEvent(title: "Inscription à la salle", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
     JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0, moodValue: 8),
     JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0, moodValue: 6),
     JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0, moodValue: 7),

@@ -84,7 +84,7 @@
 		588EF58E267248CC00A888DB /* Bonum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bonum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		588EF591267248CC00A888DB /* BonumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonumApp.swift; sourceTree = "<group>"; };
 		588EF593267248CC00A888DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		588EF595267248CF00A888DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		588EF595267248CF00A888DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Bonum/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBonum.swift; sourceTree = "<group>"; };
@@ -543,6 +543,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -566,6 +567,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bonum/Bonum.entitlements;
 				CODE_SIGN_STYLE = Automatic;

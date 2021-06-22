@@ -37,15 +37,17 @@ struct JourneyCell: View {
     
     @State private var isShowingImagePicker = false
     @State private var shownImage = UIImage()
-    @State private var pickedImage = UIImage()
+    @Binding var pickedImage: UIImage
     
     var body: some View {
         
-        HStack(spacing: 20) {
+        HStack {
             
             Rectangle()
                 .fill(gradient)
                 .frame(width: 10, height: 150)
+            
+            Spacer()
             
             VStack {
                 
@@ -93,9 +95,11 @@ struct JourneyCell: View {
                     }
                     
                 }
-                .padding([.top, .bottom, .trailing])
                 
             }
+            
+            Spacer()
+            
         }
     }
 }
@@ -103,7 +107,7 @@ struct JourneyCell: View {
 
 struct JourneyCell_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyCell(previousMoodValue: 5, event: MYJOURNEY[0])
+        JourneyCell(previousMoodValue: 5, event: MYJOURNEY[0], pickedImage: .constant(UIImage()))
             .previewLayout(.sizeThatFits)
             .environment(\.locale, Locale(identifier: "fr"))
     }

@@ -48,7 +48,7 @@ struct MoodTracker: View {
             
 //            VStack{
               
-            WheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: lastMoodRating, scoreEntered: $scoreEntered)
+            WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, scoreEntered: $scoreEntered)
                     .onChange(of: scoreEntered, perform: { value in
 
                     newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
