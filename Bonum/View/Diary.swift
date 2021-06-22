@@ -12,7 +12,6 @@ struct Diary: View {
     @EnvironmentObject var userData: UserData    
     @State private var showingAddForm = false
     
-    //mène à rien
     @State private var timeArea : String = "J"
     var allTimes = ["J", "S", "M", "A"]
     
@@ -28,9 +27,21 @@ struct Diary: View {
                 .padding()
                 
                 HStack{
-                    Text("Aujourd'hui,").font(.title)
-                        .padding()
+                    if timeArea == "J"{
+                        Text("Aujourd'hui,").font(.title).padding(20)
+                    }
+                    if timeArea == "S"{
+                        Text("Cette semaine,").font(.title).padding(20)
+                    }
+                    if timeArea == "M"{
+                        Text("Ce mois,").font(.title).padding(20)
+                    }
+                    if timeArea == "A"{
+                        Text("Cette année,").font(.title).padding(20)
+                    }
+                    
                     Spacer()
+                    PopulateHK()
                     
                     Button(action: {
                         showingAddForm = true
@@ -46,7 +57,7 @@ struct Diary: View {
                 }
                 
                 //TODO : display score calculé
-                ScoreBonum().padding(.vertical, 20)
+                ScoreBonum(timeArea : timeArea).padding(.vertical, 20)
                 
                 ScrollView{
                     VStack(spacing: 20){
@@ -55,9 +66,7 @@ struct Diary: View {
                             NavigationLink(
                                 destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
                                 label: {
-//                                    ZStack{
-                                        DiaryListCell(element: userData.userElementsList[index])
-//                                    }
+                                    DiaryListCell(element: userData.userElementsList[index])
                                 }
                             )
                         }

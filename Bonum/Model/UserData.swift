@@ -193,7 +193,7 @@ final class UserData: ObservableObject {
 
 let MYSTEPSDATA : [DataValue] = [
     DataValue(value: 1845, date: Date()),
-    DataValue(value: 54, date: Date() - 1000),
+    DataValue(value: 54, date: Date() - 1000)
 ]
 
 let MYSTEPSELEMENT = DataElement (

@@ -39,7 +39,7 @@ struct AddElement: View {
         statisticsCollection.enumerateStatistics(from: begin, to: Date()) {
             (statistics, stop) in
             
-            var value : Double{statistics.sumQuantity()?.doubleValue(for: valueNameInHK) ?? 1.0}
+            var value : Double{statistics.sumQuantity()?.doubleValue(for: valueNameInHK) ?? 0.0}
             
             let newDataValue = DataValue(value: value, date: statistics.startDate)
             values.append(newDataValue)
@@ -52,7 +52,7 @@ struct AddElement: View {
             
             let value = statistics.averageQuantity()?.doubleValue(for: valueNameInHK)
             
-            let newDataValue = DataValue(value: value ?? 1.0, date: statistics.startDate)
+            let newDataValue = DataValue(value: value ?? 0.0, date: statistics.startDate)
             values.append(newDataValue)
         }
     }

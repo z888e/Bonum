@@ -204,7 +204,7 @@ struct Graphe: Shape {
         if closed {
             path.addLine(to: CGPoint(x: getPositionOfTheLastOne(nbOfCompleted: nbOfCompleted, percentOfTheLast: percentOfTheLast).x, y: CGFloat(maxY)))
             
-            path.addLine(to: CGPoint(x: CGFloat(marginX), y: CGFloat(110.00 - marginY)))
+            path.addLine(to: CGPoint(x: CGFloat(marginX), y: CGFloat(height - marginY)))
             
             path.closeSubpath()
         }

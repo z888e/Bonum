@@ -10,14 +10,16 @@ import SwiftUI
 struct ScoreBonum: View {
     
     @EnvironmentObject var userData: UserData
+
+    var timeArea : String
     
     var lastMood: Int {
            userData.userMoodHistory.last?.rating ?? 0
         }
-
-    var lastMoodDate: Date {
-        userData.userMoodHistory.last?.timestamp ?? Date()
-        }
+    
+//    var last7daysAvgMood
+//    var last30daysAvgMood
+//    var last365DaysAvgMood
 
     var body: some View {
         ZStack{
@@ -38,6 +40,6 @@ struct ScoreBonum: View {
 
 struct ScoreBonum_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreBonum()
+        ScoreBonum(timeArea: "J")
     }
 }
