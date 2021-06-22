@@ -15,6 +15,7 @@ struct BonumApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(userData)
+//            UserNotifications()
         }
     }
 }

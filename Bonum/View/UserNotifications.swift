@@ -39,7 +39,7 @@ struct UserNotifications: View {
                     center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
                         if granted {
                             authMessage = "👍 Notifications autorisées"
-                            noticationManager.scheduleNotification()
+                            noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
                         } else {
                             authMessage = "👎 Notifications non autorisées"
                         }
@@ -99,16 +99,39 @@ struct UserNotifications: View {
     }
 }
 
-func chronoFromEnreg(previousEnreg: Date) -> String {
-//    let today = Date()-previousEnreg
-    let formatter1 = DateFormatter()
-    formatter1.dateFormat = "d MMM y, HH:mm:ss"
-//    formatter1.dateStyle = .medium
-    return formatter1.string(from: previousEnreg)
+
+func dateToString(date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMM y, HH:mm:ss"
+    return formatter.string(from: date)
 }
+
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     
+    @AppStorage("userName") private var userName: String = ""
+    
+  
+    func smartNotification(lastEnreg: Date, interval: Double) {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Evaluation de la forme"
+        content.body = "\(userName), Vous n'avez pas évalué votre forme depuis le  \(dateToString(date: lastEnreg)). Voulez-vous le faire ?"
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: "BonumNotification", content: content, trigger: trigger)
+        
+        center.add(request)
+    }
+    
+    
+/// func pour tests : n'est pas utilisée dans l'app Bonum
     func scheduleNotification() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
@@ -119,9 +142,9 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         /// Le contenu de la notification: titre, body et catégorie (pour des regroupements)
         let content = UNMutableNotificationContent()
         content.title = "Forme du matin"
-        content.body = "Bonum est impatient de savoir si vous êtes en forme aujourd'hui."
+        content.body = "\(userName), Bonum est impatient de savoir si vous êtes en forme aujourd'hui."
         // The notification request set a userInfo property on the notification, which is a dictionary where you can store any kind of context data you want.
-        content.userInfo = ["customData": "bonumNotification"]
+        content.userInfo = ["userName": userName]
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "IDCat"
         
@@ -152,26 +175,8 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         center.add(request)
     }
     
-    func smartNotification(lastEnreg: Int) {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
-        
-        center.removeAllPendingNotificationRequests()
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Evaluation de la forme"
-        content.body = "Vous n'avez pas évalué votre forme depuis \(lastEnreg). Voulez-vous le faire ?"
-        content.userInfo = ["customData": "bonumSartNotification"]
-        content.sound = UNNotificationSound.default
-        
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        center.add(request)
-    }
-    
+
+/// func pour tester l'ajout de boutons : n'est pas utilisée dans l'app Bonum
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         switch response.actionIdentifier {
@@ -196,7 +201,8 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         // you must call the completion handler when you're done
         completionHandler()
     }
-}
+    
+} // fin de class NotificationDelegate
 
 
 

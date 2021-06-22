@@ -8,13 +8,72 @@
 import SwiftUI
 
 struct JourneyDetail: View {
+    
+    @EnvironmentObject var userData: UserData
+    @Binding var event: JourneyEvent
+    @State private var journeyData: JourneyEvent.Data = JourneyEvent.Data()
+    @State private var shownImage = UIImage()
+    @State private var isPresented = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            
+            Image(uiImage: shownImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .overlay(
+                    Text("\(event.title)\n\(event.date, style: .date)")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color(.black))
+                        .cornerRadius(10)
+                        .opacity(0.8)
+                        .padding(),
+                    
+                    alignment: .top
+                )
+
+                .onAppear(perform: {
+                    journeyData = event.data
+                    shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
+                })
+                .onChange(of: event.image, perform: { value in
+                    LocalFileManager.instance.saveImage(image: value, name: event.imageName)
+                    shownImage = event.image
+                })
+            
+            Spacer()
+            
+        }
+        .navigationBarItems(trailing: Button("Modifier"){
+            isPresented = true
+        })
+        .fullScreenCover(isPresented: $isPresented) {
+            NavigationView {
+                JourneyEdit(event: event, JourneyData: $journeyData, pickedImage: $event.image)
+                    .navigationBarItems(leading: Button("Annuler") {
+                        isPresented = false
+                    }, trailing: Button("Terminé") {
+                        isPresented = false
+                        event.update(from: journeyData)
+                        userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
+                    })
+            }
+        }
+        
     }
+    
 }
 
 struct JourneyDetail_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyDetail()
+        NavigationView {
+            JourneyDetail(event: .constant(MYJOURNEY[0]))
+                .environment(\.locale, Locale(identifier: "fr"))
+        }
     }
 }

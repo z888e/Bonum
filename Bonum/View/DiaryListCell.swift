@@ -12,13 +12,18 @@ struct DiaryListCell: View {
     let element : DataElement
     
     var body: some View {
-        VStack{
-//            Text("\(element[0].count, specifier: "%.0f")")
-//            Text(element[0].count, style: .date)
-//                .opacity(0.5)
-            Text(element.customName)
-        }
-        
+        HStack{
+            VStack(alignment: .leading, spacing: 10){
+                Text(element.customName)
+                Text("impact niveau " + String(element.impact))
+                Spacer()
+            }
+            Spacer()
+        }.padding()
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.gray, lineWidth: 1).shadow(radius: 1.0)
+        )
     }
 }
 

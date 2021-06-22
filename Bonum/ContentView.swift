@@ -15,6 +15,8 @@ struct ContentView: View {
     // Permet de stocker le nom de l'utilisateur
     @AppStorage("userName") private var userName: String = ""
     
+    // Permet d'afficher l'univers demandé
+    @State private var tabIndex: Int = 1
     
     var body: some View {
             
@@ -22,7 +24,8 @@ struct ContentView: View {
             if isOnboardingShowing {
                 Onboarding(isOnboardingShowing: $isOnboardingShowing, userName: $userName)
             } else {
-                TabBarView()
+            //      TabBarView()
+                CustomTabBar(tabIndex: $tabIndex)
             }
         
     }

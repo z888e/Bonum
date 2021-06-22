@@ -16,19 +16,19 @@ struct Provider: IntentTimelineProvider {
         SimpleEntry(date: Date(), refreshNb: 0, configuration: ConfigurationIntent())
         
     }
-
+    
     /// To show your widget in the widget gallery, WidgetKit asks the provider for a preview snapshot.
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         
         let entry = SimpleEntry(date: Date(), refreshNb: 0, configuration: configuration)
-
+        
         completion(entry)
     }
-
+    
     /// After requesting the initial snapshot, WidgetKit calls getTimeline(in:completion:) to request a regular timeline from the provider. The timeline consists of one or more timeline entries and a reload policy that informs WidgetKit when to request a subsequent timeline.
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
- 
+        
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 4 {
@@ -36,7 +36,7 @@ struct Provider: IntentTimelineProvider {
             let entry = SimpleEntry(date: entryDate, refreshNb: hourOffset, configuration: configuration)
             entries.append(entry)
         }
-
+        
         let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 3, to: currentDate)!
         let timeline = Timeline(entries: entries, policy: .after(nextUpdateDate))
         // Autre policy possible :
@@ -51,7 +51,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let refreshNb: Int
-//    let widgetURL: URL
+    //    let widgetURL: URL
     let configuration: ConfigurationIntent
 }
 
@@ -63,47 +63,46 @@ struct Bonum_Test_WidgetEntryView : View {
             Image("storm")
                 .resizable()
                 .scaledToFill()
-        
-        VStack{
-            Text("Nous sommes le :")
-            Text(entry.date, style: .date)
-                .fontWeight(.bold)
-            Text("Il est :")
-            Text(entry.date, style: .time)
-                .fontWeight(.bold)
-            Text("MàJ n° \(entry.refreshNb), il y a :")
-            Text(entry.date, style: .timer)
-                .fontWeight(.semibold)
-                .multilineTextAlignment(.center)
             
-            HStack(alignment: .top) {
-                Link(destination: URL(string: "weather://hail")!) {
-                    Image(systemName: "cloud.hail")
+            VStack{
+                Text("Nous sommes le :")
+                Text(entry.date, style: .date)
+                    .fontWeight(.bold)
+                Text("Il est :")
+                Text(entry.date, style: .time)
+                    .fontWeight(.bold)
+                Text("MàJ n° \(entry.refreshNb), il y a :")
+                Text(entry.date, style: .timer)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                
+                HStack(alignment: .top) {
+                    Link(destination: URL(string: "weather://hail")!) {
+                        Image(systemName: "cloud.hail")
+                    }
+                    Spacer()
+                    Link(destination: URL(string: "weather://thunder")!) {
+                        Image(systemName: "cloud.bolt.rain")
+                    }
+                    Spacer()
+                    Link(destination: URL(string: "weather://tropical")!) {
+                        Image(systemName: "tropicalstorm")
+                    }
                 }
-                Spacer()
-                Link(destination: URL(string: "weather://thunder")!) {
-                    Image(systemName: "cloud.bolt.rain")
-                }
-                Spacer()
-                Link(destination: URL(string: "weather://tropical")!) {
-                    Image(systemName: "tropicalstorm")
-                }
+                .frame(width: 100)
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                
             }
-            .frame(width: 100)
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-
-            }
-        .foregroundColor(.white)
-        .font(.footnote)
-//        .widgetURL(entry.widgetURL)
-    }
+            .foregroundColor(.white)
+            .font(.footnote)
+        }
     }
 }
 
 @main
 struct Bonum_Test_Widget: Widget {
     let kind: String = "Bonum_Test_Widget"
-
+    
     var body: some WidgetConfiguration {
         
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
@@ -119,16 +118,16 @@ struct Bonum_Test_Widget_Previews: PreviewProvider {
     static var previews: some View {
         
         let previewEntry: Provider.Entry = SimpleEntry(date: Date(), refreshNb: 0, configuration: ConfigurationIntent())
-
+        
         Group{
             Bonum_Test_WidgetEntryView(entry: previewEntry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            
             Bonum_Test_WidgetEntryView(entry: previewEntry)
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-        
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+            
             Bonum_Test_WidgetEntryView(entry: previewEntry)
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
         }
     }
 }

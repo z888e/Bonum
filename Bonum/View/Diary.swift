@@ -9,33 +9,63 @@ import SwiftUI
 
 struct Diary: View {
     
-    @State var stepsVariable : DataElement = MYSTEPSELEMENT
-    @EnvironmentObject var userData: UserData
-
+    @EnvironmentObject var userData: UserData    
+    @State private var showingAddForm = false
+    
+    //mène à rien
+    @State private var timeArea : String = "J"
+    var allTimes = ["J", "S", "M", "A"]
+    
     var body: some View {
-        VStack{
-            //TODO: variables
-            HealthKitOnboarding(stepsVariable: $stepsVariable)
-            Text("Bonjour, \(userData.name)")
-            
-            //TODO : display score calculé
-            ScoreBonum()
-                        
-            //TODO: mettre dans son composant propre
+        NavigationView{
             VStack{
-                List{
-                    ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id){
-                        index, el in
-                        //TODO : Navlink marche pas
-                        NavigationLink(
-                            destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
-                            label: {
-                                DiaryListCell(element: el)
-                            }
-                        )
+                //TODO: Switch J/S/M/A
+                Picker("", selection: $timeArea) {
+                    ForEach(allTimes, id: \.self) {
+                        Text($0)
                     }
+                }.pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                HStack{
+                    Text("Aujourd'hui,").font(.title)
+                        .padding()
+                    Spacer()
+                    
+                    Button(action: {
+                        showingAddForm = true
+                    }) {
+                        Image(systemName: "plus")
+                            .font(Font.system(.title))
+                            .foregroundColor(.orange)
+                            .padding()
+                    }.sheet(isPresented: $showingAddForm) {
+                        AddElement()
+                    }
+                    
                 }
-            }
+                
+                //TODO : display score calculé
+                ScoreBonum().padding(.vertical, 20)
+                
+                ScrollView{
+                    VStack(spacing: 20){
+                        ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
+                            
+                            NavigationLink(
+                                destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
+                                label: {
+//                                    ZStack{
+                                        DiaryListCell(element: userData.userElementsList[index])
+//                                    }
+                                }
+                            )
+                        }
+                    }.padding(.horizontal, 20)
+                    .foregroundColor(Color.black)
+                }
+            }.navigationBarHidden(true)
+            .navigationTitle("Journal")
         }
     }
 }

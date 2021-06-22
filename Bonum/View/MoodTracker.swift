@@ -7,13 +7,24 @@
 // !!!! Ajouter JOKER + Source de l'affichage du mood tracker + new look
 
 import SwiftUI
+import WidgetKit
 
 struct MoodTracker: View {
     
     @EnvironmentObject var userData: UserData
-    @State private var scoreEntered : Double = 5
-    
+    @State private var scoreEntered : Int = 0
+    // Permet de stocker le dernier score et sa date
+    @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
+    @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
+    
+    let noticationManager = NotificationDelegate()
+    
+    let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
+    
+    //    var lastMood: Int {
+    //        return userData.userMoodHistory.last?.rating ?? 0
+    //    }
     
     // Pour afficher l'historique par date de saisie la plus récente
     var sortedMoodHistory: [MoodValue] {
@@ -22,86 +33,77 @@ struct MoodTracker: View {
         }
     }
     
+    //    init() {
+    //        self.lastMood = userData.userMoodHistory[1].rating ?? 0
+    //    }
+    
     var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack {
             
-            VStack{
-                
-                HStack{
-                    HStack{
-                        Text("1")
-                        Spacer()
-                        Text("2")
-                        Spacer()
-                        Text("3")
-                        Spacer()
-                        Text("4")
-                        Spacer()
-                        Text("5")
-                        Spacer()
-                    }
-                    HStack{
-                        Text("6")
-                        Spacer()
-                        Text("7")
-                        Spacer()
-                        Text("8")
-                        Spacer()
-                        Text("9")
-                        Spacer()
-                        Text("10")
-                    }
-                }
-                .padding(.horizontal, 20.0)
-                
-                Slider(value: $scoreEntered, in: 1...10, step: 1).padding()
-                //TODO : valeurs/sensibilite du slider, ou stepper avec style custom?
-                
-                Button(action: {
-                    //TODO:append le mood avec la date et le type
-                    newMoodValue = MoodValue(timestamp: Date(), rating: Int(scoreEntered), source: 0)
+            Image("forme8")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .padding()
+            
+            //            VStack{
+            
+            WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, scoreEntered: $scoreEntered)
+                .onChange(of: scoreEntered, perform: { value in
+                    
+                    newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
                     userData.userMoodHistory.append(newMoodValue)
                     userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
-                }, label: {
-                    //TODO: texte
-                    Text("Valider")
+                    UserDefaults.group.set(dateToString(date: Date()), forKey: "dateW")
+                    lastMoodDate = Date()
+                    lastMoodRating = lastMoodRating
+                    
+                    // Réinitialisation des notifications
+                    noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
+                    
+                    // Refresh du widget (ne pas oublier d'importer WidgetKit)
+                    WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
+                    
                 })
-                
-            }
-            
-            
-            //uniquement pour verifier que le JSON est chargé
-            Text("Historique des Notes").padding()
+                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
             List {
                 ForEach(sortedMoodHistory, id: \.self) { moodEntry in
-                    
-//                    let entry = String(moodEntry.rating ?? 0)
-//                    Text(entry)
                     MoodCell(mood: moodEntry)
-                    
+                        .listRowInsets(.init(top: 0, leading: 1, bottom: 1, trailing: 1))
                 }
-            }.padding()
-            .listStyle(PlainListStyle())
-            
+            }
             
         }
-        //        .navigationTitle("Parcours")
-        //        .navigationBarItems(trailing:
-        //                                NavigationLink("Nouveau jalon", destination: Text("Ajout d'un nouveau jalon"))
-        //        )
         
     }
 }
+extension UserDefaults {
+    static let group = UserDefaults(suiteName: "group.bonum")!
+}
+
 
 struct MoodTracker_Previews: PreviewProvider {
     
     static var previews: some View {
+        let userData = UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS)
+        
         MoodTracker()
-            .environmentObject(UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS))
+            .environmentObject(userData)
     }
 }
 
 
-
+// Extension permettant de stocker une date dans les userdefaults (via @AppStorage) en rendant Date conforme à RawRepresentable
+extension Date: RawRepresentable {
+    private static let formatter = ISO8601DateFormatter()
+    
+    public var rawValue: String {
+        Date.formatter.string(from: self)
+    }
+    
+    public init?(rawValue: String) {
+        self = Date.formatter.date(from: rawValue) ?? Date()
+    }
+}

@@ -5,33 +5,105 @@
 //  Created by Alexandre Dias Da Silva on 11/06/2021.
 //
 
-
-
-
 import SwiftUI
 
 struct Journey: View {
-    
     @EnvironmentObject var userData: UserData
+    @State private var newEventData = JourneyEvent.Data()
+    @State private var isPresented = false
+    
+    var events: [JourneyEvent] {
+        userData.userJourneyEvents.reversed()
+    }
+    
+    var eventsIndices: [Int] {
+        Array(events.indices)
+    }
     
     var body: some View {
         
-        VStack(alignment: .leading) {
+        NavigationView {
             
-            List {
-                ForEach(userData.userJourneyEvents, id: \.self) { event in
+            ScrollView {
+                
+                VStack {
                     
-                    JourneyCell(event: event)
+                    VStack {
+                        
+                        NavigationLink(destination: EmptyView()) {
+                            ZStack {
+                                
+                                Circle()
+                                    .strokeBorder(Color(#colorLiteral(red: 0, green: 0.5871291161, blue: 0.9982084632, alpha: 1)))
+                                    .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
+                                    .frame(width: 180, height: 180)
+                                
+                                VStack(spacing: 10) {
+                                    HStack(alignment: .top, spacing: -15) {
+                                        
+                                        Image(systemName: "flag")
+                                            .font(.system(size: 50))
+                                        
+                                        Image(systemName: "plus.circle")
+                                            .font(.system(size: 20))
+                                            .background(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1)))
+                                            .mask(Circle())
+                                        
+                                    }
+                                    
+                                    Text("Aujourd'hui")
+                                        .font(.title3)
+                                }
+                                
+                            }
+                            .padding()
+//                            .navigationBarItems(trailing: Button(action: {
+//                                isPresented = true
+//                            }) {
+//                                Image(systemName: "plus")
+//                            })
+//                            .sheet(isPresented: $isPresented) {
+//                                JourneyEdit()
+//                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    
+                    
+                    VStack(spacing: 0) {
+                        ForEach(eventsIndices, id: \.self) { index in
+                            
+                            let event = events[index]
+                            let previousMood = events[max(0, index - 1)].moodValue
+                            let realIndex = (events.count - 1) - index
+                            
+                            NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex])) {
+                                JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex].image)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray)
+                    
+                    VStack(spacing: 10) {
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(.gray)
+                        
+                        Text("Début")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
                     
                 }
+                .padding(.vertical)
+                .navigationTitle("Parcours")
             }
-            .listStyle(PlainListStyle())
             
         }
-        .navigationTitle("Parcours")
-        .navigationBarItems(trailing:
-                                NavigationLink("Nouveau jalon", destination: Text("Ajout d'un nouveau jalon"))
-        )
     }
 }
 
@@ -172,9 +244,10 @@ class FileManagerViewModel: ObservableObject {
 
 
 struct Journey_Previews: PreviewProvider {
+    
     static var previews: some View {
-        NavigationView {
-            Journey()
-        }
+        Journey().environmentObject(UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS))
+            .environment(\.locale, Locale(identifier: "fr"))
     }
+    
 }

@@ -9,21 +9,25 @@ import SwiftUI
 
 struct MoodCell: View {
     let mood: MoodValue
-    var moodRating: Double{
-        return Double(mood.rating ?? 0)
+    var moodRating: Int{
+        return mood.rating ?? 0
     }
-
-
+    
     var body: some View {
         ZStack{
-            Color(red: 0, green: moodRating*25/255, blue: 0)
-        HStack{
-            Text(String(moodRating))
-            Spacer()
-        Text(mood.timestamp, style: .date)
-    }
-        .padding()
-    }
+            //            Color(red:  255/(Double(moodRating)*150), green: 0.5, blue: 0)
+            //                .opacity(0.8)
+            ratingColorMapping[moodRating]
+            HStack{
+                Text(String(moodRating))
+                    .fontWeight(.bold)
+                Spacer()
+                Text("\(dateToString(date: mood.timestamp))")
+                    .fontWeight(.bold)
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+        }
     }
 }
 
