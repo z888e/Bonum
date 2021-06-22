@@ -224,14 +224,14 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Premier job", date: Date(), imageName: "vie-active", type: 0, moodValue: 7),
-    JourneyEvent(title: "Inscription à la salle", date: Date(), imageName: "inscription-salle", type: 0, moodValue: 9),
-    JourneyEvent(title: "Accident de la route", date: Date(), imageName: "accident", type: 0, moodValue: 8),
-    JourneyEvent(title: "Vacances à Lanzarote", date: Date(), imageName: "lanzarote", type: 0, moodValue: 6),
-    JourneyEvent(title: "Vie à deux", date: Date(), imageName: "vie-a-deux", type: 0, moodValue: 7),
-    JourneyEvent(title: "Déménagement", date: Date(), imageName: "demenagement", type: 0, moodValue: 3),
-    JourneyEvent(title: "Arrêt de la cigarette", date: Date(), imageName: "arret-cigarette", type: 0, moodValue: 8),
-    JourneyEvent(title: "Naissance d'Emilie", date: Date(), imageName: "naissance-emilie", type: 0, moodValue: 7)
+    JourneyEvent(title: "Premier job", date: Date()-(86400*365), imageName: "vie-active", type: 0, moodValue: 7),
+    JourneyEvent(title: "Inscription à la salle", date: Date()-(86400*330), imageName: "inscription-salle", type: 0, moodValue: 9),
+    JourneyEvent(title: "Accident de la route", date: Date()-(86400*340), imageName: "accident", type: 0, moodValue: 8),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date()-(86400*300), imageName: "lanzarote", type: 0, moodValue: 6),
+    JourneyEvent(title: "Vie à deux", date: Date()-(86400*250), imageName: "vie-a-deux", type: 0, moodValue: 7),
+    JourneyEvent(title: "Déménagement", date: Date()-(86400*100), imageName: "demenagement", type: 0, moodValue: 3),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date()-(86400*80), imageName: "arret-cigarette", type: 0, moodValue: 8),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date()-(86400*15), imageName: "naissance-emilie", type: 0, moodValue: 7)
 ]
 
 let MYMOODS : [MoodValue] = [
