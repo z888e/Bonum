@@ -24,12 +24,17 @@ struct JourneyEdit: View {
                 self.isShowingImagePicker.toggle()
             }, label: {
                 
-                Image(uiImage: shownImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 60, height: 60)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.gray))
+                VStack {
+                    
+                    Image(uiImage: shownImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                    
+                    Text("Modifier")
+                        .font(.subheadline)
+                }
                 
             })
             .sheet(isPresented: $isShowingImagePicker, content: {

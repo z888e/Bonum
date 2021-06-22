@@ -25,6 +25,14 @@ struct JourneyCell: View {
         10: Color(#colorLiteral(red: 0, green: 0.7668917179, blue: 0.2233996391, alpha: 1))
     ]
     
+    var eventDate: String {
+        let date = event.date
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "fr")
+        formatter.setLocalizedDateFormatFromTemplate("dMMMM")
+        return formatter.string(from: date)
+    }
+
     var currentMoodColor: Color {
         ratingColorMapping[event.moodValue] ?? .purple
     }
@@ -45,11 +53,11 @@ struct JourneyCell: View {
             
             Rectangle()
                 .fill(gradient)
-                .frame(width: 10, height: 150)
+                .frame(width: 10, height: 100)
             
             Spacer()
             
-            VStack {
+            VStack() {
                 
                 Image(systemName: "arrow.up")
                     .font(.system(size: 20))
@@ -57,7 +65,8 @@ struct JourneyCell: View {
                 
                 HStack {
                     
-                    Text("\(event.date, style: .date)")
+//                    Text("\(event.date, style: .date)")
+                    Text(eventDate)
                         .fontWeight(.semibold)
                         .font(.caption)
                     
@@ -70,7 +79,7 @@ struct JourneyCell: View {
                             .scaledToFill()
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.gray))
+//                            .overlay(Circle().stroke(Color.gray))
                         
                     })
                     .sheet(isPresented: $isShowingImagePicker, content: {
@@ -102,6 +111,7 @@ struct JourneyCell: View {
             
         }
     }
+    
 }
 
 

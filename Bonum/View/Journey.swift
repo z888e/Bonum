@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Journey: View {
-    
     @EnvironmentObject var userData: UserData
     @State private var newEventData = JourneyEvent.Data()
     @State private var isPresented = false
