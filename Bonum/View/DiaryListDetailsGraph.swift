@@ -202,7 +202,7 @@ struct Graphe: Shape {
         
         // fermer la forme
         if closed {
-            path.addLine(to: CGPoint(x: getPositionOfTheLastOne(nbOfCompleted: nbOfCompleted, percentOfTheLast: percentOfTheLast).x, y: CGFloat(maxY)))
+            path.addLine(to: CGPoint(x: getPositionOfTheLastOne(nbOfCompleted: nbOfCompleted, percentOfTheLast: percentOfTheLast).x, y: CGFloat(height - marginY)))
             
             path.addLine(to: CGPoint(x: CGFloat(marginX), y: CGFloat(height - marginY)))
             

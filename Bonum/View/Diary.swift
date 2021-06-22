@@ -41,7 +41,7 @@ struct Diary: View {
                     }
                     
                     Spacer()
-                    PopulateHK()
+//                    PopulateHK()
                     
                     Button(action: {
                         showingAddForm = true
