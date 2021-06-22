@@ -55,7 +55,6 @@ struct JourneyDetail: View {
         .fullScreenCover(isPresented: $isPresented) {
             NavigationView {
                 JourneyEdit(event: event, JourneyData: $journeyData, pickedImage: $event.image)
-                    .navigationTitle(event.title)
                     .navigationBarItems(leading: Button("Annuler") {
                         isPresented = false
                     }, trailing: Button("Terminé") {
