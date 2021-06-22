@@ -102,14 +102,6 @@ struct Journey: View {
                 }
                 .padding(.vertical)
                 .navigationTitle("Parcours")
-                //                .navigationBarItems(trailing: Button(action: {
-                //                    isPresented = true
-                //                }) {
-                //                    Image(systemName: "plus")
-                //                })
-                //                .sheet(isPresented: $isPresented) {
-                //                    JourneyEdit()
-                //                }
             }
             
         }

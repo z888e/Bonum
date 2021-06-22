@@ -41,11 +41,13 @@ struct JourneyCell: View {
     
     var body: some View {
         
-        HStack(spacing: 20) {
+        HStack {
             
             Rectangle()
                 .fill(gradient)
                 .frame(width: 10, height: 150)
+            
+            Spacer()
             
             VStack {
                 
@@ -93,9 +95,11 @@ struct JourneyCell: View {
                     }
                     
                 }
-                .padding([.top, .bottom, .trailing])
                 
             }
+            
+            Spacer()
+            
         }
     }
 }
