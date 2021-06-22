@@ -19,8 +19,8 @@ struct CustomTabBar: View {
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     
     let durations: [Double] = [5, 2, 1, 0.6, 0.3]
-    let timer = Timer.publish(every: 1000, on: .main, in: .common).autoconnect()
-    @State private var counter: Int = 2
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    @State private var counter: Int = 0
     
     @State private var sinceLastMoodDate : Double = 1
     

@@ -13,24 +13,24 @@ struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent())
     }
-
+    
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), configuration: configuration)
         completion(entry)
     }
-
+    
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        
+        // Generate a timeline consisting of one entrie a minute apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let entryDate = Calendar.current.date(byAdding: .minute, value: 1, to: currentDate)!
+        let entry = SimpleEntry(date: entryDate, configuration: configuration)
+        entries.append(entry)
+        
+        // let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 1, to: currentDate)!
+        let timeline = Timeline(entries: entries, policy: .never)
+        
         completion(timeline)
     }
 }
@@ -42,10 +42,10 @@ struct SimpleEntry: TimelineEntry {
 
 struct BonumWidgetEntryView : View {
     var entry: Provider.Entry
-
-//    var userName = UserDefaults.standard.object(forKey: "userName") as? String ?? "No name"
+    
+    //    var userName = UserDefaults.standard.object(forKey: "userName") as? String ?? "No name"
     let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
-
+    
     var body: some View {
         HStack{
             Image("Jump")
@@ -54,28 +54,28 @@ struct BonumWidgetEntryView : View {
                 .cornerRadius(10.0)
                 .scaledToFill()
             
-//Text(userName)
+            //Text(userName)
             VStack (alignment: .center){
                 Text("La dernière mise à jour de votre état de forme date du :\n")
                     .multilineTextAlignment(.center)
                 Text(dateW)
                     .fontWeight(.bold)
-    }
+            }
             .font(.system(size: 14))
         }
-}
+    }
 }
 extension UserDefaults {
-  static let group = UserDefaults(suiteName: "group.bonum")!
+    static let group = UserDefaults(suiteName: "group.bonum")!
 }
 
 
 @main
 struct BonumWidget: Widget {
-    let kind: String = "BonumWidget"
-
+    let kind: String = "BonumWidget"  // Le nom qui permet de raffraichir le widget depuis l'app
+    
     var body: some WidgetConfiguration {
-            
+        
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             BonumWidgetEntryView(entry: entry)
         }
@@ -83,7 +83,7 @@ struct BonumWidget: Widget {
         .description("Widget affichant la date de denière enregistrement de l'état de forme Bonum.")
     }
 }
-    
+
 
 
 struct BonumWidget_Previews: PreviewProvider {
