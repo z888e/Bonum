@@ -87,14 +87,14 @@ struct WheelButton: View {
                 ZStack{
                     Circle()
                         .strokeBorder(Color.gray,lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color.gray : ratingColorMapping[index+1]).opacity(0.8))
+                        .background(Circle().foregroundColor(index>selectedValue ? Color(#colorLiteral(red: 0.8798124194, green: 0.8799602389, blue: 0.8797928691, alpha: 1)) : ratingColorMapping[index+1]).opacity(1.0))
                         .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .offset(x: -75, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                     
                     Text("\(index+1)")
                         .font(.system(size: 8))
-                        .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                        .opacity(0.7)
                         .rotationEffect(.degrees(270))
                         .offset(x: -90, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
@@ -103,6 +103,7 @@ struct WheelButton: View {
                     selectedValue = initValue - 1
                     selectedAngle = anglePoints[initValue - 1] - 90
                 }
+                .padding(10)
                 .onTapGesture {
                     selectedValue = index
                     selectedAngle = anglePoints[index] - 90
@@ -126,6 +127,6 @@ struct WheelButton: View {
 
 struct WheelButton_Previews: PreviewProvider {
     static var previews: some View {
-        WheelButton(totAngle: 270, scale: 1.5, initValue: 1, scoreEntered: .constant(0))
+        WheelButton(totAngle: 270, scale: 1.5, initValue: 5, scoreEntered: .constant(3))
     }
 }

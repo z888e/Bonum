@@ -16,24 +16,35 @@ struct MoodCell: View {
     
     var body: some View {
         ZStack{
-            //            Color(red:  255/(Double(moodRating)*150), green: 0.5, blue: 0)
-            //                .opacity(0.8)
-            ratingColorMapping[moodRating]
+//            ratingColorMapping[moodRating]
             HStack{
-                Text(String(moodRating))
-                    .fontWeight(.bold)
-                Spacer()
                 Text("\(dateToString(date: mood.timestamp))")
-                    .fontWeight(.bold)
+                        .font(.system(size: 12))
+                Spacer()
+                MiniSquare(rate: moodRating)
             }
-            .foregroundColor(.white)
-            .padding(.horizontal, 20)
+            .padding( EdgeInsets(top: 5, leading: 30, bottom: 5, trailing: 30) )
         }
+    }
+}
+
+struct MiniSquare: View {
+    let rate:Int
+    
+    var body: some View {
+        Text("\(rate)")
+            .fontWeight(.bold)
+            .font(.system(size: 12))
+            .foregroundColor(Color.white)
+            .frame(width: 20, height: 20, alignment: .center)
+            .background(ratingColorMapping[rate])
+            .cornerRadius(6)
     }
 }
 
 struct MoodCell_Previews: PreviewProvider {
     static var previews: some View {
         MoodCell(mood: MYMOODS[4])
+            .previewLayout(.sizeThatFits)
     }
 }

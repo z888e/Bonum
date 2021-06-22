@@ -23,17 +23,23 @@ let DATAVALUES: [DataValue] = [DataValue(value: 2922.02, date: Date(timeInterval
 //
 //// 30% M1 :
 //var VALUES: [Double] = [2138.51, 2651.96, 3235.77, 2330.74, 3507.81, 3501.57, 3233.34, 4048.21, 3198.01, 4508.14, 2515.70, 3415.87, 4518.04, 2468.87, 3774.91, 2300.19, 2534.09, 2347.20, 3230.02, 3333.06, 2072.19, 2466.05, 2690.45, 1763.11, 2023.31, 2147.93, 1745.29, 2233.00, 1425.07, 1304.27, 1166.66, 1755.71, 993.17, 1060.18, 1319.32, 1662.65, 1650.38, 1081.46, 1159.63, 1224.81, 1143.37, 1369.13, 1332.69, 1968.05, 2025.70, 1576.42, 2408.79, 2200.47, 2193.10, 1884.40, 3455.53, 3193.40, 3936.24, 2794.56, 3977.51, 4512.74, 5341.49, 4605.97, 4080.86, 3718.23, 4810.62, 5338.50, 5954.13, 6604.64, 6591.95, 8535.97, 5997.92, 5376.58, 7663.05, 6242.15, 10277.74, 6988.23, 8213.90, 7225.70, 10273.59, 10523.19, 7858.82, 8497.68, 7878.24, 9395.06, 7828.79, 12000.00, 8737.97, 12000.00, 9089.63, 11656.48, 10428.04, 10648.56, 11266.90, 7449.79, 9596.47, 10861.18, 11458.86, 9082.59, 9131.31, 7006.56, 10174.94, 9073.61, 10685.55, 7543.77, 8749.82, 9558.90, 6584.71, 6070.49, 6083.44, 5268.93, 6648.89, 3750.39, 5932.08, 3880.83, 4293.94, 2002.10, 2340.07, 1422.68, 685.85, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 2226.64, 6199.21, 9024.00]
-//
-//struct ThomasTestGraphData: View {
-//    
-//    var colors: [Color] = [.green, .green, .green, .green, .green]
-//    
-//    @State var currenColor: Color = .blue
-//    
-//    var body: some View {
-//        VStack {
-//            HStack {
-//                Text("Début de la période :")
+
+
+var VALUES: [Double] = [0, 0, 5000, 0, 0, 0, 0, 0, 0, 7654, 0, 2345, 3456, 0, 2345, 32768, 0, 0, 0, 0, 0, 0]
+
+//var VALUES: [Double] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2.500000000000007, 0, 0, 0, 0, 54, 0, 55, 61.999999999999993, 0, 65, 0, 0]
+
+struct ThomasTestGraphData: View {
+    
+    var colors: [Color] = [.red, .blue, .green, .orange, .gray]
+    
+    @State var currenColor: Color = .blue
+    
+    var body: some View {
+        VStack {
+            
+            HStack {
+                Text("Début de la période :")
 //                Text(DATAVALUES[0].date, style: .date)
 //            }
 //            GrapheView(color: currenColor)
@@ -177,14 +183,6 @@ let DATAVALUES: [DataValue] = [DataValue(value: 2922.02, date: Date(timeInterval
 //        // fermer la forme
 //        if closed {
 //            path.addLine(to: CGPoint(x: getPositionOfTheLastOne(nbOfCompleted: nbOfCompleted, percentOfTheLast: percentOfTheLast).x, y: CGFloat(maxY)))
-//            
-//            path.addLine(to: CGPoint(x: CGFloat(marginX), y: CGFloat(110.00 - marginY)))
-//            
-//            path.closeSubpath()
-//        }
-//        return path
-//    }
-//}
 //
 //struct ThomasTestGraphData_Previews: PreviewProvider {
 //    static var previews: some View {

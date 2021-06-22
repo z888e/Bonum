@@ -17,6 +17,7 @@ struct MoodTracker: View {
     @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
+    @State private var showHistory: Bool = false
     
     let noticationManager = NotificationDelegate()
     
@@ -44,10 +45,9 @@ struct MoodTracker: View {
             Image("forme8")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .padding()
-            
-            //            VStack{
+
             
             WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, scoreEntered: $scoreEntered)
                 .onChange(of: scoreEntered, perform: { value in
@@ -68,14 +68,29 @@ struct MoodTracker: View {
                 })
                 .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-            List {
-                ForEach(sortedMoodHistory, id: \.self) { moodEntry in
-                    MoodCell(mood: moodEntry)
-                        .listRowInsets(.init(top: 0, leading: 1, bottom: 1, trailing: 1))
-                }
-            }
+            
+            Button(action: {showHistory = true}, label: {
+                VStack{
+                    Image(systemName: "clock")
+                    Text("Historique")
+                    }
+            })
+
+            Spacer()
             
         }
+        .sheet(isPresented: $showHistory, content: {
+            Button("Fermer l'historique") {
+                self.showHistory.toggle()
+            }
+            ScrollView {
+                ForEach(sortedMoodHistory, id: \.self) { moodEntry in
+                    MoodCell(mood: moodEntry)
+                }
+            }
+//            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//            .listStyle(SidebarListStyle())
+        })
         
     }
 }

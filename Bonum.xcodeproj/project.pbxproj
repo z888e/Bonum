@@ -53,6 +53,8 @@
 		D8938D8926808E9800FDD277 /* WilWheelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8938D8826808E9800FDD277 /* WilWheelButton.swift */; };
 		D8F189702680C22300DB9C7B /* WheelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1896F2680C22300DB9C7B /* WheelButton.swift */; };
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
+		E9CD0D142682537E002DE485 /* ThomasTestMrBonum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD0D132682537E002DE485 /* ThomasTestMrBonum.swift */; };
+		E9CD0D16268253A7002DE485 /* ThomasTestMrBonumCorpus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD0D15268253A7002DE485 /* ThomasTestMrBonumCorpus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		D8938D8826808E9800FDD277 /* WilWheelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilWheelButton.swift; sourceTree = "<group>"; };
 		D8F1896F2680C22300DB9C7B /* WheelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelButton.swift; sourceTree = "<group>"; };
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
+		E9CD0D132682537E002DE485 /* ThomasTestMrBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestMrBonum.swift; sourceTree = "<group>"; };
+		E9CD0D15268253A7002DE485 /* ThomasTestMrBonumCorpus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestMrBonumCorpus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,8 @@
 				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
 				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
+				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
+				587BB968267C9CA300A103FB /* AddElement.swift */,
 				58E6B76F2678A756008643F7 /* DiaryList.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
 				58318E322682782900965158 /* ImpactIllustration.swift */,
@@ -250,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */,
+				E9CD0D132682537E002DE485 /* ThomasTestMrBonum.swift */,
+				E9CD0D15268253A7002DE485 /* ThomasTestMrBonumCorpus.swift */,
 				D82D475C2679DD9F0099A58F /* WilSampleList.swift */,
 				D82D475E2679DDC40099A58F /* WilListDetail.swift */,
 				D82D4760267B85200099A58F /* WilJsonTest.swift */,
@@ -373,6 +381,7 @@
 			files = (
 				5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */,
 				D8F189702680C22300DB9C7B /* WheelButton.swift in Sources */,
+				E9CD0D16268253A7002DE485 /* ThomasTestMrBonumCorpus.swift in Sources */,
 				66DD5F8D2673514A00EB3642 /* Mood.swift in Sources */,
 				66DD5F8726734B2B00EB3642 /* Journey.swift in Sources */,
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
@@ -399,6 +408,7 @@
 				662ACCD52678994B00287EB8 /* Buttons.swift in Sources */,
 				5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */,
 				66DD5F8B26734BB400EB3642 /* DataCell.swift in Sources */,
+				E9CD0D142682537E002DE485 /* ThomasTestMrBonum.swift in Sources */,
 				587BB96F268114F300A103FB /* DiaryListDetailsGraph.swift in Sources */,
 				D8938D852680785800FDD277 /* WilAnimation.swift in Sources */,
 				66DD5F8526734AF000EB3642 /* Diary.swift in Sources */,
