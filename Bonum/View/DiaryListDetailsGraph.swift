@@ -12,7 +12,7 @@ var HAUTEUR: Int = 200
 
 struct DiaryListDetailsGraph: View {
     
-    @State var currenColor: Color = .white
+    @State var graphBgColor : Color = .white
     
     var element : DataElement
     
@@ -36,26 +36,16 @@ struct DiaryListDetailsGraph: View {
             HStack {
                 Text("Début de la période :")
                 Text(element.values[0].date, style: .date)
-            }
+            }.onAppear(
+            )
             
             if GraphValues.max() != 0 {
-                GrapheView(color: currenColor, GraphValues: GraphValues)
+                GrapheView(color: graphBgColor, GraphValues: GraphValues)
                     .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
                     .cornerRadius(5)
             } else {
                 Text("Pas de données")
             }
-            
-            Button(action: {
-                var newColor = currenColor
-                while currenColor == newColor {
-                    newColor = colors.randomElement()!
-                }
-                currenColor = newColor
-            }) {
-                Text("Tracer le graph")
-            }
-            .padding(.top, 20)
         }
     }
 }

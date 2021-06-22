@@ -22,7 +22,7 @@ func dateFormatter(year y:Int, month m:Int, day d:Int) -> Date {
 struct MoodValue : Hashable, Codable {
     
     var timestamp: Date
-    var rating: Int? // si c'est nil, c'est joker
+    var rating: Int // si c'est nil, c'est joker
     var source: Int // 0: tab view, 1: widget, 2: notification
 }
 

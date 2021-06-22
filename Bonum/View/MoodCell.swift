@@ -10,7 +10,8 @@ import SwiftUI
 struct MoodCell: View {
     let mood: MoodValue
     var moodRating: Int{
-        return mood.rating ?? 0
+        //        return mood.rating ?? 0
+                return mood.rating
     }
     
     var body: some View {
