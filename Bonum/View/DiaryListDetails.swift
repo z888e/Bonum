@@ -16,21 +16,48 @@ struct DiaryListDetails: View {
     var impactMessageToUser : String {
         var res = " "
         if element.impact == 0 {
-            res = "Impact indéterminé. Suivez cet élement plus longtemps."
+            res = """
+Impact indéterminé.
+Suivez cet élement plus longtemps.
+"""
         }else if element.impact > 0 && element.impact < 1 {
-            res = "Message etc"
+            res = "L'impact sur votre forme semble très faible."
         }else if element.impact >= 1 && element.impact < 2  {
-            res = "Message etc"
+            res = "L'impact sur votre forme semble faible."
         }else if element.impact >= 2 && element.impact < 3  {
-            res = "Message etc"
+            res = "L'impact sur votre forme semble moyen."
         }else if element.impact >= 3 && element.impact < 4  {
-            res = "Message etc"
+            res = """
+L'impact sur votre forme semble fort.
+Continuez !
+"""
         }else if element.impact >= 4 && element.impact <= 5  {
-            res = "Message etc"
+            res = """
+L'impact semble sur votre forme semble maximal.
+Bravo, continuez !
+"""
         }
         return res
     }
-        
+
+    var impactMessageColor : Color {
+        var res : Color = .white
+        if element.impact == 0 {
+            res = .gray
+        }else if element.impact > 0 && element.impact < 1 {
+            res = .red
+        }else if element.impact >= 1 && element.impact < 2  {
+            res = .orange
+        }else if element.impact >= 2 && element.impact < 3  {
+            res = .yellow
+        }else if element.impact >= 3 && element.impact < 4  {
+            res = .blue
+        }else if element.impact >= 4 && element.impact <= 5  {
+            res = .green
+        }
+        return res
+    }
+    
     func delete(at offsets: IndexSet) {
         userData.userElementsList.remove(atOffsets: offsets)
         userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
@@ -43,15 +70,16 @@ struct DiaryListDetails: View {
                 
                 Spacer()
                 
-                Text("impact niveau" + String(element.impact))
-                    .padding(10)
-                    .background(Color.green)
-                    .cornerRadius(20)
-                    .foregroundColor(.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 0.2)
-                    )
+                HStack{
+                    Text(impactMessageToUser)
+                }.padding(20)
+                .background(impactMessageColor)
+                .cornerRadius(20)
+                .foregroundColor(.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray, lineWidth: 0.2)
+                )
                 
                 DiaryListDetailsGraph(element : element)
                 
