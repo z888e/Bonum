@@ -76,9 +76,10 @@ struct Journey: View {
                             
                             let event = events[index]
                             let previousMood = events[max(0, index - 1)].moodValue
+                            let realIndex = (events.count - 1) - index
                             
-                            NavigationLink(destination: JourneyDetail(event: event)) {
-                                JourneyCell(previousMoodValue: previousMood, event: event)
+                            NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex])) {
+                                JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex].image)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
@@ -101,14 +102,6 @@ struct Journey: View {
                 }
                 .padding(.vertical)
                 .navigationTitle("Parcours")
-                //                .navigationBarItems(trailing: Button(action: {
-                //                    isPresented = true
-                //                }) {
-                //                    Image(systemName: "plus")
-                //                })
-                //                .sheet(isPresented: $isPresented) {
-                //                    JourneyEdit()
-                //                }
             }
             
         }
