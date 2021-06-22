@@ -11,12 +11,42 @@ struct DiaryListCell: View {
     
     let element : DataElement
     
+    var impactLevel : Int{
+        var res:Int = 0
+        if element.impact > 0 && element.impact <= 1{
+            res = 1
+        }
+        if element.impact > 1 && element.impact <= 2{
+            res = 2
+        }
+        if element.impact > 2 && element.impact <= 3{
+            res = 3
+        }
+        return res
+    }
+    
+    var lastDailyValue : Double{element.values.last?.value ?? 0.0}
+    
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 10){
-                Text(element.customName)
-                Text("impact niveau " + String(element.impact))
+                HStack(spacing:7){
+                    ImpactIllustration(impactLevel : impactLevel).padding(.bottom, 10)
+                    Text(element.customName)
+                }.padding(5)
+                
                 Spacer()
+                
+                HStack{
+                    if lastDailyValue == 0 {
+                        Text("Pas de donnée aujourd'hui")
+                    } else {
+                        HStack{
+                            Text("\(lastDailyValue, specifier: element.displayedSpecifier)").font(.system(size: 30.0))
+                            Text("\(element.displayedUnit)")
+                        }
+                    }
+                }
             }
             Spacer()
         }.padding()

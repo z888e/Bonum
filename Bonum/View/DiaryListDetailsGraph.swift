@@ -12,7 +12,8 @@ var HAUTEUR: Int = 200
 
 struct DiaryListDetailsGraph: View {
     
-    @State var graphBgColor : Color = .white
+    @State private var graphBgColor : Color = .white
+//    @State private var newColor : Color = .orange
     
     var element : DataElement
     
@@ -21,30 +22,27 @@ struct DiaryListDetailsGraph: View {
     var GraphValues : [Double]{element.values.map{$0.value}}
     
     var body: some View {
-        //        VStack{
-        //            Text("Analyse de la variable suivie")
-        //
-        //            Spacer()
-        //
-        //            ForEach(element.GraphValues, id: \.self){ el in
-        //                Text(String(el.value))
-        //                Text(dateToString(date: el.date))
-        //            }
-        //        }
         
         VStack {
             HStack {
                 Text("Début de la période :")
                 Text(element.values[0].date, style: .date)
-            }.onAppear(
-            )
+            }
+            .onAppear{
+                var newColor = graphBgColor
+                while graphBgColor == newColor {
+                    newColor = colors.randomElement()!
+                }
+                graphBgColor = newColor
+            }
             
             if GraphValues.max() != 0 {
                 GrapheView(color: graphBgColor, GraphValues: GraphValues)
                     .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
                     .cornerRadius(5)
             } else {
-                Text("Pas de données")
+                //TODO:Modal fullscreen d'explication
+                Text("Pas de données. En savoir plus.").padding()
             }
         }
     }

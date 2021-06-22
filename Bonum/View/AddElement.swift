@@ -17,6 +17,8 @@ struct AddElement: View {
     
     @State private var identifierInHK : HKQuantityTypeIdentifier = .heartRate
     @State private var valueNameInHK : HKUnit = HKUnit(from: "count/min")
+    @State private var displayedUnit : String = "BPM"
+    @State private var displayedSpecifier : String = "%.f"
     @State private var customName = "Choisir"
     @State private var isDiscrete = false
     @State private var begin = Date()
@@ -97,24 +99,34 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                             if name == "Nombre de pas" {
                                 idType = .stepCount
                                 valueNameInHK = HKUnit.count()
+                                displayedUnit = "pas"
+                                displayedSpecifier = "%.f"
                             }
                             if name == "Rythme Cardiaque" {
                                 idType = .heartRate
                                 valueNameInHK = HKUnit(from: "count/min")
+                                displayedUnit = "BPM"
+                                displayedSpecifier = "%.f"
                                 isDiscrete = true
                             }
                             if name == "Variabilité Cardiaque" {
                                 idType = .heartRateVariabilitySDNN
                                 valueNameInHK = HKUnit.secondUnit(with: .milli)
+                                displayedUnit = "ms"
+                                displayedSpecifier = "%.f"
                                 isDiscrete = true
                             }
                             if name == "Activité en exercice" {
                                 idType = .activeEnergyBurned
                                 valueNameInHK = HKUnit.kilocalorie()
+                                displayedUnit = "kCal"
+                                displayedSpecifier = "%.f"
                             }
                             if name == "Temperature corporelle" {
                                 idType = .bodyTemperature
                                 valueNameInHK = HKUnit.degreeCelsius()
+                                displayedUnit = "°C"
+                                displayedSpecifier = "%.1f"
                                 isDiscrete = true
                             }
                             return idType
@@ -193,6 +205,8 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                         let newElement = DataElement(
                             identifierInHK: identifierInHK,
                             valueNameInHK: valueNameInHK.unitString,
+                            displayedUnit: displayedUnit,
+                            displayedSpecifier : displayedSpecifier,
                             isDiscrete: isDiscrete,
                             customName: customName,
                             begin: begin,

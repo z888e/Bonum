@@ -11,6 +11,7 @@ struct DiaryListDetails: View {
     
     @EnvironmentObject var userData : UserData
     @State private var showingAlert = false
+    
     var element : DataElement
     var index : IndexSet.ArrayLiteralElement
     var impactMessageToUser : String {
@@ -45,14 +46,10 @@ Bravo, continuez !
         if element.impact == 0 {
             res = .gray
         }else if element.impact > 0 && element.impact < 1 {
-            res = .red
+            res = .purple
         }else if element.impact >= 1 && element.impact < 2  {
-            res = .orange
-        }else if element.impact >= 2 && element.impact < 3  {
-            res = .yellow
-        }else if element.impact >= 3 && element.impact < 4  {
             res = .blue
-        }else if element.impact >= 4 && element.impact <= 5  {
+        }else if element.impact >= 2 && element.impact < 3  {
             res = .green
         }
         return res

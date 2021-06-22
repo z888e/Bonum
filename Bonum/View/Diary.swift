@@ -18,7 +18,6 @@ struct Diary: View {
     var body: some View {
         NavigationView{
             VStack{
-                //TODO: Switch J/S/M/A
                 Picker("", selection: $timeArea) {
                     ForEach(allTimes, id: \.self) {
                         Text($0)

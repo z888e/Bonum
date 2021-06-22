@@ -38,6 +38,8 @@ struct DataElement : Identifiable, Codable, Equatable {
     var id = UUID()
     var identifierInHK : HKQuantityTypeIdentifier
     var valueNameInHK : String
+    var displayedUnit : String
+    var displayedSpecifier : String
     var isDiscrete : Bool //false = cumulative, true = discrete
     var customName: String
     var begin: Date
@@ -199,6 +201,8 @@ let MYSTEPSDATA : [DataValue] = [
 let MYSTEPSELEMENT = DataElement (
     identifierInHK: .stepCount,
     valueNameInHK: HKUnit.count().unitString,
+    displayedUnit: "pas",
+    displayedSpecifier : "%.f",
     isDiscrete: false,
     customName: "Marche",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
@@ -214,6 +218,8 @@ let MYHRDATA : [DataValue] = [
 let MYHRELEMENT = DataElement (
     identifierInHK: .heartRate,
     valueNameInHK: HKUnit(from: "count/min").unitString,
+    displayedUnit: "BPM",
+    displayedSpecifier : "%.f",
     isDiscrete: true,
     customName: "Rythme Cardiaque",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
