@@ -103,6 +103,7 @@ struct WheelButton: View {
                     selectedValue = initValue - 1
                     selectedAngle = anglePoints[initValue - 1] - 90
                 }
+                .padding(10)
                 .onTapGesture {
                     selectedValue = index
                     selectedAngle = anglePoints[index] - 90
@@ -126,6 +127,6 @@ struct WheelButton: View {
 
 struct WheelButton_Previews: PreviewProvider {
     static var previews: some View {
-        WheelButton(totAngle: 270, scale: 1.5, initValue: 1, scoreEntered: .constant(0))
+        WheelButton(totAngle: 270, scale: 1.5, initValue: 5, scoreEntered: .constant(3))
     }
 }
