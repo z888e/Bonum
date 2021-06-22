@@ -15,9 +15,10 @@ struct PulsingButton: View {
     let durationB: Double
     
     @State private var animate = false
+    @State private var duration: Double = 10
     
     var body: some View {
-        
+        VStack{
             ZStack{
                 Circle().fill(colorB.opacity(0.25)).frame(width: sizeB, height: sizeB).scaleEffect(self.animate ? 1 : minimumRatioB)
                 
@@ -36,8 +37,11 @@ struct PulsingButton: View {
             .onAppear{
                 self.animate.toggle()
             }
-            .animation(Animation.linear(duration: durationB).repeatForever(autoreverses: true))
+            .animation(Animation.linear(duration: duration).repeatForever(autoreverses: true))
         
+//        Stepper("\(duration)", value: $duration)
+        }
+    
     }
 }
 

@@ -28,21 +28,12 @@ struct WilwheelButton: View {
     @State private var selectedValue: Int = 0
     @State private var selectedAngle: Double = 0
     
+    let gradient = AngularGradient(gradient: Gradient(colors: [Color(red: 211/255, green: 211/255, blue: 211/255), Color(red: 162/255, green: 162/255, blue: 162/255)]), center: .center)
+    
     var body: some View {
+        VStack{
+            
         ZStack{
-            
-            Image("moletteM")
-                .resizable()
-                .rotationEffect(.degrees(54))
-                .frame(width: 123, height: 123, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .clipShape(Circle())
-                .shadow(radius: 10)
-            
-            Image("moletteS")
-                .resizable()
-                .rotationEffect(.degrees(54 + selectedAngle))
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .clipShape(Circle())
             
             ForEach(0..<anglePoints.count) {index in
                 
@@ -69,6 +60,19 @@ struct WilwheelButton: View {
                     selectedValue = index
                     selectedAngle = anglePoints[index] - 90
                 }
+                
+                Image("moletteM")
+                    .resizable()
+                    .rotationEffect(.degrees(54))
+                    .frame(width: 123, height: 123, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .clipShape(Circle())
+                    .shadow(color: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 5, x: 5, y: 5)
+                
+                Image("moletteS")
+                    .resizable()
+                    .rotationEffect(.degrees(54 + selectedAngle))
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .clipShape(Circle())
             } // fin ZStack 2
             
 //            Circle()
@@ -78,6 +82,22 @@ struct WilwheelButton: View {
         .scaleEffect(1.5)
         .animation(.easeOut)
         
+            Spacer()
+                    .frame(width: 200, height: 100)
+            Circle()
+                .strokeBorder(Color.gray,lineWidth: 3)
+                .background(Circle().fill(gradient))
+                .shadow(color: .blue, radius: 5, x: 20, y: 20)
+//                    .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
+                .shadow(color: .red, radius: 5, x: 20, y: 20)
+                    .frame(width: 180, height: 180)
+            
+            Text("Hacking with Swift")
+                .padding()
+                .border(Color.red, width: 4)
+                .shadow(color: .red, radius: 5, x: 20, y: 20)
+            
+        }
     }
 }
 

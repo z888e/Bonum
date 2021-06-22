@@ -12,7 +12,6 @@ struct WheelButton: View {
     
     var totAngle: Double
     var scale : Double
-    var colorPoints : Color
     var initValue : Int
     
     //    let anglePoints: [Double] = [-45, -15, 15, 45, 75, 105, 135, 165, 195, 225]
@@ -60,7 +59,7 @@ struct WheelButton: View {
                                         {inProgress in
                                             print("In progress: \(inProgress)")
                                             pressButton.toggle()
-                                            AudioServicesPlaySystemSound(1018)
+                                            AudioServicesPlaySystemSound(1001)
                                         }) {
                     print("Long press")
                     pressButton = false
@@ -88,16 +87,16 @@ struct WheelButton: View {
                 ZStack{
                     Circle()
                         .strokeBorder(Color.gray,lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color.gray : colorPoints).opacity(0.8))
-                        .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .offset(x: -80, y: 0)
+                        .background(Circle().foregroundColor(index>selectedValue ? Color.gray : ratingColorMapping[index+1]).opacity(0.8))
+                        .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .offset(x: -75, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                     
                     Text("\(index+1)")
-                        .font(.system(size: 10))
+                        .font(.system(size: 8))
                         .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                         .rotationEffect(.degrees(270))
-                        .offset(x: -100, y: 0)
+                        .offset(x: -90, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                 } // fin ZStack 2
                 .onAppear{
@@ -127,6 +126,6 @@ struct WheelButton: View {
 
 struct WheelButton_Previews: PreviewProvider {
     static var previews: some View {
-        WheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: 1, scoreEntered: .constant(0))
+        WheelButton(totAngle: 270, scale: 1.5, initValue: 1, scoreEntered: .constant(0))
     }
 }
