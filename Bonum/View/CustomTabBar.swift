@@ -10,11 +10,12 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @Binding var tabIndex: Int
+    @State private var showMoodTracker = false
     
     let fontSize: CGFloat = 10
     let iconSize: CGFloat = 20
     let unselectetIconColor = Color.gray
-    let selectetIconColor = Color.orange
+    let selectetIconColor = Color.yellow
     
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     
@@ -30,18 +31,15 @@ struct CustomTabBar: View {
             ZStack{
                 
                 switch tabIndex {
-                case 0:
-                    Diary()
                 case 1:
-                    MoodTracker()
+                    Diary()
                 case 2:
                     Journey()
                 default:
-                    MoodTracker()
+                    Diary()
                 }
             }
             .padding(.bottom, -8)  // NE MARCHE pas ds tous les cas
-            
             
             HStack{
                 Button(action: {
@@ -54,14 +52,14 @@ struct CustomTabBar: View {
                             .font(.system(size: fontSize))
                     }
                 }
-                .foregroundColor(self.tabIndex == 0 ? selectetIconColor : unselectetIconColor)
+                .foregroundColor(self.tabIndex == 1 ? selectetIconColor : unselectetIconColor)
                 
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 
                 Button(action: {
-                    self.tabIndex = 1
+                    self.showMoodTracker = true
                 }) {
-                    PulsingButton(colorB: (self.tabIndex == 1 ? selectetIconColor : unselectetIconColor), sizeB: iconSize*4, minimumRatioB: 0.5, durationB: durations[counter])
+                    PulsingButton(colorB: selectetIconColor, sizeB: iconSize*4, minimumRatioB: 0.5, durationB: durations[counter])
                         .onReceive(timer) { time in
                             if self.counter == 4 {
                                 self.timer.upstream.connect().cancel()
@@ -71,31 +69,33 @@ struct CustomTabBar: View {
                         } // permet d'accélérer la pulsation... pb : il faudrait aussi réinitialiser l'animation avant
                 }
                 .offset(y: -iconSize*2)
-
+                
+                
+                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+                
+                Button(action: {
+                    self.tabIndex = 2
+                }) {
+                    VStack{
+                        Image(systemName: "arrow.triangle.pull")
+                            .font(.system(size: iconSize))
+                        Text("Parcours")
+                            .font(.system(size: fontSize))
+                    }
+                }
+                .foregroundColor(self.tabIndex == 2 ? selectetIconColor : unselectetIconColor)
+                
+            } // fin HStack
+            .padding(.horizontal, 50.0)
+            .background(Color.black.opacity(0.05))
+            
+        } // fin VStack et test d'ouverture de la modale
+        .edgesIgnoringSafeArea(.bottom)
+        .sheet(isPresented: $showMoodTracker, content: {
+            MoodTracker(showMoodTracker: $showMoodTracker)
+        })
         
-        Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-        
-        Button(action: {
-            self.tabIndex = 2
-        }) {
-            VStack{
-                Image(systemName: "arrow.triangle.pull")
-                    .font(.system(size: iconSize))
-                Text("Parcours")
-                    .font(.system(size: fontSize))
-                //                        Text(String(sinceLastMoodDate))
-            }
-        }
-        .foregroundColor(self.tabIndex == 2 ? selectetIconColor : unselectetIconColor)
-        
-    } // fin HStack
-    .padding(.horizontal, 50.0)
-    .background(Color.black.opacity(0.05))
-    
-} // fin VStack
-.edgesIgnoringSafeArea(.bottom)
-
-}
+    }
 }
 
 struct CustomTabBar_Previews: PreviewProvider {

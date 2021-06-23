@@ -12,12 +12,13 @@ import WidgetKit
 struct MoodTracker: View {
     
     @EnvironmentObject var userData: UserData
-    @State private var newClic : Bool = false
+    @Binding var showMoodTracker: Bool
     // Permet de stocker le dernier score et sa date
     @AppStorage("lastMoodRating") private var lastMoodRating: Int = 0
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
     @State private var showHistory: Bool = false
+    @State private var newClic : Bool = false
     var lastMoodForMr: Int {
         lastMoodRating
     }
@@ -76,6 +77,9 @@ struct MoodTracker: View {
                     // Refresh du widget (ne pas oublier d'importer WidgetKit)
                     WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
                     
+                    // Fermeture de la modale
+                    showMoodTracker = false
+                    
                 })
                 .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
@@ -93,6 +97,7 @@ struct MoodTracker: View {
             Button("Fermer l'historique") {
                 self.showHistory.toggle()
             }
+            .padding()
             ScrollView {
                 ForEach(sortedMoodHistory, id: \.self) { moodEntry in
                     MoodCell(mood: moodEntry)
@@ -114,7 +119,7 @@ struct MoodTracker_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData(name: "Albert", userElementsList: MYELEMENTS, userJourneyEvents: MYJOURNEY, userMoodHistory: MYMOODS)
         
-        MoodTracker()
+        MoodTracker(showMoodTracker: .constant(true))
             .environmentObject(userData)
     }
 }
