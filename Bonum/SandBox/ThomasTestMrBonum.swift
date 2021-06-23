@@ -25,12 +25,12 @@ struct DrawMrBonum: View {
         
         GeometryReader { geo in // Pour récupérer les dimension de la zone dans laquelle on dessine.
 
-            let e = min(Double(geo.size.width), Double(geo.size.height)) / 100.00
+//            let e = min(Double(geo.size.width), Double(geo.size.height)) / 100.00
             
-            let se1 = s1.map { $0 * e }
-            
-            let se2 = s2.map { $0 * e }
-            
+//            let se1 = s1.map { $0 * e }
+//
+//            let se2 = s2.map { $0 * e }
+//
 //            ZStack {
 //                // Le corps :
 //                Path { path in

@@ -18,7 +18,7 @@ struct ThomasTestMrBonumCorpus: View {
         
         ZStack {
             
-        PathCorps(progress: progress, s1: [60, 99, 45, 99, 45, 91, 38, 99, 38, 91, 56, 91, 50, 78, 54, 68, 48, 73, 76, 64, 79, 76, 86, 68, 89, 96, 84, 98, 88, 101, 73, 77, 61, 79, 65, 93, 60, 99, 65, 99], s2: [51, 76, 48, 95, 39, 94, 46, 100, 40, 100, 42, 77, 36, 63, 35, 54, 32, 57, 56, 43, 61, 54, 68, 44, 53, 77, 47, 75, 50, 79, 53, 57, 45, 62, 49, 70, 51, 76, 50, 73])
+        PathCorpsTest(progress: progress, s1: [60, 99, 45, 99, 45, 91, 38, 99, 38, 91, 56, 91, 50, 78, 54, 68, 48, 73, 76, 64, 79, 76, 86, 68, 89, 96, 84, 98, 88, 101, 73, 77, 61, 79, 65, 93, 60, 99, 65, 99], s2: [51, 76, 48, 95, 39, 94, 46, 100, 40, 100, 42, 77, 36, 63, 35, 54, 32, 57, 56, 43, 61, 54, 68, 44, 53, 77, 47, 75, 50, 79, 53, 57, 45, 62, 49, 70, 51, 76, 50, 73])
             .fill(Color.black)
             .frame(width: 150)
             .onAppear {
@@ -27,7 +27,7 @@ struct ThomasTestMrBonumCorpus: View {
                 }
             }
             
-            PathTete(progress: progress, s1: [90, 77], s2: [74, 50])
+            PathTeteTest(progress: progress, s1: [90, 77], s2: [74, 50])
                 .fill(progress == 1 ? Color(red: couleurMood[2][0], green: couleurMood[2][1], blue: couleurMood[2][2], opacity: 1.00) : Color(red: couleurMood[1][0], green: couleurMood[1][1], blue: couleurMood[1][2], opacity: 1.00))
                 .frame(width: 150)
                 .onAppear {
@@ -41,7 +41,7 @@ struct ThomasTestMrBonumCorpus: View {
     }
 }
 
-struct PathCorps: Shape {
+struct PathCorpsTest: Shape {
     
     var progress: CGFloat
     
@@ -103,7 +103,7 @@ struct PathCorps: Shape {
     
 }
 
-struct PathTete: Shape {
+struct PathTeteTest: Shape {
     
     var progress: CGFloat
     
