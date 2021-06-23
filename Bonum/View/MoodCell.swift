@@ -10,7 +10,8 @@ import SwiftUI
 struct MoodCell: View {
     let mood: MoodValue
     var moodRating: Int{
-        return mood.rating ?? 0
+        //        return mood.rating ?? 0
+                return mood.rating
     }
     
     var body: some View {
@@ -34,7 +35,7 @@ struct MiniSquare: View {
         Text("\(rate)")
             .fontWeight(.bold)
             .font(.system(size: 12))
-            .foregroundColor(Color.white)
+            .foregroundColor(Color("AppColorWhite"))
             .frame(width: 20, height: 20, alignment: .center)
             .background(ratingColorMapping[rate])
             .cornerRadius(6)

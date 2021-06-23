@@ -39,7 +39,7 @@ func dateToString(date: Date, format: String) -> String {
 struct MoodValue : Hashable, Codable {
     
     var timestamp: Date
-    var rating: Int? // si c'est nil, c'est joker
+    var rating: Int // si c'est nil, c'est joker
     var source: Int // 0: tab view, 1: widget, 2: notification
 }
 
@@ -54,6 +54,9 @@ struct DataElement : Identifiable, Codable, Equatable {
     
     var id = UUID()
     var identifierInHK : HKQuantityTypeIdentifier
+    var valueNameInHK : String
+    var displayedUnit : String
+    var displayedSpecifier : String
     var isDiscrete : Bool //false = cumulative, true = discrete
     var customName: String
     var begin: Date
@@ -95,10 +98,6 @@ struct JourneyEvent: Hashable, Codable {
 
 }
 
-////var startDate
-//let startDate = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-//let endDate = Date()
-
 //TODO: nom defaut pour les variables suivies
 
 final class UserData: ObservableObject {
@@ -126,15 +125,14 @@ final class UserData: ObservableObject {
         let encoder = JSONEncoder()
         do {
             let json = try encoder.encode(tab)
-            let jsonString = String(data: json, encoding: .utf8) ?? "error"
-            print(jsonString)
+            _ = String(data: json, encoding: .utf8) ?? "error"
             if let url = LocalFileManager.instance.getPathForJson(name: filename){
                 try json.write(to: url)
             }
         } catch {
             print(error)
         }
-        print("`written Json : \(filename)")
+        print("written Json : \(filename)")
     }
     
     func readJson<MonType: Codable>(filename : String) -> MonType?{
@@ -143,16 +141,14 @@ final class UserData: ObservableObject {
             if let url = LocalFileManager.instance.getPathForJson(name: filename) {
                 let data = try Data(contentsOf: url)
                 let result = try decoder.decode(MonType.self, from: data)
+                print("read Json : \(filename)")
                 return result
             }
-            
             return nil
-            
         } catch {
             print(error)
             return nil
         }
-        
     }
     
     func writeNewCumulativeValues(cumulativeTypeDataToRead : HKQuantityTypeIdentifier, startDate : Date, endDate : Date, completion: @escaping (HKStatisticsCollection?) -> Void) {
@@ -163,6 +159,7 @@ final class UserData: ObservableObject {
         var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
         let offset = (7 + anchorComponents.weekday! - 2) % 7
         anchorComponents.day! -= offset
+        anchorComponents.hour = 2
         guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
             fatalError("*** Unable to create valid Date from the given components ***")
         }
@@ -189,6 +186,7 @@ final class UserData: ObservableObject {
         var anchorComponents = calendar.dateComponents([.day, .month, .year, .weekday], from: NSDate() as Date)
         let offset = (7 + anchorComponents.weekday! - 2) % 7
         anchorComponents.day! -= offset
+        
         guard let anchorDate = Calendar.current.date(from: anchorComponents) else {
             fatalError("*** Unable to create valid Date from the given components ***")
         }
@@ -214,11 +212,14 @@ final class UserData: ObservableObject {
 
 let MYSTEPSDATA : [DataValue] = [
     DataValue(value: 1845, date: Date()),
-    DataValue(value: 54, date: Date() - 1000),
+    DataValue(value: 54, date: Date() - 1000)
 ]
 
 let MYSTEPSELEMENT = DataElement (
     identifierInHK: .stepCount,
+    valueNameInHK: HKUnit.count().unitString,
+    displayedUnit: "pas",
+    displayedSpecifier : "%.f",
     isDiscrete: false,
     customName: "Marche",
     begin: dateFormatter(year: 2021, month: 06, day: 10),
@@ -233,6 +234,9 @@ let MYHRDATA : [DataValue] = [
 
 let MYHRELEMENT = DataElement (
     identifierInHK: .heartRate,
+    valueNameInHK: HKUnit(from: "count/min").unitString,
+    displayedUnit: "BPM",
+    displayedSpecifier : "%.f",
     isDiscrete: true,
     customName: "Rythme Cardiaque",
     begin: dateFormatter(year: 2021, month: 06, day: 10),

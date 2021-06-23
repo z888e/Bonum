@@ -35,9 +35,9 @@ struct JourneyDetail: View {
                         .font(.title)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("AppColorWhite"))
                         .padding()
-                        .background(Color(.black))
+                        .background(Color("AppColor3"))
                         .cornerRadius(10)
                         .opacity(0.8)
                         .padding(),

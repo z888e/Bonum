@@ -23,13 +23,13 @@ struct Buttons: View {
                         .fontWeight(.semibold)
                         .padding()
                         .frame(width: 150, height: 44)
-                        .background(Color.accentColor)
+                        .background(Color("AppColor1"))
                         .cornerRadius(12)
                 })
                 
             }
         }
-        .foregroundColor(.white)
+        .foregroundColor(Color("AppColorWhite"))
         .padding()
 
     }

@@ -28,6 +28,8 @@
 	<string>(opt) Bonum needs to read your chosen HealthKit data to correlate it with your mood.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Bonum needs to read your chosen HealthKit data to correlate it with your mood.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>(uniquement pour écrire données test)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

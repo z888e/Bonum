@@ -83,10 +83,10 @@ struct JourneyCell: View {
                     VStack(alignment: .leading) {
                         Text(event.title)
                             .font(.callout)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("AppColor3"))
                             .fontWeight(.semibold)
                         Text("Nom de la nouvelle donnée suivie")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color("AppColor2"))
                             .font(.caption)
                     }
                     
