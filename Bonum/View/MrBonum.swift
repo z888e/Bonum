@@ -232,6 +232,6 @@ struct PathTete: Shape {
 
 struct MrBonum_Previews: PreviewProvider {
     static var previews: some View {
-        MrBonum(mood: 2, moodFrom: 1)
+        MrBonum(mood: 4, moodFrom: 1)
     }
 }

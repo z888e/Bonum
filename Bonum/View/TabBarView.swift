@@ -25,7 +25,7 @@ struct TabBarView: View {
                        Label("Journal", systemImage: "book.closed")
                    }
 
-                MoodTracker()
+                MoodTracker(showMoodTracker: .constant(true))
                    .tabItem {
                     Label(" ", systemImage: "plus.circle")
                    }

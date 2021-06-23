@@ -22,9 +22,9 @@ struct PulsingButton: View {
         VStack{
             
             ZStack{
-                Circle().fill(colorB.opacity(0.25)).frame(width: sizeB, height: sizeB).scaleEffect(self.animate ? 1 : minimumRatioB)
+                Circle().fill(colorB.opacity(0.25)).frame(width: sizeB, height: sizeB).scaleEffect(self.animate ? 0.85 : minimumRatioB)
                 
-                Circle().fill(colorB.opacity(0.35)).frame(width: sizeB*0.75, height: sizeB*0.75).scaleEffect(self.animate ? 1 : minimumRatioB)
+                Circle().fill(colorB.opacity(0.35)).frame(width: sizeB*0.75, height: sizeB*0.70).scaleEffect(self.animate ? 1 : minimumRatioB)
                 
                 Circle().fill(colorB.opacity(0.45)).frame(width: sizeB*0.5, height: sizeB*0.5).scaleEffect(self.animate ? 1 : minimumRatioB)
                 
