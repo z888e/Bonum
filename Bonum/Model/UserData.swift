@@ -53,9 +53,10 @@ struct JourneyEvent: Hashable, Codable {
     var image: UIImage = UIImage()
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
     var moodValue: Int
+    var comment: String
     
     enum CodingKeys: CodingKey {
-        case title, date, imageName, type, moodValue
+        case title, date, imageName, type, moodValue, comment
     }
     
     // nested struct qui permet le stockage d'un nouvel event en cours de création
@@ -64,11 +65,12 @@ struct JourneyEvent: Hashable, Codable {
         var date: Date = Date()
         var imageName: String = ""
         var type: Int = 0
+        var comment: String = ""
     }
     
     // propriété calculée qui retourne Data avec les propriétés de JourneyEvent
     var data: Data {
-        return Data(title: title, date: date, imageName: imageName, type: type)
+        return Data(title: title, date: date, imageName: imageName, type: type, comment: comment)
     }
     
     mutating func update(from data: Data) {
@@ -226,14 +228,14 @@ let MYHRELEMENT = DataElement (
 let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
-    JourneyEvent(title: "Premier job", date: Date()-(86400*365), imageName: "vie-active", type: 0, moodValue: 7),
-    JourneyEvent(title: "Inscription à la salle", date: Date()-(86400*340), imageName: "inscription-salle", type: 0, moodValue: 9),
-    JourneyEvent(title: "Accident de la route", date: Date()-(86400*330), imageName: "accident", type: 0, moodValue: 8),
-    JourneyEvent(title: "Vacances à Lanzarote", date: Date()-(86400*300), imageName: "lanzarote", type: 0, moodValue: 6),
-    JourneyEvent(title: "Vie à deux", date: Date()-(86400*250), imageName: "vie-a-deux", type: 0, moodValue: 7),
-    JourneyEvent(title: "Déménagement", date: Date()-(86400*100), imageName: "demenagement", type: 0, moodValue: 3),
-    JourneyEvent(title: "Arrêt de la cigarette", date: Date()-(86400*80), imageName: "arret-cigarette", type: 0, moodValue: 8),
-    JourneyEvent(title: "Naissance d'Emilie", date: Date()-(86400*15), imageName: "naissance-emilie", type: 0, moodValue: 7)
+    JourneyEvent(title: "Premier job", date: Date()-(86400*365), imageName: "vie-active", type: 0, moodValue: 7, comment: "Enfin !"),
+    JourneyEvent(title: "Inscription à la salle", date: Date()-(86400*340), imageName: "inscription-salle", type: 0, moodValue: 9, comment: "Let's get physical!"),
+    JourneyEvent(title: "Accident de la route", date: Date()-(86400*330), imageName: "accident", type: 0, moodValue: 8, comment: "Ouch..."),
+    JourneyEvent(title: "Vacances à Lanzarote", date: Date()-(86400*300), imageName: "lanzarote", type: 0, moodValue: 6, comment: "Après l'effort, le réconfort !"),
+    JourneyEvent(title: "Vie à deux", date: Date()-(86400*250), imageName: "vie-a-deux", type: 0, moodValue: 7, comment: "Love is in the air"),
+    JourneyEvent(title: "Déménagement", date: Date()-(86400*100), imageName: "demenagement", type: 0, moodValue: 3, comment: "Ca déménage !"),
+    JourneyEvent(title: "Arrêt de la cigarette", date: Date()-(86400*80), imageName: "arret-cigarette", type: 0, moodValue: 8, comment: "Des poumons tout neufs !"),
+    JourneyEvent(title: "Naissance d'Emilie", date: Date()-(86400*15), imageName: "naissance-emilie", type: 0, moodValue: 7, comment: "Le petit bout de chou a été livré !")
 ]
 
 let MYMOODS : [MoodValue] = [
