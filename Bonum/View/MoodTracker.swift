@@ -55,7 +55,7 @@ struct MoodTracker: View {
                     newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
                     userData.userMoodHistory.append(newMoodValue)
                     userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
-                    UserDefaults.group.set(dateToString(date: Date()), forKey: "dateW")
+                    UserDefaults.group.set(dateToString(date: Date(), format: "DateTimeShort"), forKey: "dateW")
                     lastMoodDate = Date()
                     lastMoodRating = lastMoodRating
                     
