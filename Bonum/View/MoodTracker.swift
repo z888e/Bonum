@@ -43,14 +43,24 @@ struct MoodTracker: View {
     
     var body: some View {
         
+        ZStack{
+            Color("AppColorWhite")
+            
         VStack {
+            
+            Spacer().frame(height: 40)
             
             Text("Quelle est votre état de forme en ce moment ?")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color.yellow)
+                .foregroundColor(Color("AppColor3"))
                 .multilineTextAlignment(.center)
-                .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+                .padding(  )
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color("AppColor1"), lineWidth: 0.2)
+                )
 
             
         Spacer().frame(height: 220)
@@ -110,10 +120,10 @@ struct MoodTracker: View {
                     MoodCell(mood: moodEntry)
                 }
             }
-//            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-//            .listStyle(SidebarListStyle())
         })
         
+        }
+        .ignoresSafeArea()
     }
 }
 extension UserDefaults {

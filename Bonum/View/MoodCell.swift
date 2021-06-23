@@ -16,7 +16,6 @@ struct MoodCell: View {
     
     var body: some View {
         ZStack{
-//            ratingColorMapping[moodRating]
             HStack{
                 Text("\(dateToString(date: mood.timestamp, format: "DateTimeShort"))")
                         .font(.system(size: 12))
@@ -35,7 +34,7 @@ struct MiniSquare: View {
         Text("\(rate)")
             .fontWeight(.bold)
             .font(.system(size: 12))
-            .foregroundColor(Color("AppColorWhite"))
+            .foregroundColor(Color.white)
             .frame(width: 20, height: 20, alignment: .center)
             .background(ratingColorMapping[rate])
             .cornerRadius(6)

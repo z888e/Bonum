@@ -11,9 +11,10 @@ struct Journey: View {
     @EnvironmentObject var userData: UserData
     @State private var newEventData = JourneyEvent.Data()
     @State private var isPresented = false
+    @State private var isEdited = false
     
     @State private var shownImageNew = UIImage()
-    
+    @State private var newEvent = EMPTYJOURNEYEVENT
     
     var events: [JourneyEvent] {
         userData.userJourneyEvents.reversed()
@@ -33,7 +34,9 @@ struct Journey: View {
                     
                     VStack {
                         
-//                        NavigationLink(destination: JourneyEdit(event: EMPTYJOURNEYEVENT, JourneyData: $newEventData, pickedImage: $shownImageNew)) {
+                        //                        NavigationLink(destination: JourneyEdit(event: EMPTYJOURNEYEVENT, JourneyData: $newEventData, pickedImage: $shownImageNew)) {
+                        Button(action: {isEdited = true}, label: {
+                            
                             ZStack {
                                 
                                 Circle()
@@ -59,30 +62,23 @@ struct Journey: View {
                                 
                             }
                             .padding()
-                            .fullScreenCover(isPresented: $isPresented) {
-                                NavigationView {
-                                    JourneyEdit(event: EMPTYJOURNEYEVENT, JourneyData: $newEventData, pickedImage: $shownImageNew)
-                                        .navigationBarItems(leading: Button("Annuler") {
-                                            isPresented = false
-                                        }, trailing: Button("Terminé") {
-                                            isPresented = false
-                                            userData.userElementsList.append(EMPTYJOURNEYEVENT)
-                                            userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
-                                        })
-                                }
+                            
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                        .fullScreenCover(isPresented: $isEdited) {
+                            NavigationView {
+                                JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
+                                    .navigationBarItems(leading: Button("Annuler") {
+                                        isEdited = false
+                                    }, trailing: Button("Terminé") {
+                                        isEdited = false
+                                        newEvent.update(from: newEventData)
+                                        userData.userJourneyEvents.append(newEvent)
+                                        userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
+                                    })
                             }
-                            
-                            
-//                        }
-//                        .buttonStyle(PlainButtonStyle())
-//                        .navigationBarItems(leading: Button("Annuler") {
-//                            isPresented = false
-//                        }, trailing: Button("Terminé") {
-//                            isPresented = false
-//                            //                            event.update(from: journeyData)
-//                            userData.userJourneyEvents.append(EMPTYJOURNEYEVENT)
-//                            userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
-//                        })
+                        }
+                        
                     }
                     
                     
