@@ -34,7 +34,7 @@ struct DiaryListDetailsGraph: View {
 
             ForEach(element.values, id: \.self){ el in
                 Text(String(el.value))
-                Text(dateToString(date: el.date))
+                Text(dateToString(date: el.date, format: "DateTimeShort"))
             }
             
 //            VStack {

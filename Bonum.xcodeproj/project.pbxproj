@@ -53,6 +53,7 @@
 		E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */; };
 		E9CD0D142682537E002DE485 /* ThomasTestMrBonum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD0D132682537E002DE485 /* ThomasTestMrBonum.swift */; };
 		E9CD0D16268253A7002DE485 /* ThomasTestMrBonumCorpus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD0D15268253A7002DE485 /* ThomasTestMrBonumCorpus.swift */; };
+		E9CD0D182683132B002DE485 /* MrBonum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD0D172683132B002DE485 /* MrBonum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		E94EB6592678A4910088CC4D /* ThomasTestGraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestGraphData.swift; sourceTree = "<group>"; };
 		E9CD0D132682537E002DE485 /* ThomasTestMrBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestMrBonum.swift; sourceTree = "<group>"; };
 		E9CD0D15268253A7002DE485 /* ThomasTestMrBonumCorpus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThomasTestMrBonumCorpus.swift; sourceTree = "<group>"; };
+		E9CD0D172683132B002DE485 /* MrBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrBonum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
 				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
+				E9CD0D172683132B002DE485 /* MrBonum.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CD0D182683132B002DE485 /* MrBonum.swift in Sources */,
 				5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */,
 				D8F189702680C22300DB9C7B /* WheelButton.swift in Sources */,
 				E9CD0D16268253A7002DE485 /* ThomasTestMrBonumCorpus.swift in Sources */,
