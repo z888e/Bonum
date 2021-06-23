@@ -10,20 +10,17 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @Binding var tabIndex: Int
-    @State private var showMoodTracker = false
-    
-    let fontSize: CGFloat = 10
-    let iconSize: CGFloat = 20
-    let unselectetIconColor = Color.gray
-    let selectetIconColor = Color.yellow
-    
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
-    
-    let durations: [Double] = [5, 2, 1, 0.6, 0.3]
-    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    @State private var showMoodTracker = false
+    @State private var sinceLastMoodDate : Double = 1
     @State private var counter: Int = 0
     
-    @State private var sinceLastMoodDate : Double = 1
+    let fontSize: CGFloat = 12
+    let iconSize: CGFloat = 28
+    let unselectetIconColor = Color("AppColor3")
+    let selectetIconColor = Color("AppColor1")
+    let durations: [Double] = [5, 2, 1, 0.6, 0.3]
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
@@ -59,7 +56,7 @@ struct CustomTabBar: View {
                 Button(action: {
                     self.showMoodTracker = true
                 }) {
-                    PulsingButton(colorB: selectetIconColor, sizeB: iconSize*4, minimumRatioB: 0.5, durationB: durations[counter])
+                    PulsingButton(colorB: (self.tabIndex == 1 ? selectetIconColor : unselectetIconColor), sizeB: iconSize*3.3, minimumRatioB: 0.5, durationB: durations[counter])
                         .onReceive(timer) { time in
                             if self.counter == 4 {
                                 self.timer.upstream.connect().cancel()
@@ -68,8 +65,7 @@ struct CustomTabBar: View {
                             }
                         } // permet d'accélérer la pulsation... pb : il faudrait aussi réinitialiser l'animation avant
                 }
-                .offset(y: -iconSize*2)
-                
+                .offset(y: -iconSize*1.6)
                 
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 
@@ -81,13 +77,15 @@ struct CustomTabBar: View {
                             .font(.system(size: iconSize))
                         Text("Parcours")
                             .font(.system(size: fontSize))
+                        //                        Text(String(sinceLastMoodDate))
                     }
                 }
                 .foregroundColor(self.tabIndex == 2 ? selectetIconColor : unselectetIconColor)
                 
             } // fin HStack
-            .padding(.horizontal, 50.0)
-            .background(Color.black.opacity(0.05))
+            .padding(.horizontal, 45.0)
+            //couleur de fond de la tabbar
+            .background(Color("AppColor1").opacity(0.2))
             
         } // fin VStack et test d'ouverture de la modale
         .edgesIgnoringSafeArea(.bottom)

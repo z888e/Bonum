@@ -54,11 +54,17 @@ struct WheelButton: View {
                 .shadow(radius: 10)
             
             // Le bouton du milieu
+            ZStack{
             Image("moletteS")
                 .resizable()
-                .rotationEffect(.degrees(54 + selectedAngle))
+                .rotationEffect(.degrees(54))
                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipShape(Circle())
+                
+                Text("Save")
+                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+            }
+            .rotationEffect(.degrees(selectedAngle))
                 .scaleEffect(pressButton ? 0.9 : 1)
                 
                 .onLongPressGesture(minimumDuration: 0.01, pressing:
@@ -87,13 +93,12 @@ struct WheelButton: View {
                         }
                 )
             
-            
             ForEach(0..<anglePoints.count) {index in
                 
                 ZStack{
                     Circle()
-                        .strokeBorder(Color.gray,lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color(#colorLiteral(red: 0.8798124194, green: 0.8799602389, blue: 0.8797928691, alpha: 1)) : ratingColorMapping[index+1]).opacity(1.0))
+                        .strokeBorder(Color("AppColor3"),lineWidth: 1)
+                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColor2") : ratingColorMapping[index+1]).opacity(1.0))
                         .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .offset(x: -75, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))

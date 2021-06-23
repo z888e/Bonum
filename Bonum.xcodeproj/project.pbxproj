@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58318E31268231E100965158 /* PopulateHK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58318E30268231E100965158 /* PopulateHK.swift */; };
+		58318E332682782900965158 /* ImpactIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58318E322682782900965158 /* ImpactIllustration.swift */; };
 		5861C6D9267A2BC100C5C0B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5861C6D8267A2BC100C5C0B1 /* UserData.swift */; };
 		587BB969267C9CA300A103FB /* AddElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BB968267C9CA300A103FB /* AddElement.swift */; };
 		587BB96F268114F300A103FB /* DiaryListDetailsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587BB96E268114F300A103FB /* DiaryListDetailsGraph.swift */; };
@@ -81,6 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		58318E30268231E100965158 /* PopulateHK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulateHK.swift; sourceTree = "<group>"; };
+		58318E322682782900965158 /* ImpactIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactIllustration.swift; sourceTree = "<group>"; };
 		5861C6D8267A2BC100C5C0B1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		587BB968267C9CA300A103FB /* AddElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddElement.swift; sourceTree = "<group>"; };
 		587BB96E268114F300A103FB /* DiaryListDetailsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListDetailsGraph.swift; sourceTree = "<group>"; };
@@ -209,16 +213,16 @@
 		66DD5F7D267349D700EB3642 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
-				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
-				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
-				662ACCD0267896C400287EB8 /* PageTab.swift */,
+				587BB968267C9CA300A103FB /* AddElement.swift */,
 				662ACCD42678994B00287EB8 /* Buttons.swift */,
+				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
+				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
 				587BB968267C9CA300A103FB /* AddElement.swift */,
 				58E6B76F2678A756008643F7 /* DiaryList.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
+				58318E322682782900965158 /* ImpactIllustration.swift */,
 				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
 				587BB96E268114F300A103FB /* DiaryListDetailsGraph.swift */,
 				58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */,
@@ -226,11 +230,16 @@
 				66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				662E8F2F267C87EF005657CB /* JourneyEdit.swift */,
-				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
 				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
-				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
-				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
+				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
+				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
+				662ACCD0267896C400287EB8 /* PageTab.swift */,
+				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
+				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
+				58318E30268231E100965158 /* PopulateHK.swift */,
 				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
+				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
+				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
 				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 				E9CD0D172683132B002DE485 /* MrBonum.swift */,
 			);
@@ -383,6 +392,7 @@
 				58E6B7702678A756008643F7 /* DiaryList.swift in Sources */,
 				58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */,
 				588EF594267248CC00A888DB /* ContentView.swift in Sources */,
+				58318E332682782900965158 /* ImpactIllustration.swift in Sources */,
 				589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */,
 				58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */,
 				D847BEEF267FA58E00F420E7 /* WilTestWidget.swift in Sources */,
@@ -396,6 +406,7 @@
 				D82D475F2679DDC40099A58F /* WilListDetail.swift in Sources */,
 				D847BEEB267CA3AA00F420E7 /* PulsingButton.swift in Sources */,
 				66A993B4267A4ACA00A2D1AE /* JourneyCell.swift in Sources */,
+				58318E31268231E100965158 /* PopulateHK.swift in Sources */,
 				D8938D76267FA8EE00FDD277 /* BonumWidget.intentdefinition in Sources */,
 				66DD5F8926734B7C00EB3642 /* JourneyDetail.swift in Sources */,
 				588EF592267248CC00A888DB /* BonumApp.swift in Sources */,

@@ -11,61 +11,95 @@ struct Diary: View {
     
     @EnvironmentObject var userData: UserData    
     @State private var showingAddForm = false
-    
-    //mène à rien
     @State private var timeArea : String = "J"
     var allTimes = ["J", "S", "M", "A"]
     
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("AppColor1"))
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color("AppColorWhite"))], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color("AppColor1"))], for: .normal)
+    }
+    
     var body: some View {
         NavigationView{
-            VStack{
-                //TODO: Switch J/S/M/A
-                Picker("", selection: $timeArea) {
-                    ForEach(allTimes, id: \.self) {
-                        Text($0)
+            VStack(spacing:0){
+                ZStack{
+                    Color("AppColor3")
+                    VStack{
+                        Picker("", selection: $timeArea) {
+                            ForEach(allTimes, id: \.self) {
+                                Text($0)
+                            }
+                        }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal, 20)
+                        .padding(.top, 40)
+                        
+                        HStack{
+                            if timeArea == "J"{
+                                Text("Aujourd'hui,").font(.title).foregroundColor(Color("AppColorWhite"))
+                            }
+                            if timeArea == "S"{
+                                Text("Cette semaine,").font(.title).foregroundColor(Color("AppColorWhite"))
+                            }
+                            if timeArea == "M"{
+                                Text("Ce mois,").font(.title).foregroundColor(Color("AppColorWhite"))
+                            }
+                            if timeArea == "A"{
+                                Text("Cette année,").font(.title).foregroundColor(Color("AppColorWhite"))
+                            }
+                            
+                            Spacer()
+                            //                    PopulateHK()
+                            
+                            Button(action: {
+                                showingAddForm = true
+                            }) {
+                                Image(systemName: "plus")
+                                    .font(Font.system(.title))
+                                    .foregroundColor(Color("AppColor1"))
+                                    .padding()
+                            }.sheet(isPresented: $showingAddForm) {
+                                AddElement()
+                            }
+                            
+                        }.padding(.leading,20)
+                        
+                        
+                        //TODO : display score calculé
+                        ScoreBonum(timeArea : timeArea).padding(.bottom, 20)
                     }
-                }.pickerStyle(SegmentedPickerStyle())
-                .padding()
-                
-                HStack{
-                    Text("Aujourd'hui,").font(.title)
-                        .padding()
-                    Spacer()
-                    
-                    Button(action: {
-                        showingAddForm = true
-                    }) {
-                        Image(systemName: "plus")
-                            .font(Font.system(.title))
-                            .foregroundColor(.orange)
-                            .padding()
-                    }.sheet(isPresented: $showingAddForm) {
-                        AddElement()
-                    }
-                    
                 }
                 
-                //TODO : display score calculé
-                ScoreBonum().padding(.vertical, 20)
-                
-                ScrollView{
-                    VStack(spacing: 20){
-                        ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
-                            
-                            NavigationLink(
-                                destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
-                                label: {
-//                                    ZStack{
+                ZStack{
+                    VStack{
+                        //couleur du top part du journal
+                        Color("AppColor3")
+                        //coueur du bottom part du journal
+                        Color("AppColorWhite")
+                    }
+                    //coueur du bottom part du journal
+                    RoundedRectangle(cornerRadius: 28).foregroundColor(Color("AppColorWhite"))
+                    ScrollView{
+                        VStack(spacing: 20){
+                            ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
+                                
+                                NavigationLink(
+                                    destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
+                                    label: {
                                         DiaryListCell(element: userData.userElementsList[index])
-//                                    }
-                                }
-                            )
-                        }
-                    }.padding(.horizontal, 20)
-                    .foregroundColor(Color.black)
+                                    }
+                                )
+                            }
+                        }.padding(.horizontal, 20)
+                        .padding(.top, 21)
+                        .padding(.bottom, 50)
+                        //couleur du texte dans les cell
+                        .foregroundColor(Color("AppColor3"))
+                    }
                 }
             }.navigationBarHidden(true)
             .navigationTitle("Journal")
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }

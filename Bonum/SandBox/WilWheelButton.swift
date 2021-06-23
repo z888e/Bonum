@@ -40,7 +40,7 @@ struct WilwheelButton: View {
                 ZStack{
                     Circle()
                         .strokeBorder(Color.gray,lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color.gray : colorPoints).opacity(0.8))
+                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColor3") : colorPoints).opacity(0.8))
                         .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .offset(x: -80, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
@@ -85,7 +85,7 @@ struct WilwheelButton: View {
             Spacer()
                     .frame(width: 200, height: 100)
             Circle()
-                .strokeBorder(Color.gray,lineWidth: 3)
+                .strokeBorder(Color("AppColor3"),lineWidth: 3)
                 .background(Circle().fill(gradient))
                 .shadow(color: .blue, radius: 5, x: 20, y: 20)
 //                    .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
@@ -103,6 +103,6 @@ struct WilwheelButton: View {
 
 struct WilwheelButton_Previews: PreviewProvider {
     static var previews: some View {
-        WilwheelButton(totAngle: 270, scale: 1.5, colorPoints: .orange, initValue: 1)
+        WilwheelButton(totAngle: 270, scale: 1.5, colorPoints: Color("AppColor1"), initValue: 1)
     }
 }

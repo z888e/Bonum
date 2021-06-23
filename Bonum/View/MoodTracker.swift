@@ -52,7 +52,8 @@ struct MoodTracker: View {
                 .multilineTextAlignment(.center)
                 .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
 
-            Spacer()
+            
+        Spacer().frame(height: 220)
             
 //            Image("forme8")
 //                .resizable()
@@ -81,8 +82,14 @@ struct MoodTracker: View {
                     showMoodTracker = false
                     
                 })
-                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
+            Button(action: {showMoodTracker = false}, label: {
+                    Text("Annuler")
+            })
+            .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                
+            Spacer().frame(height: 100)
             
             Button(action: {showHistory = true}, label: {
                 VStack{
