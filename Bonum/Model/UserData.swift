@@ -65,11 +65,12 @@ struct DataElement : Identifiable, Codable, Equatable {
     var values : [DataValue]
 }
 
-struct JourneyEvent: Hashable, Codable {
+struct JourneyEvent: Identifiable, Hashable, Codable {
     
+    var id = UUID()
     var title: String
     var date: Date
-    let imageName: String
+    var imageName: String
     var image: UIImage = UIImage()
     var type: Int // généré automatiquement quand user commence/arrête le suivi d'une donnée, ou jalon personnalisé, ou jalon intelligent
     var moodValue: Int
@@ -94,6 +95,9 @@ struct JourneyEvent: Hashable, Codable {
     mutating func update(from data: Data) {
         title = data.title
         date = data.date
+//        imageName = imageName.isEmpty ? UUID().uuidString : imageName
+        
+//        print("Save image with name: \(imageName)")
     }
 
 }

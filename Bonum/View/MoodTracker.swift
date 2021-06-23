@@ -59,7 +59,7 @@ struct MoodTracker: View {
                 .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color("AppColor1"), lineWidth: 0.2)
+                        .stroke(Color("AppColor1"), lineWidth: 1).shadow(color: Color("AppColor1"), radius: 3.0, x: -2, y: 2)
                 )
 
             
