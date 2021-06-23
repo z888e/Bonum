@@ -82,19 +82,24 @@ struct DrawMrBonum: View {
 
 struct ThomasTestMrBonum: View {
     
-    @State private var mood: Double = 1.0
+    @State private var mood: Double = 2.0
+    
+    @State private var moodFrom: Double = 1.0
+    
+    @State private var ancienValue: Double = 1.0
     
     var body: some View {
         VStack {
             
             Text("Niveau de forme : \(mood.description)")
             
-            DrawMrBonum(mood: Int(mood))
+            MrBonum(mood: Int(mood), moodFrom: 2)
                 
-            
-            
             Slider(value: $mood, in: 1...10, step: 1).padding()
-            
+                .onChange(of: "Value", perform: { value in
+                    moodFrom = ancienValue
+                    ancienValue = mood
+                })
         }
     }
 }
@@ -283,13 +288,13 @@ struct MrBonum4: View {
 struct ThomasTestMrBonum_Previews: PreviewProvider {
     static var previews: some View {
         
-//        ThomasTestMrBonum()
+        ThomasTestMrBonum()
         
-                ZStack {
-                    MrBonum4()
-                    // MrBonum2()
-                    // MrBonum1()
-                }
+//                ZStack {
+//                    MrBonum4()
+//                    // MrBonum2()
+//                    // MrBonum1()
+//                }
         
 //                DrawMrBonum(mood: 1)
     }
