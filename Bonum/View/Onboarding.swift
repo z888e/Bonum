@@ -19,9 +19,36 @@ struct Onboarding: View {
         
         VStack(alignment: .center) {
             
-            PageTab(userName: $userName, currentStep: $currentStep)
+            VStack {
+                Text("Bonjour !")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .padding()
+                
+                Text("Ravis de voir que vous prenez votre forme en main.")
+                    .font(.title3)
+                    .padding()
+                
+                Text("Bonum va vous permettre de suivre l'évolution de votre état de forme et de la comparer à de multiples données.")
+                    .font(.title3)
+                    .padding()
+            }
             
-            Buttons(currentStep: $currentStep, isOnboardingShowing: $isOnboardingShowing)
+//            PageTab(userName: $userName, currentStep: $currentStep)
+            
+//            Buttons(currentStep: $currentStep, isOnboardingShowing: $isOnboardingShowing)
+            
+            Button(action: {
+                    isOnboardingShowing = false
+            }, label: {
+                Text("Commencer")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                    .padding()
+                    .frame(width: 150, height: 44)
+                    .background(Color.accentColor)
+                    .cornerRadius(12)
+            })
             
         }
         .padding()
