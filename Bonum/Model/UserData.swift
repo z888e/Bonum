@@ -253,6 +253,8 @@ let MYJOURNEY : [JourneyEvent] = [
     JourneyEvent(title: "Naissance d'Emilie", date: Date()-(86400*15), imageName: "naissance-emilie", type: 0, moodValue: 7)
 ]
 
+let EMPTYJOURNEYEVENT = JourneyEvent(title: "", date: Date(), imageName: "", type: 0, moodValue: 5)
+
 let MYMOODS : [MoodValue] = [
     MoodValue(timestamp: Date()-(86400*7), rating: 7, source: 0),
     MoodValue(timestamp: Date()-(86400*6), rating: 9, source: 0),

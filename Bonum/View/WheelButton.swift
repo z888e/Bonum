@@ -54,11 +54,17 @@ struct WheelButton: View {
                 .shadow(radius: 10)
             
             // Le bouton du milieu
+            ZStack{
             Image("moletteS")
                 .resizable()
-                .rotationEffect(.degrees(54 + selectedAngle))
+                .rotationEffect(.degrees(54))
                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipShape(Circle())
+                
+                Text("Save")
+                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+            }
+            .rotationEffect(.degrees(selectedAngle))
                 .scaleEffect(pressButton ? 0.9 : 1)
                 
                 .onLongPressGesture(minimumDuration: 0.01, pressing:
@@ -86,7 +92,6 @@ struct WheelButton: View {
                             self.selectedAngle += finalAmount.degrees - totAngle/2
                         }
                 )
-            
             
             ForEach(0..<anglePoints.count) {index in
                 
