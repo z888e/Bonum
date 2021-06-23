@@ -66,7 +66,7 @@ struct Journey: View {
                                             isPresented = false
                                         }, trailing: Button("Terminé") {
                                             isPresented = false
-                                            userData.userElementsList.append(EMPTYJOURNEYEVENT)
+//                                            userData.userElementsList.append(EMPTYJOURNEYEVENT)
                                             userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
                                         })
                                 }
