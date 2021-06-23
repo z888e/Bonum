@@ -10,6 +10,13 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @Binding var tabIndex: Int
+    @State private var showMoodTracker = false
+    
+    let fontSize: CGFloat = 10
+    let iconSize: CGFloat = 20
+    let unselectetIconColor = Color.gray
+    let selectetIconColor = Color.yellow
+    
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var sinceLastMoodDate : Double = 1
     @State private var counter: Int = 0
@@ -27,18 +34,15 @@ struct CustomTabBar: View {
             ZStack{
                 
                 switch tabIndex {
-                case 0:
-                    Diary()
                 case 1:
-                    MoodTracker()
+                    Diary()
                 case 2:
                     Journey()
                 default:
-                    MoodTracker()
+                    Diary()
                 }
             }
             .padding(.bottom, -8)  // NE MARCHE pas ds tous les cas
-            
             
             HStack{
                 Button(action: {
@@ -51,12 +55,12 @@ struct CustomTabBar: View {
                             .font(.system(size: fontSize))
                     }
                 }
-                .foregroundColor(self.tabIndex == 0 ? selectetIconColor : unselectetIconColor)
+                .foregroundColor(self.tabIndex == 1 ? selectetIconColor : unselectetIconColor)
                 
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 
                 Button(action: {
-                    self.tabIndex = 1
+                    self.showMoodTracker = true
                 }) {
                     PulsingButton(colorB: (self.tabIndex == 1 ? selectetIconColor : unselectetIconColor), sizeB: iconSize*3.3, minimumRatioB: 0.5, durationB: durations[counter])
                         .onReceive(timer) { time in
@@ -89,8 +93,11 @@ struct CustomTabBar: View {
             //couleur de fond de la tabbar
             .background(Color("AppColor1").opacity(0.2))
             
-        } // fin VStack
+        } // fin VStack et test d'ouverture de la modale
         .edgesIgnoringSafeArea(.bottom)
+        .sheet(isPresented: $showMoodTracker, content: {
+            MoodTracker(showMoodTracker: $showMoodTracker)
+        })
         
     }
 }

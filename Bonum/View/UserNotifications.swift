@@ -100,13 +100,6 @@ struct UserNotifications: View {
 }
 
 
-func dateToString(date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "d MMM y, HH:mm:ss"
-    return formatter.string(from: date)
-}
-
-
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     
     @AppStorage("userName") private var userName: String = ""
@@ -120,7 +113,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         
         let content = UNMutableNotificationContent()
         content.title = "Evaluation de la forme"
-        content.body = "\(userName), Vous n'avez pas évalué votre forme depuis le  \(dateToString(date: lastEnreg)). Voulez-vous le faire ?"
+        content.body = "\(userName), Vous n'avez pas évalué votre forme depuis le  \(dateToString(date: lastEnreg, format: "DateTimeShort")). Voulez-vous le faire ?"
         content.sound = UNNotificationSound.default
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: true)

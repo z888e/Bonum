@@ -26,14 +26,14 @@ struct PageTab: View {
                     .font(.title3)
                     .padding()
                 
-                Text("Bonum va vous permettre de suivre l'évolution de votre état de forme et de la comparer à de multipler données.")
+                Text("Bonum va vous permettre de suivre l'évolution de votre état de forme et de la comparer à de multiples données.")
                     .font(.title3)
                     .padding()
             }
             .tag(0)
             
             VStack {
-                Text("Comment dois-je vous appeler ?")
+                Text("Comment dois-je vous appeller ?")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding()
