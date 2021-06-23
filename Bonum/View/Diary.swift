@@ -20,6 +20,8 @@ struct Diary: View {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color("AppColor1"))], for: .normal)
     }
     
+    var sortedElements: [DataElement] {return userData.userElementsList.sorted{$0.impact>$1.impact}}
+    
     var body: some View {
         NavigationView{
             VStack(spacing:0){
@@ -81,12 +83,12 @@ struct Diary: View {
                     RoundedRectangle(cornerRadius: 28).foregroundColor(Color("AppColorWhite"))
                     ScrollView{
                         VStack(spacing: 20){
-                            ForEach(Array(userData.userElementsList.enumerated()), id: \.1.id) {index, el in
+                            ForEach(Array(sortedElements.enumerated()), id: \.1.id) {index, el in
                                 
                                 NavigationLink(
-                                    destination: DiaryListDetails(element: userData.userElementsList[index], index: index),
+                                    destination: DiaryListDetails(element: sortedElements[index], index: index),
                                     label: {
-                                        DiaryListCell(element: userData.userElementsList[index])
+                                        DiaryListCell(element: sortedElements[index])
                                     }
                                 )
                             }

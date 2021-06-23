@@ -26,31 +26,15 @@ struct MoodTracker: View {
     let noticationManager = NotificationDelegate()
     let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
     
-    //    var lastMood: Int {
-    //        return userData.userMoodHistory.last?.rating ?? 0
-    //    }
-    
-    // Pour afficher l'historique par date de saisie la plus récente
-    var sortedMoodHistory: [MoodValue] {
-        return userData.userMoodHistory.sorted {
-            $0.timestamp > $1.timestamp
-        }
-    }
-    
-    //    init() {
-    //        self.lastMood = userData.userMoodHistory[1].rating ?? 0
-    //    }
-    
     var body: some View {
         
         VStack {
             
             Text("Quelle est votre état de forme en ce moment ?")
                 .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(Color.yellow)
+                .foregroundColor(Color("AppColor3"))
                 .multilineTextAlignment(.center)
-                .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+                .padding(50)
 
             Spacer()
             
@@ -59,7 +43,6 @@ struct MoodTracker: View {
 //                .aspectRatio(contentMode: .fill)
 //                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
 //                .padding()
-
             
             WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, newClic: $newClic)
                 .onChange(of: newClic, perform: { value in
@@ -83,29 +66,10 @@ struct MoodTracker: View {
                 })
                 .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-            
-            Button(action: {showHistory = true}, label: {
-                VStack{
-                    Image(systemName: "clock")
-                    Text("Historique")
-                    }
-            })
             Spacer()
             
-        }
-        .sheet(isPresented: $showHistory, content: {
-            Button("Fermer l'historique") {
-                self.showHistory.toggle()
-            }
-            .padding()
-            ScrollView {
-                ForEach(sortedMoodHistory, id: \.self) { moodEntry in
-                    MoodCell(mood: moodEntry)
-                }
-            }
-//            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-//            .listStyle(SidebarListStyle())
-        })
+        }.background(Color("AppColorWhite"))
+        .edgesIgnoringSafeArea(.bottom)
         
     }
 }

@@ -26,6 +26,7 @@ func dateToString(date: Date, format: String) -> String {
         switch format {
         case "Date" : return "d MMM y"
         case "Time": return "HH:mm:ss"
+        case "DateShort": return "d MMM y"
         case "DateTimeShort": return "d MMM y, HH:mm"
         case "DateTimeLong": return "d MMM y, HH:mm:ss"
         default: return "d MMM y, HH:mm:ss"

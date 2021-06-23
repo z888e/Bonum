@@ -38,13 +38,27 @@ struct ScoreBonum: View {
     
     var body: some View {
         NavigationLink(
-            destination: Text("graphe du score bonum et historique"),
+            destination: ScoreBonumDetails(),
             label: {
                 ZStack{
                     Circle()
-                        .fill(
-                            LinearGradient(gradient: Gradient(colors: [.yellow, Color("AppColor1")]), startPoint: .topTrailing, endPoint: .leading)
-                            )
+                        .fill(Color("AppColor1"))
+                        .shadow(color: Color.red.opacity(0.2),
+                                radius: 5,
+                                x: 7,
+                                y: 7)
+                        .shadow(color: Color.white.opacity(0.3),
+                                radius: 5,
+                                x: -5,
+                                y: -5)
+                        .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 0.3)
+                        )
+//                    Circle()
+//                        .fill(
+//                            LinearGradient(gradient: Gradient(colors: [.yellow, Color("AppColor1")]), startPoint: .topTrailing, endPoint: .leading)
+//                            )
         //                .strokeBorder(
         //                    AngularGradient(gradient: Gradient(colors: [.red, .green, .purple, .red]), center: .center, startAngle: .zero, endAngle: .degrees(360)),
         //                    lineWidth: 5

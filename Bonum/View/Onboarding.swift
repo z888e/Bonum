@@ -17,42 +17,51 @@ struct Onboarding: View {
     
     var body: some View {
         
-        VStack(alignment: .center) {
+        VStack {
             
+            Spacer()
+
             VStack {
                 Text("Bonjour !")
                     .font(.title)
+                    .foregroundColor(Color("AppColorWhite"))
                     .fontWeight(.semibold)
-                    .padding()
+                    .padding(.vertical, 50)
                 
                 Text("Ravis de voir que vous prenez votre forme en main.")
                     .font(.title3)
+                    .foregroundColor(Color("AppColorWhite"))
                     .padding()
                 
                 Text("Bonum va vous permettre de suivre l'évolution de votre état de forme et de la comparer à de multiples données.")
                     .font(.title3)
+                    .foregroundColor(Color("AppColorWhite"))
                     .padding()
             }
             
-//            PageTab(userName: $userName, currentStep: $currentStep)
-            
-//            Buttons(currentStep: $currentStep, isOnboardingShowing: $isOnboardingShowing)
+            Spacer()
             
             Button(action: {
                     isOnboardingShowing = false
             }, label: {
                 Text("Commencer")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("AppColorWhite"))
                     .fontWeight(.semibold)
                     .padding()
-                    .frame(width: 150, height: 44)
-                    .background(Color.accentColor)
-                    .cornerRadius(12)
+                    .frame(width: 250, height: 50)
+                    .background(Color("AppColor1"))
+                    .cornerRadius(20)
+                    .shadow(radius: 1)
             })
+            
+            Spacer()
+            
             
         }
         .padding()
         .multilineTextAlignment(.center)
+        .background(Color("AppColor3"))
+        .edgesIgnoringSafeArea(.top)
         
     }
 

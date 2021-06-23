@@ -46,83 +46,96 @@ struct WheelButton: View {
                 .scaleEffect(CGSize(width: 0.8, height: 0.8))
             
             // La bague autour
-            Image("moletteM")
-                .resizable()
-                .rotationEffect(.degrees(54))
-                .frame(width: 123, height: 123, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .clipShape(Circle())
-                .shadow(radius: 10)
-            
-            // Le bouton du milieu
-            Image("moletteS")
-                .resizable()
-                .rotationEffect(.degrees(54 + selectedAngle))
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .clipShape(Circle())
-                .scaleEffect(pressButton ? 0.9 : 1)
-                
-                .onLongPressGesture(minimumDuration: 0.01, pressing:
-                                        {inProgress in
-                                            print("In progress: \(inProgress)")
-                                            pressButton.toggle()
-                                            AudioServicesPlaySystemSound(1001)
-                                        }) {
-                    print("Long press")
-                    pressButton = false
-                    lastMoodRating = selectedValue + 1
-                    newClic.toggle()
-                }
-                
-                .rotationEffect(currentAmount + finalAmount)
-                .gesture(
-                    RotationGesture()
-                        .onChanged { angle in
-                            self.currentAmount = angle
-                        }
-                        .onEnded { angle in
-                            self.finalAmount += self.currentAmount
-                            self.currentAmount = .degrees(0)
-                            
-                            self.selectedAngle += finalAmount.degrees - totAngle/2
-                        }
+            //pas fini
+            Circle()
+               .strokeBorder(
+                    AngularGradient(gradient: Gradient(colors: [.red, .green, .purple, .red]), center: .center, startAngle: .zero, endAngle: .degrees(360)),
+                    lineWidth: 8
                 )
-            
-            
-            ForEach(0..<anglePoints.count) {index in
-                
-                ZStack{
-                    Circle()
-                        .strokeBorder(Color("AppColor3"),lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColor2") : ratingColorMapping[index+1]).opacity(1.0))
-                        .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .offset(x: -75, y: 0)
-                        .rotationEffect(.degrees(anglePoints[index]))
-                    
-                    Text("\(index+1)")
-                        .font(.system(size: 8))
-                        .opacity(0.7)
-                        .rotationEffect(.degrees(270))
-                        .offset(x: -90, y: 0)
-                        .rotationEffect(.degrees(anglePoints[index]))
-                } // fin ZStack 2
-                .onAppear{
-                    selectedValue = initValue - 1
-                    selectedAngle = anglePoints[initValue - 1] - 90
-                }
-                .padding(10)
-                .onTapGesture {
-                    selectedValue = index
-                    selectedAngle = anglePoints[index] - 90
-                    pressButton = false
-                }
-                
-            } // fin ForEach
-            
-        } // fin ZStack 1
-        .scaleEffect(CGSize(width: scale, height: scale))
-        .animation(Animation.easeIn)
+                .foregroundColor(Color("AppColor1"))
+//                .strokeBorder(Color("AppColor1"),lineWidth: 1)
+                .background(Circle().foregroundColor(Color("AppColor1")))
+                .padding().frame(height: 200)
+                .frame(width: 123, height: 123)
+                .shadow(color: Color("AppColor1").opacity(0.8), radius: 3)
         
-    }
+//        Circle()
+//            .resizable()
+//            .rotationEffect(.degrees(54))
+//            .frame(width: 123, height: 123, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//            .clipShape(Circle())
+//            .shadow(radius: 10)
+        
+        // Le bouton du milieu
+        Image("moletteS")
+            .resizable()
+            .rotationEffect(.degrees(54 + selectedAngle))
+            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .clipShape(Circle())
+            .scaleEffect(pressButton ? 0.9 : 1)
+            
+            .onLongPressGesture(minimumDuration: 0.01, pressing:
+                                    {inProgress in
+                                        print("In progress: \(inProgress)")
+                                        pressButton.toggle()
+                                        AudioServicesPlaySystemSound(1001)
+                                    }) {
+                print("Long press")
+                pressButton = false
+                lastMoodRating = selectedValue + 1
+                newClic.toggle()
+            }
+            
+            .rotationEffect(currentAmount + finalAmount)
+            .gesture(
+                RotationGesture()
+                    .onChanged { angle in
+                        self.currentAmount = angle
+                    }
+                    .onEnded { angle in
+                        self.finalAmount += self.currentAmount
+                        self.currentAmount = .degrees(0)
+                        
+                        self.selectedAngle += finalAmount.degrees - totAngle/2
+                    }
+            )
+        
+        
+        ForEach(0..<anglePoints.count) {index in
+            
+            ZStack{
+                Circle()
+                    .strokeBorder(Color("AppColor3"),lineWidth: 1)
+                    .background(Circle().foregroundColor(index>selectedValue ? Color("AppColor2") : ratingColorMapping[index+1]).opacity(1.0))
+                    .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .offset(x: -75, y: 0)
+                    .rotationEffect(.degrees(anglePoints[index]))
+                
+                Text("\(index+1)")
+                    .font(.system(size: 8))
+                    .opacity(0.7)
+                    .rotationEffect(.degrees(270))
+                    .offset(x: -90, y: 0)
+                    .rotationEffect(.degrees(anglePoints[index]))
+            } // fin ZStack 2
+            .onAppear{
+                selectedValue = initValue - 1
+                selectedAngle = anglePoints[initValue - 1] - 90
+            }
+            .padding(10)
+            .onTapGesture {
+                selectedValue = index
+                selectedAngle = anglePoints[index] - 90
+                pressButton = false
+            }
+            
+        } // fin ForEach
+        
+    } // fin ZStack 1
+    .scaleEffect(CGSize(width: scale, height: scale))
+    .animation(Animation.easeIn)
+}
+
 }
 
 struct WheelButton_Previews: PreviewProvider {
