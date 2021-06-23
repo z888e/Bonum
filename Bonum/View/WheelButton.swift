@@ -33,11 +33,17 @@ struct WheelButton: View {
     
     @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
     
-    @Binding var scoreEntered: Int
-
+    @Binding var newClic: Bool
+    
     
     var body: some View {
+        
         ZStack{
+            
+            MrBonum(mood: selectedValue+1, moodFrom: initValue+1)
+                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .offset(x: 0, y: -180)
+                .scaleEffect(CGSize(width: 0.8, height: 0.8))
             
             // La bague autour
             Image("moletteM")
@@ -64,7 +70,7 @@ struct WheelButton: View {
                     print("Long press")
                     pressButton = false
                     lastMoodRating = selectedValue + 1
-                    scoreEntered += 1
+                    newClic.toggle()
                 }
                 
                 .rotationEffect(currentAmount + finalAmount)
@@ -112,21 +118,15 @@ struct WheelButton: View {
                 
             } // fin ForEach
             
-            //            VStack{
-            //            Text("\(selectedAngle)")
-            //            Text("\(finalAmount.degrees)")
-            //            }
-            
         } // fin ZStack 1
         .scaleEffect(CGSize(width: scale, height: scale))
-        .animation(.easeOut)
-        
+        .animation(Animation.easeIn)
         
     }
 }
 
 struct WheelButton_Previews: PreviewProvider {
     static var previews: some View {
-        WheelButton(totAngle: 270, scale: 1.5, initValue: 5, scoreEntered: .constant(3))
+        WheelButton(totAngle: 270, scale: 1.5, initValue: 2, newClic: .constant(false))
     }
 }
