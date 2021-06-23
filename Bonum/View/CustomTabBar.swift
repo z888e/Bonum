@@ -10,14 +10,8 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @Binding var tabIndex: Int
-    @State private var showMoodTracker = false
-    
-    let fontSize: CGFloat = 10
-    let iconSize: CGFloat = 20
-    let unselectetIconColor = Color.gray
-    let selectetIconColor = Color.yellow
-    
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
+    @State private var showMoodTracker = false
     @State private var sinceLastMoodDate : Double = 1
     @State private var counter: Int = 0
     
