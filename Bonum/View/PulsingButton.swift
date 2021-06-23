@@ -28,11 +28,15 @@ struct PulsingButton: View {
                 
                 Circle().fill(colorB.opacity(0.45)).frame(width: sizeB*0.5, height: sizeB*0.5).scaleEffect(self.animate ? 1 : minimumRatioB)
                 
-                Circle().fill(Color.white).frame(width: sizeB*0.53, height: sizeB*0.53)
+                Circle().fill(Color("AppColorWhite")).frame(width: sizeB*0.53, height: sizeB*0.53)
                 
-                Image(systemName: "plus.circle.fill")
-                    .font(.system(size: sizeB*0.5))
-                    .foregroundColor(colorB)
+                ZStack{
+                    Image(systemName: "circle.fill").font(.system(size: sizeB*0.53))
+                        .foregroundColor(colorB)
+                    Image(systemName: "plus")
+                        .font(.system(size: sizeB*0.33))
+                        .foregroundColor(Color("AppColorWhite"))
+                }
                 
             } // Fin ZStack
             .onAppear{

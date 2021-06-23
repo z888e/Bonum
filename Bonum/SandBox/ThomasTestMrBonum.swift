@@ -25,11 +25,11 @@ struct DrawMrBonum: View {
         
         GeometryReader { geo in // Pour récupérer les dimension de la zone dans laquelle on dessine.
 
-            let e = min(Double(geo.size.width), Double(geo.size.height)) / 100.00
+//            let e = min(Double(geo.size.width), Double(geo.size.height)) / 100.00
             
-            let se1 = s1.map { $0 * e }
-            
-            let se2 = s2.map { $0 * e }
+//            let se1 = s1.map { $0 * e }
+//
+//            let se2 = s2.map { $0 * e }
             
 //            ZStack {
 //                // Le corps :
@@ -107,7 +107,7 @@ struct MrBonum1: View {
             ZStack {
                 
                 Rectangle()
-                    .stroke(Color.gray, lineWidth: 1)
+                    .stroke(Color("AppColor3"), lineWidth: 1)
                     .frame(width: 100, height: 100)
                 
                 // Le corps :
@@ -140,7 +140,7 @@ struct MrBonum1: View {
                     path.closeSubpath()
                     
                 } // Path
-                .fill(Color.gray)
+                .fill(Color("AppColor3"))
                 
                 // La tête :
                 Path { path in
@@ -196,7 +196,7 @@ struct MrBonum2: View {
                     path.closeSubpath()
                     
                 } // Path
-                .fill(Color.gray)
+                .fill(Color("AppColor3"))
                 //                .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
                 
                 // La tête :

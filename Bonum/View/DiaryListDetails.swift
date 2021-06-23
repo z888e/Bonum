@@ -42,15 +42,15 @@ Bravo, continuez !
     }
 
     var impactMessageColor : Color {
-        var res : Color = .white
+        var res : Color = Color("AppColorWhite")
         if element.impact == 0 {
             res = .gray
         }else if element.impact > 0 && element.impact < 1 {
-            res = .purple
+            res = .gray
         }else if element.impact >= 1 && element.impact < 2  {
-            res = .blue
+            res = Color.yellow
         }else if element.impact >= 2 && element.impact < 3  {
-            res = .green
+            res = Color("AppColor1")
         }
         return res
     }
@@ -72,10 +72,10 @@ Bravo, continuez !
                 }.padding(20)
                 .background(impactMessageColor)
                 .cornerRadius(20)
-                .foregroundColor(.white)
+                .foregroundColor(Color("AppColorWhite"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.gray, lineWidth: 0.2)
+                        .stroke(Color("AppColor1"), lineWidth: 0.2)
                 )
                 
                 DiaryListDetailsGraph(element : element)
@@ -91,7 +91,7 @@ Bravo, continuez !
                     .padding(.horizontal, 20)
                     .foregroundColor(.gray)
                     .overlay(RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.gray, lineWidth: 2))
+                                .stroke(Color("AppColor3"), lineWidth: 2))
                     //                    .overlay(
                     //                        RoundedRectangle(cornerRadius: 25)
                     //                            .stroke(Color.gray, lineWidth: 0.2)

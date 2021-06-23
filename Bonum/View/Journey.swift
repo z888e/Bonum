@@ -34,8 +34,8 @@ struct Journey: View {
                             ZStack {
                                 
                                 Circle()
-                                    .strokeBorder(Color(#colorLiteral(red: 0, green: 0.5871291161, blue: 0.9982084632, alpha: 1)))
-                                    .background(Circle().fill(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1))))
+                                    .strokeBorder(Color("AppColor1"))
+                                    .background(Circle().fill(Color("AppColor1")))
                                     .frame(width: 180, height: 180)
                                 
                                 VStack(spacing: 10) {
@@ -46,7 +46,7 @@ struct Journey: View {
                                         
                                         Image(systemName: "plus.circle")
                                             .font(.system(size: 20))
-                                            .background(Color(#colorLiteral(red: 0.3810210228, green: 0.8251447082, blue: 0.9997627139, alpha: 1)))
+                                            .background(Color("AppColor1"))
                                             .mask(Circle())
                                         
                                     }
@@ -91,10 +91,10 @@ struct Journey: View {
                     VStack(spacing: 10) {
                         Image(systemName: "circle.fill")
                             .font(.system(size: 30))
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color("AppColor3"))
                         
                         Text("Début")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color("AppColor3"))
                     }
                     .padding()
                     

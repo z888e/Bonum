@@ -16,19 +16,19 @@ struct ImpactIllustration: View {
             VStack{
                 Spacer()
                 RoundedRectangle(cornerRadius: 1)
-                    .fill(impactLevel >= 1 ? Color.yellow : Color.gray)
+                    .fill(impactLevel >= 1 ? Color("AppColor1") : Color("AppColor3"))
                     .frame(width: 5, height: 5)
             }
             VStack{
                 Spacer()
                 RoundedRectangle(cornerRadius: 1)
-                    .fill(impactLevel >= 2 ? Color.yellow : Color.gray)
+                    .fill(impactLevel >= 2 ? Color("AppColor1") : Color("AppColor3"))
                     .frame(width: 5, height: 10)
             }
             VStack{
                 Spacer()
                 RoundedRectangle(cornerRadius: 1)
-                    .fill(impactLevel >= 3 ? Color.yellow : Color.gray)
+                    .fill(impactLevel >= 3 ? Color("AppColor1") : Color("AppColor3"))
                     .frame(width: 5, height: 15)
             }
         }.padding(0)

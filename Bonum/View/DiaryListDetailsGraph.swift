@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-var LARGEUR: Int = 300
-var HAUTEUR: Int = 200
+var LARGEUR: Int = 390
+var HAUTEUR: Int = 300
+var strokeColor : Color = Color("AppColor1")
+var strokeOpacity : Double = 0.7
+var strokeStyle : StrokeStyle = StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round)
+var topGradientColor: [Color] = [Color("AppColor1"), Color("AppColor1")]
+var bottomGradientColor : Color = Color("AppColorWhite")
 
 struct DiaryListDetailsGraph: View {
     
-    @State private var graphBgColor : Color = .white
-//    @State private var newColor : Color = .orange
-    
+    @State private var bottomGradientColor : Color = Color("AppColorWhite")
     var element : DataElement
-    
-    var colors: [Color] = [.green, .green, .green, .green, .green]
-    
     var GraphValues : [Double]{element.values.map{$0.value}}
     
     var body: some View {
@@ -29,15 +29,15 @@ struct DiaryListDetailsGraph: View {
                 Text(element.values[0].date, style: .date)
             }
             .onAppear{
-                var newColor = graphBgColor
-                while graphBgColor == newColor {
-                    newColor = colors.randomElement()!
+                var newColor = bottomGradientColor
+                while bottomGradientColor == newColor {
+                    newColor = topGradientColor.randomElement()!
                 }
-                graphBgColor = newColor
+                bottomGradientColor = newColor
             }
             
             if GraphValues.max() != 0 {
-                GrapheView(color: graphBgColor, GraphValues: GraphValues)
+                GrapheView(color: bottomGradientColor, GraphValues: GraphValues)
                     .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
                     .cornerRadius(5)
             } else {
@@ -81,10 +81,10 @@ struct GrapheView: View {
                 .foregroundColor(self.prevColor)
             Graphe(progress: layerProgress, GraphValues: GraphValues)
                 .fill(
-                    LinearGradient(gradient: Gradient(colors: [layerColor, Color.blue]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [layerColor, bottomGradientColor]), startPoint: .top, endPoint: .bottom)
                 )
             Graphe(closed: false, progress: layerProgress, GraphValues: GraphValues)
-                .stroke(Color.black.opacity(0.5), style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                .stroke(strokeColor.opacity(strokeOpacity), style: strokeStyle)
         }
         
         .onChange(of: self.color) { color in
@@ -118,7 +118,7 @@ struct Graphe: Shape {
     var closed = true
     
     // Marges :
-    var marginX: Double = 10.00
+    var marginX: Double = 30.00
     var marginY: Double = 10.00
     
     // Taille :

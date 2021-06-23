@@ -86,8 +86,8 @@ struct WheelButton: View {
                 
                 ZStack{
                     Circle()
-                        .strokeBorder(Color.gray,lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color(#colorLiteral(red: 0.8798124194, green: 0.8799602389, blue: 0.8797928691, alpha: 1)) : ratingColorMapping[index+1]).opacity(1.0))
+                        .strokeBorder(Color("AppColor3"),lineWidth: 1)
+                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColor2") : ratingColorMapping[index+1]).opacity(1.0))
                         .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .offset(x: -75, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))

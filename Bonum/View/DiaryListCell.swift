@@ -52,7 +52,7 @@ struct DiaryListCell: View {
         }.padding()
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.gray, lineWidth: 1).shadow(radius: 1.0)
+                .stroke(Color("AppColor1"), lineWidth: 1).shadow(color: Color("AppColor1"), radius: 3.0, x: -2, y: 2)
         )
     }
 }
