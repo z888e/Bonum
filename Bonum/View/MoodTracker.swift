@@ -12,15 +12,17 @@ import WidgetKit
 struct MoodTracker: View {
     
     @EnvironmentObject var userData: UserData
-    @State private var scoreEntered : Int = 0
+    @State private var newClic : Bool = false
     // Permet de stocker le dernier score et sa date
-    @AppStorage("lastMoodRating") private var lastMoodRating: Int = 5
+    @AppStorage("lastMoodRating") private var lastMoodRating: Int = 0
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var newMoodValue: MoodValue = MoodValue(timestamp: Date(), rating: 0, source: 0)
     @State private var showHistory: Bool = false
+    var lastMoodForMr: Int {
+        lastMoodRating
+    }
     
     let noticationManager = NotificationDelegate()
-    
     let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
     
     //    var lastMood: Int {
@@ -42,15 +44,24 @@ struct MoodTracker: View {
         
         VStack {
             
-            Image("forme8")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .padding()
+            Text("Quelle est votre état de forme en ce moment ?")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(Color.yellow)
+                .multilineTextAlignment(.center)
+                .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+
+            Spacer()
+            
+//            Image("forme8")
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                .padding()
 
             
-            WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, scoreEntered: $scoreEntered)
-                .onChange(of: scoreEntered, perform: { value in
+            WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, newClic: $newClic)
+                .onChange(of: newClic, perform: { value in
                     
                     newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
                     userData.userMoodHistory.append(newMoodValue)
@@ -66,7 +77,7 @@ struct MoodTracker: View {
                     WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
                     
                 })
-                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
             
             Button(action: {showHistory = true}, label: {
@@ -75,7 +86,6 @@ struct MoodTracker: View {
                     Text("Historique")
                     }
             })
-
             Spacer()
             
         }
