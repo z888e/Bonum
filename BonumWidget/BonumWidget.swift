@@ -24,12 +24,12 @@ struct Provider: IntentTimelineProvider {
         
         // Generate a timeline consisting of one entrie a minute apart, starting from the current date.
         let currentDate = Date()
-        let entryDate = Calendar.current.date(byAdding: .minute, value: 1, to: currentDate)!
+        let entryDate = Calendar.current.date(byAdding: .minute, value: 60, to: currentDate)!
         let entry = SimpleEntry(date: entryDate, configuration: configuration)
         entries.append(entry)
         
         // let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 1, to: currentDate)!
-        let timeline = Timeline(entries: entries, policy: .never)
+        let timeline = Timeline(entries: entries, policy: .atEnd)
         
         completion(timeline)
     }

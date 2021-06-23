@@ -9,6 +9,7 @@ import SwiftUI
 
 struct JourneyDetail: View {
     
+    @EnvironmentObject var userData: UserData
     @Binding var event: JourneyEvent
     @State private var journeyData: JourneyEvent.Data = JourneyEvent.Data()
     @State private var shownImage = UIImage()
@@ -59,6 +60,7 @@ struct JourneyDetail: View {
                     }, trailing: Button("Terminé") {
                         isPresented = false
                         event.update(from: journeyData)
+                        userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
                     })
             }
         }
