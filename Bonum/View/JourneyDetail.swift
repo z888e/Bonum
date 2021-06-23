@@ -15,6 +15,14 @@ struct JourneyDetail: View {
     @State private var shownImage = UIImage()
     @State private var isPresented = false
     
+    var eventDate: String {
+        let date = event.date
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "fr")
+        formatter.setLocalizedDateFormatFromTemplate("dMMMMYYYY")
+        return formatter.string(from: date)
+    }
+    
     var body: some View {
         
         VStack {
@@ -23,7 +31,7 @@ struct JourneyDetail: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .overlay(
-                    Text("\(event.title)\n\(event.date, style: .date)")
+                    Text("\(event.title)\n\(eventDate)")
                         .font(.title)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
