@@ -13,6 +13,7 @@ struct DiaryListDetails: View {
     @State private var showingAlert = false
     
     var element : DataElement
+    var timeArea : String
     var index : IndexSet.ArrayLiteralElement
     var impactMessageToUser : String {
         var res = " "
@@ -27,7 +28,7 @@ Impact indéterminé. Suivez cet élement plus longtemps.
 L'impact sur votre forme semble fort. Continuez !
 """        }else if element.impact >= 2 && element.impact < 3  {
     res = """
-L'impact semble sur votre forme semble maximal. Bravo, continuez !
+L'impact sur votre forme semble maximal. Bravo, continuez !
 """        }
         return res
     }
@@ -47,7 +48,6 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
     }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {

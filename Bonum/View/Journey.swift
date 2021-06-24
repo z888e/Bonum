@@ -36,7 +36,7 @@ struct Journey: View {
                     RoundedRectangle(cornerRadius: 25.0)
                         .frame(width: 2, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .foregroundColor(Color("AppColor1"))
-                        .shadow(color: Color("AppColor1").opacity(0.8), radius: 3)
+                        .shadow(color: Color("AppColor1").opacity(0.9), radius: 3)
                         .padding(.leading, -5.5)
                     
                     VStack{
