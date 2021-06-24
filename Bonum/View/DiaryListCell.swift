@@ -32,16 +32,21 @@ struct DiaryListCell: View {
             VStack(alignment: .leading, spacing: 10){
                 HStack(spacing:7){
                     ImpactIllustration(impactLevel : impactLevel).padding(.bottom, 10)
-                    Text(element.customName)
+                        .foregroundColor(Color("AppColor2"))
+                    Text(element.customName).foregroundColor(Color("AppColor2"))
                 }.padding(0)
                                 
                 HStack{
                     if lastDailyValue == 0 {
                         Text("Pas de donnée aujourd'hui").italic()
+                            .foregroundColor(Color("AppColor2"))
                     } else {
-                        HStack{
+                        HStack(alignment: .bottom){
                             Text("\(lastDailyValue, specifier: element.displayedSpecifier)").font(.system(size: 30.0))
+                                .foregroundColor(Color("AppColor2"))
                             Text("\(element.displayedUnit)")
+                                .foregroundColor(Color("AppColor2"))
+                                
                         }
                     }
                 }

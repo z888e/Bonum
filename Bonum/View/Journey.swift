@@ -12,7 +12,6 @@ struct Journey: View {
     @State private var isPresented = false
     @State private var isEdited = false
     @State private var newEventData = JourneyEvent.Data()
-
     @State private var shownImageNew = UIImage()
     @State private var newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
     
@@ -21,7 +20,7 @@ struct Journey: View {
             $0.date > $1.date
         }
     }
-
+    
     var eventsIndices: [Int] {
         Array(events.indices)
     }
@@ -32,85 +31,118 @@ struct Journey: View {
             
             ScrollView {
                 
-                VStack {
+                ZStack{
                     
-                    Button(action: {isEdited = true}, label: {
-                        
-                        ZStack {
-                            
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .frame(width: 2, height: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("AppColor1"))
+                        .shadow(color: Color("AppColor1").opacity(0.8), radius: 3)
+                        .padding(.leading, -5.5)
+                    
+                    VStack{
+                        Color("AppColor3").frame(height:270)
+                        Spacer()
+                    }
+                    
+                    VStack{
+                        Spacer().frame(width: 1, height: 304, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        HStack{
                             Circle()
-                                .strokeBorder(Color("AppColor1"))
-                                .background(Circle().fill(Color("AppColor1")))
-                                .frame(width: 180, height: 180)
+                                .foregroundColor(Color(#colorLiteral(red: 0.682051599, green: 0.8307157159, blue: 0, alpha: 1)))
+                                .frame(width:10, height:10)
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    
+                    VStack(spacing:0) {
+                        //top
+                        VStack{
                             
-                            VStack(spacing: 10) {
-                                HStack(alignment: .top, spacing: -15) {
-                                    
-                                    Image(systemName: "flag")
-                                        .font(.system(size: 50))
-                                    
-                                    Image(systemName: "plus.circle")
-                                        .font(.system(size: 20))
-                                        .background(Color("AppColor1"))
-                                        .mask(Circle())
+                            Button(action: {
+                                isEdited = true
+                            }, label: {
+                                ZStack{
+                                    Circle()
+                                        .fill(Color("AppColor1"))
+                                        .shadow(color: Color.red.opacity(0.2),
+                                                radius: 5,
+                                                x: 7,
+                                                y: 7)
+                                        .shadow(color: Color.white.opacity(0.3),
+                                                radius: 5,
+                                                x: -5,
+                                                y: -5)
+                                        .overlay(
+                                            Circle()
+                                                .stroke(Color.white, lineWidth: 0.3)
+                                        )
+                                    VStack{
+                                        Text("Nouveau palier").foregroundColor(Color("AppColorWhite"))
+                                            .padding(.bottom, 10)
+                                        Image(systemName: "flag")
+                                            .font(.system(size: 60))
+                                            .foregroundColor(Color("AppColorWhite"))
+                                            
+                                    }.frame(height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                }
+                            }) .buttonStyle(PlainButtonStyle())
+                            .fullScreenCover(isPresented: $isEdited) {
+                                NavigationView {
+                                    JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
+                                        .navigationBarItems(leading: Button("Annuler") {
+                                            isEdited = false
+                                        }, trailing: Button("Terminé") {
+                                            isEdited = false
+                                            newEvent.update(from: newEventData)
+                                            userData.userJourneyEvents.append(newEvent)
+                                            userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
+                                        })
                                 }
                                 
-                                Text("Aujourd'hui")
-                                    .font(.title3)
                             }
                             
-                        }
-                        .padding()
+                        }.padding(.top, 70)
+                        .padding(.bottom, 40)
                         
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .fullScreenCover(isPresented: $isEdited) {
-                        NavigationView {
-                            JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
-                                .navigationBarItems(leading: Button("Annuler") {
-                                    isEdited = false
-                                }, trailing: Button("Terminé") {
-                                    isEdited = false
-                                    newEvent.update(from: newEventData)
-                                    userData.userJourneyEvents.append(newEvent)
-                                    userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
-                                })
-                        } // C'est ici qu'on crée un nouvel événement
-                    }
-                    
-                    
-                    VStack(spacing: 0) {
-                        ForEach(eventsIndices, id: \.self) { index in
-                            
-                            let event = events[index]
-                            let previousMood = events[max(0, index - 1)].moodValue
-                            let realIndex: Int? = userData.userJourneyEvents.firstIndex(of: event)
-                            
-                            NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex!])) {
-                                JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
+                        
+                        //events
+                        VStack(spacing: 0) {
+                            ForEach(eventsIndices, id: \.self) { index in
+                                
+                                let event = events[index]
+                                let previousMood = events[max(0, index - 1)].moodValue
+                                let realIndex: Int? = userData.userJourneyEvents.firstIndex(of: event)
+                                
+                                NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex!])) {
+                                    JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
+                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
-                    }
-                    
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 20))
-                        .foregroundColor(.gray)
-                    
-                    VStack(spacing: 10) {
-                        Image(systemName: "circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(Color("AppColor3"))
                         
-                        Text("Début")
-                            .foregroundColor(Color("AppColor3"))
+                        //début
+                        VStack(spacing: 10) {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 30))
+                                .foregroundColor(Color("AppColor1"))
+                                .shadow(color: Color("AppColor1").opacity(0.8), radius: 3)
+                                .padding(.top, -2)
+                            
+                            Text("Votre début avec Bonum")
+                                .foregroundColor(Color("AppColor2"))
+                        }
+                        .padding(.leading, -10)
+                        .background(Color("AppColor3"))
+                        .padding(.top, 50)
+                        
                     }
-                    .padding()
-                    
                 }
-                .padding(.vertical)
-            }
-            
+                .padding(.bottom, 50)
+            }.navigationBarHidden(true)
+            .navigationTitle("Parcours")
+            .edgesIgnoringSafeArea(.all)
+            .background(Color("AppColor3"))
         }
     }
 }

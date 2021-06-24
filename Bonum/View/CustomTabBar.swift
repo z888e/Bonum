@@ -17,7 +17,7 @@ struct CustomTabBar: View {
     
     let fontSize: CGFloat = 12
     let iconSize: CGFloat = 28
-    let unselectetIconColor = Color("AppColor3")
+    let unselectetIconColor = Color("AppColor2")
     let selectetIconColor = Color("AppColor1")
     let durations: [Double] = [5, 2, 1, 0.6, 0.3]
     let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()

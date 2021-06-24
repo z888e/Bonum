@@ -26,22 +26,21 @@ struct JourneyDetail: View {
     var body: some View {
         
         VStack {
-            
+
             Image(uiImage: shownImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .overlay(
                     Text("\(event.title)\n\(eventDate)\n\n\(event.comment)")
                         .font(.title3)
-                        .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color("AppColorWhite"))
                         .padding()
+                        .frame(width: 300, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(Color("AppColor3"))
-                        .cornerRadius(10)
-                        .opacity(0.8)
+                        .cornerRadius(25)
+                        .opacity(0.9)
                         .padding(),
-                    
                     alignment: .top
                 )
 
@@ -53,9 +52,7 @@ struct JourneyDetail: View {
                     LocalFileManager.instance.saveImage(image: value, name: event.imageName)
                     shownImage = event.image
                 })
-            
-            Spacer()
-            
+                        
         }
         .navigationBarItems(trailing: Button("Modifier"){
             isPresented = true

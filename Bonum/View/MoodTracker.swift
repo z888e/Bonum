@@ -57,7 +57,7 @@ struct MoodTracker: View {
                         }, label: {
                             Image(systemName: "plus")
                                 .font(.system(size: 40))
-                                .foregroundColor(Color("AppColor3"))
+                                .foregroundColor(Color("AppColor1"))
                                 .rotationEffect(.degrees(135))
                         })
                         Spacer()
@@ -65,7 +65,7 @@ struct MoodTracker: View {
                     
                     Text("Quelle est votre état de forme en ce moment ?")
                         .font(.title)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 50)
                     

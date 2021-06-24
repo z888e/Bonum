@@ -77,7 +77,7 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
                 VStack(spacing:30){
                     Text(element.customName)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .padding(.vertical, 50)
                         .padding(.horizontal, 25)
                     
@@ -97,9 +97,9 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
                             Text("Ne plus suivre cet élément")
                         }.padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .overlay(RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color("AppColor3"), lineWidth: 2))
+                                    .stroke(Color("AppColor2"), lineWidth: 2))
                         
                         .alert(isPresented: self.$showingAlert) {
                             Alert(title: Text("Interrompre le suivi"), message:   Text("""

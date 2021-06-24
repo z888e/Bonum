@@ -67,12 +67,12 @@ struct AddElement: View {
                     Text("Ajouter un élément")
                         .font(.title)
                         .padding(.bottom, 30)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                     
                     Picker(selection: $customName, label: Text("Color")) {
                         ForEach(unusedAvailableHKTypes, id: \.self) { el in
                             Text(el)
-                        }.foregroundColor(Color("AppColor3"))
+                        }.foregroundColor(Color("AppColor2"))
                     }
                 }
                 
@@ -184,7 +184,7 @@ struct AddElement: View {
                 if authorized && !dataRetreived {
                     VStack{
                         Text("A partir de quelle date analyser cet élément?")
-                            .foregroundColor(Color("AppColor3"))
+                            .foregroundColor(Color("AppColor2"))
                             .font(.title2)
                             .padding(.bottom, 50)
                         DatePicker("", selection: $begin, in: ...Date(), displayedComponents: .date)
@@ -236,11 +236,13 @@ struct AddElement: View {
                     VStack{
                         HStack{
                             Text(customName).font(.title)
+                                .foregroundColor(Color("AppColor2"))
                             Image(systemName: "checkmark").foregroundColor(Color("AppColor1")).font(.title)
                             Spacer()
                         }.padding(.horizontal, 20)
                         HStack{
                             Text("Depuis le " + dateToString(date: begin, format: "DateShort")).font(.title)
+                                .foregroundColor(Color("AppColor2"))
                             Image(systemName: "checkmark").foregroundColor(Color("AppColor1")).font(.title)
                             Spacer()
                         }.padding(.horizontal, 20)

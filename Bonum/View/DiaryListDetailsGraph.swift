@@ -35,7 +35,8 @@ struct DiaryListDetailsGraph: View {
             
             HStack {
                 Text("Suivi depuis le").font(.caption)
-                Text(element.values[0].date, style: .date).font(.caption)
+                    .foregroundColor(Color("AppColor2"))
+                Text(element.values[0].date, style: .date).font(.caption).foregroundColor(Color("AppColor2"))
             }
             .onAppear{
                 var newColor = bottomGradientColor
