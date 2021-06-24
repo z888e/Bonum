@@ -28,13 +28,15 @@ struct JourneyEdit: View {
                 self.isShowingImagePicker.toggle()
             }, label: {
                 
-                VStack {
+                ZStack {
                     
                     Image(uiImage: shownImage)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 150, height: 150)
                         .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray))
+                        .padding(.horizontal)
                     
                     Text("Modifier")
                         .font(.subheadline)

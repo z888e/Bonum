@@ -17,6 +17,8 @@ extension View {
 
 struct JourneyCell: View {
     
+    var asImageChanged: Bool = false
+    
     let previousMoodValue: Int
     let event: JourneyEvent
     
@@ -85,12 +87,17 @@ struct JourneyCell: View {
                         ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
                     })
                     .onChange(of: pickedImage, perform: { value in
+                        print("onchange pickedImage")
                         LocalFileManager.instance.saveImage(image: value, name: event.imageName)
                         shownImage = pickedImage
                     })
                     .onAppear(perform: {
                         shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
                     })
+//                    .onChange(of: asImageChanged, perform: { value in
+//                        print("onchange asImageChanged")
+//                        shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
+//                    })
                 
                 HStack{
                     VStack(alignment: .leading) {
