@@ -31,54 +31,65 @@ struct MoodTracker: View {
         ZStack{
             Color("AppColorWhite")
             
-        VStack {
-            
-            Spacer().frame(height: 40)
-            
-            Text("Quelle est votre état de forme en ce moment ?")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(Color("AppColor3"))
-                .multilineTextAlignment(.center)
-                .padding(50)
+            VStack(spacing:30) {
+                HStack{
+                    Button(action: {
+                        showMoodTracker = false
+                    }, label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("AppColor3"))
+                            .rotationEffect(.degrees(135))
+                    })
+                    Spacer()
+                }.padding()
+                    
+                Text("Quelle est votre état de forme en ce moment ?")
+                    .font(.title)
+                    .foregroundColor(Color("AppColor3"))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 50)
+                
+                Spacer().frame(height:140)
+                
+                WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, newClic: $newClic)
+                    .onChange(of: newClic, perform: { value in
+                        
+                        newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
+                        userData.userMoodHistory.append(newMoodValue)
+                        userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
+                        UserDefaults.group.set(dateToString(date: Date(), format: "DateTimeShort"), forKey: "dateW")
+                        lastMoodDate = Date()
+                        lastMoodRating = lastMoodRating
+                        
+                        // Réinitialisation des notifications
+                        noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
+                        
+                        // Refresh du widget (ne pas oublier d'importer WidgetKit)
+                        WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
+                        
+                        // Fermeture de la modale
+                        showMoodTracker = false
+                        
+                    })
+                    .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.top, 50)
+                
+                Spacer().frame(height:50)
+                
+//                Button(action: {
+//                    showMoodTracker = false
+//                }, label: {
+//                    Image(systemName: "plus.circle")
+//                        .font(.system(size: 30))
+//                        .foregroundColor(Color("AppColor1"))
+//                })
 
-            Spacer()
-            
-//            Image("forme8")
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                .padding()
-            
-            WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, newClic: $newClic)
-                .onChange(of: newClic, perform: { value in
-                    
-                    newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
-                    userData.userMoodHistory.append(newMoodValue)
-                    userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
-                    UserDefaults.group.set(dateToString(date: Date(), format: "DateTimeShort"), forKey: "dateW")
-                    lastMoodDate = Date()
-                    lastMoodRating = lastMoodRating
-                    
-                    // Réinitialisation des notifications
-                    noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
-                    
-                    // Refresh du widget (ne pas oublier d'importer WidgetKit)
-                    WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
-                    
-                    // Fermeture de la modale
-                    showMoodTracker = false
-                    
-                })
-                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            
-            Spacer()
-            
-        }.background(Color("AppColorWhite"))
-        .edgesIgnoringSafeArea(.bottom)
-        
+                Spacer()
+
+            }.background(Color("AppColorWhite"))
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all)
     }
 }
 extension UserDefaults {

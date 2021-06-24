@@ -17,7 +17,6 @@
 		588EF596267248CF00A888DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF595267248CF00A888DB /* Assets.xcassets */; };
 		588EF599267248CF00A888DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588EF598267248CF00A888DB /* Preview Assets.xcassets */; };
 		5890D0FE267B6D2B00448EAC /* ScoreBonum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */; };
-		589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBEE2678D73700E6C5FC /* TabBarView.swift */; };
 		589FBBF12678DE0600E6C5FC /* DiaryListDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */; };
 		58E6B76C26789FC7008643F7 /* HealthKitOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */; };
 		58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */; };
@@ -96,7 +95,6 @@
 		588EF598267248CF00A888DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588EF59A267248CF00A888DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBonum.swift; sourceTree = "<group>"; };
-		589FBBEE2678D73700E6C5FC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListDetails.swift; sourceTree = "<group>"; };
 		58E6B76B26789FC7008643F7 /* HealthKitOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitOnboarding.swift; sourceTree = "<group>"; };
 		58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
@@ -215,16 +213,10 @@
 		66DD5F7D267349D700EB3642 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				662ACCD42678994B00287EB8 /* Buttons.swift */,
 				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
-				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
-				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
-				662ACCD0267896C400287EB8 /* PageTab.swift */,
 				662ACCD42678994B00287EB8 /* Buttons.swift */,
-				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				587BB968267C9CA300A103FB /* AddElement.swift */,
-				58318E30268231E100965158 /* PopulateHK.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
 				58318E322682782900965158 /* ImpactIllustration.swift */,
 				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
@@ -241,7 +233,6 @@
 				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
 				58F013F92683E1DE00A4FF98 /* ScoreBonumDetails.swift */,
 				58318E30268231E100965158 /* PopulateHK.swift */,
-				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
 				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
@@ -265,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				58E6B76F2678A756008643F7 /* DiaryList.swift */,
-				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
 				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 			);
 			path = ObsoleteView;
@@ -413,7 +403,6 @@
 				58E6B76E2678A6DB008643F7 /* DiaryListCell.swift in Sources */,
 				D847BEEF267FA58E00F420E7 /* WilTestWidget.swift in Sources */,
 				587BB969267C9CA300A103FB /* AddElement.swift in Sources */,
-				589FBBEF2678D73700E6C5FC /* TabBarView.swift in Sources */,
 				66DD5F8126734A4900EB3642 /* Onboarding.swift in Sources */,
 				66DD5F8326734A9800EB3642 /* MoodTracker.swift in Sources */,
 				E94EB65A2678A4910088CC4D /* ThomasTestGraphData.swift in Sources */,
