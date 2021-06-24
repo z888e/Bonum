@@ -134,7 +134,7 @@ struct Journey: View {
                                 .padding(.top, -2)
                             
                             Text("Votre début avec Bonum")
-                                .foregroundColor(Color("AppColor2"))
+                                .foregroundColor(Color("AppColor1"))
                         }
                         .padding(.leading, -10)
                         .background(Color("AppColor3"))

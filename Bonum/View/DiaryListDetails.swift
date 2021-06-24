@@ -33,20 +33,6 @@ L'impact sur votre forme semble maximal. Bravo, continuez !
         return res
     }
     
-    var impactMessageColor : Color {
-        var res : Color = Color("AppColorWhite")
-        if element.impact == 0 {
-            res = .gray
-        }else if element.impact > 0 && element.impact < 1 {
-            res = .gray
-        }else if element.impact >= 1 && element.impact < 2  {
-            res = Color.yellow
-        }else if element.impact >= 2 && element.impact < 3  {
-            res = Color("AppColor1")
-        }
-        return res
-    }
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -86,7 +72,7 @@ L'impact sur votre forme semble maximal. Bravo, continuez !
                             .foregroundColor(Color("AppColor3"))
                     }.padding(20)
                     
-                    DiaryListDetailsGraph(element : element)
+                    DiaryListDetailsGraph(element : element, timeArea : timeArea)
                     
                     Spacer()
                     

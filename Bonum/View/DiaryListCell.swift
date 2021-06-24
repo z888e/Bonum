@@ -77,11 +77,12 @@ struct DiaryListCell: View {
                         Text("Pas de donnée aujourd'hui").italic()
                             .foregroundColor(Color("AppColor2"))
                     } else {
-                        HStack(alignment: .bottom){
+                        HStack(alignment: .bottom, spacing: 5){
                             Text("\(elValueDisplayed, specifier: element.displayedSpecifier)").font(.system(size: 30.0))
                                 .foregroundColor(Color("AppColor2"))
+                                .padding(.bottom, -3)
                             Text("\(element.displayedUnit)")
-                                .foregroundColor(Color("AppColor2"))
+                                .foregroundColor(Color("AppColor2")).opacity(0.8)
                             Text("\(timeAreaComment)")
                                 .foregroundColor(Color("AppColor1"))
                                 .italic()

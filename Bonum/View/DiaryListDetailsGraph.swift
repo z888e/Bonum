@@ -19,6 +19,7 @@ struct DiaryListDetailsGraph: View {
     
     @State private var bottomGradientColor : Color = Color("AppColorWhite")
     var element : DataElement
+    var timeArea : String
     var GraphValues : [Double]{element.values.map{$0.value}}
     
     var body: some View {
@@ -72,9 +73,7 @@ struct GrapheView: View {
         // à l'inverse la color sera updatée si elle change "au dessus"
         self.GraphValues = GraphValues
     }
-    
-    
-    
+        
     var body: some View {
         
         ZStack {
@@ -203,6 +202,6 @@ struct Graphe: Shape {
 
 struct DiaryListDetailsGraph_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListDetailsGraph(element: MYSTEPSELEMENT)
+        DiaryListDetailsGraph(element: MYSTEPSELEMENT, timeArea: "S")
     }
 }
