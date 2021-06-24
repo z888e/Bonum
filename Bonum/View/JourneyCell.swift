@@ -28,11 +28,13 @@ struct JourneyCell: View {
     
     var body: some View {
         
-        HStack {
-            
+        ZStack {
+            HStack{
             Rectangle()
                 .fill(gradient)
                 .frame(width: 10, height: 100)
+                Spacer()
+            }
             
             VStack{
                 HStack{
