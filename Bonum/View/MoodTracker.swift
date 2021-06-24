@@ -112,21 +112,65 @@ struct MoodTracker: View {
             })
             Spacer()
             
+            VStack(spacing:30) {
+                HStack{
+                    Button(action: {
+                        showMoodTracker = false
+                    }, label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color("AppColor3"))
+                            .rotationEffect(.degrees(135))
+                    })
+                    Spacer()
+                }.padding()
+                    
+                Text("Quelle est votre état de forme en ce moment ?")
+                    .font(.title)
+                    .foregroundColor(Color("AppColor3"))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 50)
+                
+                Spacer().frame(height:140)
+                
+                WheelButton(totAngle: 270, scale: 1.5, initValue: lastMoodRating, newClic: $newClic)
+                    .onChange(of: newClic, perform: { value in
+                        
+                        newMoodValue = MoodValue(timestamp: Date(), rating: lastMoodRating, source: 0)
+                        userData.userMoodHistory.append(newMoodValue)
+                        userData.writeJson(tab: userData.userMoodHistory, filename: "MoodsList")
+                        UserDefaults.group.set(dateToString(date: Date(), format: "DateTimeShort"), forKey: "dateW")
+                        lastMoodDate = Date()
+                        lastMoodRating = lastMoodRating
+                        
+                        // Réinitialisation des notifications
+                        noticationManager.smartNotification(lastEnreg: Date(), interval: 75)
+                        
+                        // Refresh du widget (ne pas oublier d'importer WidgetKit)
+                        WidgetCenter.shared.reloadTimelines(ofKind: "BonumWidget")
+                        
+                        // Fermeture de la modale
+                        showMoodTracker = false
+                        
+                    })
+                    .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.top, 50)
+                
+                Spacer().frame(height:50)
+                
+//                Button(action: {
+//                    showMoodTracker = false
+//                }, label: {
+//                    Image(systemName: "plus.circle")
+//                        .font(.system(size: 30))
+//                        .foregroundColor(Color("AppColor1"))
+//                })
+
+                Spacer()
+
+            }.background(Color("AppColorWhite"))
         }
-        .sheet(isPresented: $showHistory, content: {
-            Button("Fermer l'historique") {
-                self.showHistory.toggle()
-            }
-            .padding()
-            ScrollView {
-                ForEach(sortedMoodHistory, id: \.self) { moodEntry in
-                    MoodCell(mood: moodEntry)
-                }
-            }
-        })
-        
-        }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all)
     }
 }
 

@@ -33,13 +33,11 @@ struct DiaryListCell: View {
                 HStack(spacing:7){
                     ImpactIllustration(impactLevel : impactLevel).padding(.bottom, 10)
                     Text(element.customName)
-                }.padding(5)
-                
-                Spacer()
-                
+                }.padding(0)
+                                
                 HStack{
                     if lastDailyValue == 0 {
-                        Text("Pas de donnée aujourd'hui")
+                        Text("Pas de donnée aujourd'hui").italic()
                     } else {
                         HStack{
                             Text("\(lastDailyValue, specifier: element.displayedSpecifier)").font(.system(size: 30.0))

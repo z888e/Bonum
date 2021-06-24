@@ -24,18 +24,6 @@ struct DiaryListDetailsGraph: View {
     var body: some View {
         
         VStack {
-            HStack {
-                Text("Début de la période :")
-                Text(element.values[0].date, style: .date)
-            }
-            .onAppear{
-                var newColor = bottomGradientColor
-                while bottomGradientColor == newColor {
-                    newColor = topGradientColor.randomElement()!
-                }
-                bottomGradientColor = newColor
-            }
-            
             if GraphValues.max() != 0 {
                 GrapheView(color: bottomGradientColor, GraphValues: GraphValues)
                     .frame(width: CGFloat(LARGEUR), height: CGFloat(HAUTEUR), alignment: .center)
@@ -43,6 +31,18 @@ struct DiaryListDetailsGraph: View {
             } else {
                 //TODO:Modal fullscreen d'explication
                 Text("Pas de données. En savoir plus.").padding()
+            }
+            
+            HStack {
+                Text("Suivi depuis le").font(.caption)
+                Text(element.values[0].date, style: .date).font(.caption)
+            }
+            .onAppear{
+                var newColor = bottomGradientColor
+                while bottomGradientColor == newColor {
+                    newColor = topGradientColor.randomElement()!
+                }
+                bottomGradientColor = newColor
             }
         }
     }

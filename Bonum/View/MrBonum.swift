@@ -97,7 +97,7 @@ struct MrBonum: View {
         ZStack {
             
             PathCorps(progress: progress, sf: sFrom, st: sTo)
-                .fill(Color.black)
+                .fill(Color("AppColor3"))
                 .frame(width: 150)
                 .onChange(of: mood, perform: { value in
                     withAnimation(.easeInOut(duration: 1).repeatForever() ) {

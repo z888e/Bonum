@@ -31,8 +31,8 @@ struct JourneyDetail: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .overlay(
-                    Text("\(event.title)\n\(eventDate)")
-                        .font(.title)
+                    Text("\(event.title)\n\(eventDate)\n\n\(event.comment)")
+                        .font(.title3)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color("AppColorWhite"))
