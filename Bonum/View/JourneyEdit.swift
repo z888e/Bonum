@@ -16,6 +16,10 @@ struct JourneyEdit: View {
     @State private var shownImage = UIImage()
     @Binding var pickedImage: UIImage
     
+    var imageName: String {
+        return event.imageName.isEmpty ? UUID().uuidString : event.imageName
+    }
+    
     var body: some View {
         
         VStack {
@@ -34,6 +38,7 @@ struct JourneyEdit: View {
                     
                     Text("Modifier")
                         .font(.subheadline)
+//                    Text(imageName)
                 }
                 
             })
@@ -41,11 +46,11 @@ struct JourneyEdit: View {
                 ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
             })
             .onChange(of: pickedImage, perform: { value in
-                LocalFileManager.instance.saveImage(image: value, name: event.imageName)
+                LocalFileManager.instance.saveImage(image: value, name: imageName)
                 shownImage = pickedImage
             })
             .onAppear(perform: {
-                shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
+                shownImage = LocalFileManager.instance.getImage(name: imageName) ?? UIImage()
             })
             
             List {

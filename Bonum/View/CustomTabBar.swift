@@ -13,7 +13,7 @@ struct CustomTabBar: View {
     @AppStorage("lastMoodDate") private var lastMoodDate: Date = Date()
     @State private var showMoodTracker = false
     @State private var sinceLastMoodDate : Double = 1
-    @State private var counter: Int = 0
+    @State private var counter: Int = 1
     
     let fontSize: CGFloat = 12
     let iconSize: CGFloat = 28
@@ -40,7 +40,7 @@ struct CustomTabBar: View {
             
             HStack{
                 Button(action: {
-                    self.tabIndex = 0
+                    self.tabIndex = 1
                 }) {
                     VStack{
                         Image(systemName: "book.closed")
@@ -56,7 +56,7 @@ struct CustomTabBar: View {
                 Button(action: {
                     self.showMoodTracker = true
                 }) {
-                    PulsingButton(colorB: (self.tabIndex == 1 ? selectetIconColor : unselectetIconColor), sizeB: iconSize*3.3, minimumRatioB: 0.5, durationB: durations[counter])
+                    PulsingButton(colorB: unselectetIconColor, sizeB: iconSize*3, minimumRatioB: 0.5, durationB: durations[counter])
                         .onReceive(timer) { time in
                             if self.counter == 4 {
                                 self.timer.upstream.connect().cancel()
