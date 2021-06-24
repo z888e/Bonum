@@ -45,24 +45,89 @@ struct BonumWidgetEntryView : View {
     
     //    var userName = UserDefaults.standard.object(forKey: "userName") as? String ?? "No name"
     let dateW = UserDefaults.group.object(forKey: "dateW") as? String ?? "No date"
+    let trueDateW = UserDefaults.group.object(forKey: "trueDateW") as? Date ?? Date()
+    
+    var dateS: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "fr")
+        formatter.dateFormat = "d MMM y, HH:mm"
+        return formatter.string(from: trueDateW)
+    }
+    
+    @Environment(\.widgetFamily) var family
     
     var body: some View {
-        HStack{
-            Image("Jump")
-                .resizable()
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .cornerRadius(10.0)
-                .scaledToFill()
-            
-            //Text(userName)
-            VStack (alignment: .center){
-                Text("La dernière mise à jour de votre état de forme date du :\n")
-                    .multilineTextAlignment(.center)
-                Text(dateW)
-                    .fontWeight(.bold)
+        
+        switch family {
+        case .systemSmall:
+            ZStack{
+                Image("Jump")
+                    .resizable()
+                    .scaledToFill()
+                    .overlay(RoundedRectangle(cornerRadius: 22)
+                                .stroke(Color("AppColor1"), lineWidth: 10))
+                    .cornerRadius(10.0)
+                    .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                VStack{
+                    Text(trueDateW, style: .timer)
+                        .font(.system(size: 18))
+                        .fontWeight(.bold)
+                    Text("minute(s) depuis votre denière mise à jour.")
+                        .font(.system(size: 14))
+                    Text("Go")
+                        .fontWeight(.bold)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color("AppColor1"))
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .background(Color("AppColor3"))
+                        .cornerRadius(6)
+                }
+                .foregroundColor(Color("AppColor3"))
+                .padding()
             }
-            .font(.system(size: 14))
+            
+        default:
+            ZStack{
+                Color("AppColor3")
+                
+                HStack {
+                    Image("Jump")
+                        .resizable()
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(10.0)
+                        .scaledToFill()
+                        .padding(.horizontal, 10)
+                    
+                    //Text(userName)
+                    VStack (alignment: .leading) {
+                        HStack (alignment: .center) {
+                            Text(trueDateW, style: .timer)
+                                .font(.system(size: 18))
+                                .fontWeight(.bold)
+                                + Text(" que vous n'avez pas dit à Bonum comment vous vous sentez.\n")
+                        }
+                        .foregroundColor(Color("AppColor1"))
+                        .padding(.trailing, 10)
+                        
+                        HStack{
+                            Text("Voulez-vous le faire ?")
+                                .foregroundColor(Color("AppColor1"))
+                                .padding(.trailing, 10)
+                            Text("Go")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("AppColor3"))
+                                .frame(width: 30, height: 30, alignment: .center)
+                                .background(Color("AppColor1"))
+                                .cornerRadius(6)
+                        }
+                    }
+                    .font(.system(size: 14))
+                }
+                
+            }
+            
         }
+        
     }
 }
 extension UserDefaults {
@@ -90,5 +155,8 @@ struct BonumWidget_Previews: PreviewProvider {
     static var previews: some View {
         BonumWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
+        
+        BonumWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
