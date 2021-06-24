@@ -72,7 +72,7 @@ struct BonumWidgetEntryView : View {
                     Text(trueDateW, style: .timer)
                         .font(.system(size: 18))
                         .fontWeight(.bold)
-                    Text("minute(s) depuis votre denière mise à jour.")
+                    Text("depuis votre denière mise à jour.")
                         .font(.system(size: 14))
                     Text("Go")
                         .fontWeight(.bold)
