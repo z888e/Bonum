@@ -99,36 +99,28 @@ struct MrBonum: View {
             PathCorps(progress: progress, sf: sFrom, st: sTo)
                 .fill(Color.black)
                 .frame(width: 150)
-                
-                
-                .onAppear {
-                    withAnimation(.easeInOut(duration: 1).repeatCount(1)) {
+                .onChange(of: mood, perform: { value in
+                    withAnimation(.easeInOut(duration: 1).repeatForever() ) {
                         progress = 1
                     }
-                }
-                
-//                .onAppear {
-//                    withAnimation(.easeInOut(duration: 1).repeatForever() ) {
-//                        progress = 1
-//                    }
-//                }
+                })
             
             PathTete(progress: progress, sf: sFrom, st: sTo)
                 .fill(progress == 1 ? couleurTeteTo : couleurTeteFrom)
                 .frame(width: 150)
-                
-                .onAppear {
-                    withAnimation(.easeInOut(duration: 1).repeatCount(1)) {
+                .onChange(of: mood, perform: { value in
+                    withAnimation(.easeInOut(duration: 1).repeatForever() ) {
                         progress = 1
                     }
-                }
-                
-                
-//                .onAppear {
-//                    withAnimation(.easeInOut(duration: 1).repeatForever() ) {
-//                        progress = 1
-//                    }
-//                }
+                })
+
+            
+            
+            //                .onAppear {
+            //                    withAnimation(.easeInOut(duration: 1).repeatForever() ) {
+            //                        progress = 1
+            //                    }
+            //                }
             
         } // ZStack
         
@@ -232,6 +224,6 @@ struct PathTete: Shape {
 
 struct MrBonum_Previews: PreviewProvider {
     static var previews: some View {
-        MrBonum(mood: 4, moodFrom: 1)
+        MrBonum(mood: 1, moodFrom: 2)
     }
 }

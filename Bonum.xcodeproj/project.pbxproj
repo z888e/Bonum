@@ -217,9 +217,14 @@
 			children = (
 				662ACCD42678994B00287EB8 /* Buttons.swift */,
 				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
+				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
+				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
+				662ACCD0267896C400287EB8 /* PageTab.swift */,
+				662ACCD42678994B00287EB8 /* Buttons.swift */,
+				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				587BB968267C9CA300A103FB /* AddElement.swift */,
-				58E6B76F2678A756008643F7 /* DiaryList.swift */,
+				58318E30268231E100965158 /* PopulateHK.swift */,
 				58E6B76D2678A6DB008643F7 /* DiaryListCell.swift */,
 				58318E322682782900965158 /* ImpactIllustration.swift */,
 				589FBBF02678DE0600E6C5FC /* DiaryListDetails.swift */,
@@ -229,7 +234,6 @@
 				66A993B3267A4ACA00A2D1AE /* JourneyCell.swift */,
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				662E8F2F267C87EF005657CB /* JourneyEdit.swift */,
-				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
 				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
 				662ACCD0267896C400287EB8 /* PageTab.swift */,
@@ -239,9 +243,10 @@
 				58318E30268231E100965158 /* PopulateHK.swift */,
 				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
+				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
 				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
-				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
 				E9CD0D172683132B002DE485 /* MrBonum.swift */,
+				D80056282683879000E0EDD2 /* ObsoleteView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +259,16 @@
 				D82D47402673AB8E0099A58F /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D80056282683879000E0EDD2 /* ObsoleteView */ = {
+			isa = PBXGroup;
+			children = (
+				58E6B76F2678A756008643F7 /* DiaryList.swift */,
+				589FBBEE2678D73700E6C5FC /* TabBarView.swift */,
+				66DD5F8A26734BB400EB3642 /* DataCell.swift */,
+			);
+			path = ObsoleteView;
 			sourceTree = "<group>";
 		};
 		D82D47382673AA850099A58F /* SandBox */ = {

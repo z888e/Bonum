@@ -28,10 +28,16 @@ struct MoodTracker: View {
     
     var body: some View {
         
+        ZStack{
+            Color("AppColorWhite")
+            
         VStack {
+            
+            Spacer().frame(height: 40)
             
             Text("Quelle est votre état de forme en ce moment ?")
                 .font(.title)
+                .fontWeight(.bold)
                 .foregroundColor(Color("AppColor3"))
                 .multilineTextAlignment(.center)
                 .padding(50)
@@ -64,13 +70,15 @@ struct MoodTracker: View {
                     showMoodTracker = false
                     
                 })
-                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
             Spacer()
             
         }.background(Color("AppColorWhite"))
         .edgesIgnoringSafeArea(.bottom)
         
+        }
+        .ignoresSafeArea()
     }
 }
 extension UserDefaults {
