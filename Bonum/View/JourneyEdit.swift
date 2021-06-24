@@ -57,6 +57,7 @@ struct JourneyEdit: View {
 
                 TextField("Titre", text: $JourneyData.title)
                 DatePicker("Date", selection: $JourneyData.date, displayedComponents: .date)
+                TextField("Commentaire", text: $JourneyData.comment)
                 
             }
             .listStyle(InsetGroupedListStyle())

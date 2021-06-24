@@ -14,7 +14,7 @@ struct Journey: View {
     @State private var newEventData = JourneyEvent.Data()
 
     @State private var shownImageNew = UIImage()
-    @State private var newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5)
+    @State private var newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
     
     var events: [JourneyEvent] {
         return userData.userJourneyEvents.sorted {
@@ -109,7 +109,6 @@ struct Journey: View {
                     
                 }
                 .padding(.vertical)
-                .navigationTitle("Parcours")
             }
             
         }
