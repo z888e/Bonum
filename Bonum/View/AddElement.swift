@@ -21,6 +21,7 @@ struct AddElement: View {
     @State private var displayedSpecifier : String = "%.f"
     @State private var customName = "Choisir"
     @State private var isDiscrete = false
+    @State private var impact = 0
     @State private var begin = Date()
     @State private var values = [DataValue]()
     @State private var authorized = false
@@ -47,7 +48,7 @@ struct AddElement: View {
             values.append(newDataValue)
         }
     }
-        
+    
     private func populateDiscreteElementValues(_ statisticsCollection: HKStatisticsCollection, valueNameInHK : HKUnit) {
         statisticsCollection.enumerateStatistics(from: begin, to: Date()) {
             (statistics, stop) in
@@ -63,36 +64,44 @@ struct AddElement: View {
         NavigationView{
             VStack{
                 if !authorized {
-                    Text("Ajouter une donnée à suivre").font(.title).padding()
+                    Text("Ajouter un élément")
+                        .font(.title)
+                        .padding(.bottom, 30)
+                        .foregroundColor(Color("AppColor3"))
                     
                     Picker(selection: $customName, label: Text("Color")) {
                         ForEach(unusedAvailableHKTypes, id: \.self) { el in
                             Text(el)
-                        }
+                        }.foregroundColor(Color("AppColor3"))
                     }
-                } else if !dataRetreived {
-                    Text("Ajouter " + customName).font(.title2)
                 }
                 
                 if customName != "Choisir" && !authorized {
-                    Text("Utiliser \(customName) nécessite votre autorisation.")
+                    HStack{
+                        VStack(alignment : .leading, spacing:10){
+                            Text("Utiliser \(customName) nécessite votre autorisation.").padding(.horizontal, 20).foregroundColor(Color("AppColorWhite"))
+                            
+                            Button(action: {
+                                showingAlert = true
+                            }) {
+                                HStack{
+                                    Text("Besoin d'aide ").foregroundColor(Color("AppColor1"))
+                                    Image(systemName: "questionmark.circle").foregroundColor(Color("AppColor1"))
+                                    Spacer()
+                                }.padding(.horizontal, 20)
+                            }
+                            .alert(isPresented: self.$showingAlert) {
+                                Alert(title: Text("Aide"), message:   Text("""
+        Bonum utilise les données correspondant à l'élément choisi dans Santé.
+        Si vous suivez cette donnée pour la première fois, une demande d'autorisation apparaitra.
+        Si vous avec déjà autorisé cet élément dans Santé, vous pourrez passer à la prochaine étape.
+        Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Réglages > Santé > Accès aux données et appareils > Bonum" et modifier sa permission afin de pouvoir l'utiliser.
+        """), dismissButton: .default(Text("Ok")))
+                            }
+                        }.padding(.vertical, 20)
+                        Spacer()
+                    }.background(Color("AppColor3"))
                     
-                    Button(action: {
-                        showingAlert = true
-                    }) {
-                        HStack{
-                            Text("Besoin d'aide ")
-                            Image(systemName: "questionmark.circle")
-                        }.padding()
-                    }
-                    .alert(isPresented: self.$showingAlert) {
-                        Alert(title: Text("Aide"), message:   Text("""
-Bonum utilise les données correspondant à l'élément choisi dans Santé.
-Si vous suivez cette donnée pour la première fois, une demande d'autorisation apparaitra.
-Si vous avec déjà autorisé cet élément dans Santé, vous pourrez passer à la prochaine étape.
-Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Réglages > Santé > Accès aux données et appareils > Bonum" et modifier sa permission afin de pouvoir l'utiliser.
-"""), dismissButton: .default(Text("Ok")))
-                    }
                     
                     Button(action: {
                         func setIdType(name : String = customName) -> HKQuantityTypeIdentifier {
@@ -101,6 +110,7 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                                 valueNameInHK = HKUnit.count()
                                 displayedUnit = "pas"
                                 displayedSpecifier = "%.f"
+                                impact = 2
                             }
                             if name == "Rythme Cardiaque" {
                                 idType = .heartRate
@@ -157,18 +167,30 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                     , label: {
                         HStack{
                             Spacer()
-                            Text("Autoriser").padding(30)
+                            Text("Autoriser")
+                                .foregroundColor(Color("AppColorWhite"))
+                                .fontWeight(.semibold)
+                                .padding()
+                                .frame(width: 250, height: 50)
+                                .background(Color("AppColor1"))
+                                .cornerRadius(20)
+                                .shadow(radius: 1)
                             Spacer()
-                        }
+                        }.padding(40)
                     }
                     )
                 }
                 
                 if authorized && !dataRetreived {
-                    VStack(alignment: .leading){
+                    VStack{
                         Text("A partir de quelle date analyser cet élément?")
-                        DatePicker("A partir de", selection: $begin, in: ...Date(), displayedComponents: .date)
+                            .foregroundColor(Color("AppColor3"))
+                            .font(.title2)
+                            .padding(.bottom, 50)
+                        DatePicker("", selection: $begin, in: ...Date(), displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
+                            .saturation(0.0)
+                            .colorMultiply(Color("AppColor1"))
                     } .padding(30)
                     
                     Button(action: {
@@ -195,12 +217,35 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                         }
                         
                     }, label: {
-                        Text("Valider").padding(20)
+                        HStack{
+                            Spacer()
+                            Text("Valider")
+                                .foregroundColor(Color("AppColorWhite"))
+                                .fontWeight(.semibold)
+                                .padding()
+                                .frame(width: 250, height: 50)
+                                .background(Color("AppColor1"))
+                                .cornerRadius(20)
+                                .shadow(radius: 1)
+                            Spacer()
+                        }.padding(.bottom, 40)
                     })
                 }
                 
                 if dataRetreived {
-                    
+                    VStack{
+                        HStack{
+                            Text(customName).font(.title)
+                            Image(systemName: "checkmark").foregroundColor(Color("AppColor1")).font(.title)
+                            Spacer()
+                        }.padding(.horizontal, 20)
+                        HStack{
+                            Text("Depuis le " + dateToString(date: begin, format: "DateShort")).font(.title)
+                            Image(systemName: "checkmark").foregroundColor(Color("AppColor1")).font(.title)
+                            Spacer()
+                        }.padding(.horizontal, 20)
+
+                    }
                     Button(action: {
                         let newElement = DataElement(
                             identifierInHK: identifierInHK,
@@ -210,7 +255,7 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                             isDiscrete: isDiscrete,
                             customName: customName,
                             begin: begin,
-                            impact:0,
+                            impact:impact,
                             values: values
                         )
                         
@@ -220,12 +265,23 @@ Si vous avez déjà refusé l'accès à cette donnée, veuillez aller dans "Rég
                         userData.writeJson(tab: userData.userElementsList, filename: "ElementsList")
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Text("Ajouter \(customName) comme élément Bonum")
+                        HStack{
+                            Spacer()
+                            Text("Ajouter le nouvel élément")
+                                .foregroundColor(Color("AppColorWhite"))
+                                .fontWeight(.semibold)
+                                .padding()
+                                .frame(width: 270, height: 50)
+                                .background(Color("AppColor1"))
+                                .cornerRadius(20)
+                                .shadow(radius: 1)
+                            Spacer()
+                        }.padding(.vertical, 60)
                     })
                     
                 }
             }.navigationBarHidden(true)
-        }
+        }.background(Color("AppColorWhite"))
     }
 }
 

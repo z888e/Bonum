@@ -9,19 +9,22 @@ import SwiftUI
 
 struct Journey: View {
     @EnvironmentObject var userData: UserData
-    @State private var newEventData = JourneyEvent.Data()
     @State private var isPresented = false
     @State private var isEdited = false
-    
+    @State private var newEventData = JourneyEvent.Data()
+    @State private var asImageChanged: Bool = false
+
     @State private var shownImageNew = UIImage()
-    @State private var newEvent = EMPTYJOURNEYEVENT
+    @State private var newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
     
     var events: [JourneyEvent] {
-        userData.userJourneyEvents.reversed()
+        return userData.userJourneyEvents.sorted {
+            $0.date > $1.date
+        }
     }
-    
-    var eventsIndices: [Int] {
-        Array(events.indices)
+
+    var eventsIndices: [(Int, JourneyEvent)] {
+        Array(events.enumerated())
     }
     
     var body: some View {
@@ -32,65 +35,65 @@ struct Journey: View {
                 
                 VStack {
                     
-                    VStack {
+                    Button(action: {isEdited = true}, label: {
                         
-                        //                        NavigationLink(destination: JourneyEdit(event: EMPTYJOURNEYEVENT, JourneyData: $newEventData, pickedImage: $shownImageNew)) {
-                        Button(action: {isEdited = true}, label: {
+                        ZStack {
                             
-                            ZStack {
-                                
-                                Circle()
-                                    .strokeBorder(Color("AppColor1"))
-                                    .background(Circle().fill(Color("AppColor1")))
-                                    .frame(width: 180, height: 180)
-                                
-                                VStack(spacing: 10) {
-                                    HStack(alignment: .top, spacing: -15) {
-                                        
-                                        Image(systemName: "flag")
-                                            .font(.system(size: 50))
-                                        
-                                        Image(systemName: "plus.circle")
-                                            .font(.system(size: 20))
-                                            .background(Color("AppColor1"))
-                                            .mask(Circle())
-                                    }
+                            Circle()
+                                .strokeBorder(Color("AppColor1"))
+                                .background(Circle().fill(Color("AppColor1")))
+                                .frame(width: 180, height: 180)
+                            
+                            VStack(spacing: 10) {
+                                HStack(alignment: .top, spacing: -15) {
                                     
-                                    Text("Aujourd'hui")
-                                        .font(.title3)
+                                    Image(systemName: "flag")
+                                        .font(.system(size: 50))
+                                    
+                                    Image(systemName: "plus.circle")
+                                        .font(.system(size: 20))
+                                        .background(Color("AppColor1"))
+                                        .mask(Circle())
                                 }
                                 
+                                Text("Aujourd'hui")
+                                    .font(.title3)
                             }
-                            .padding()
                             
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .fullScreenCover(isPresented: $isEdited) {
-                            NavigationView {
-                                JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
-                                    .navigationBarItems(leading: Button("Annuler") {
-                                        isEdited = false
-                                    }, trailing: Button("Terminé") {
-                                        isEdited = false
-                                        newEvent.update(from: newEventData)
-                                        userData.userJourneyEvents.append(newEvent)
-                                        userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
-                                    })
-                            }
                         }
+                        .padding()
                         
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                    .fullScreenCover(isPresented: $isEdited, onDismiss: {
+                        asImageChanged.toggle()
+                        newEventData = JourneyEvent.Data()
+                        shownImageNew = UIImage()
+                        newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
+                    }) {
+                        NavigationView {
+                            JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
+                                .navigationBarItems(leading: Button("Annuler") {
+                                    isEdited = false
+                                }, trailing: Button("Terminé") {
+                                    isEdited = false
+                                    newEvent.update(from: newEventData)
+                                    userData.userJourneyEvents.append(newEvent)
+                                    userData.writeJson(tab: userData.userJourneyEvents, filename: "JourneyList")
+                                })
+                        } // C'est ici qu'on crée un nouvel événement
                     }
                     
                     
                     VStack(spacing: 0) {
-                        ForEach(eventsIndices, id: \.self) { index in
+                        ForEach(eventsIndices, id: \.1.id) { index, event in
                             
                             let event = events[index]
                             let previousMood = events[max(0, index - 1)].moodValue
-                            let realIndex = (events.count - 1) - index
+                            let realIndex: Int? = userData.userJourneyEvents.firstIndex(of: event)
                             
-                            NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex])) {
-                                JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex].image)
+                            NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex!])) {
+                                JourneyCell(asImageChanged: asImageChanged, previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
@@ -112,7 +115,6 @@ struct Journey: View {
                     
                 }
                 .padding(.vertical)
-                .navigationTitle("Parcours")
             }
             
         }
@@ -181,6 +183,8 @@ class LocalFileManager {
         
         do {
             try data.write(to: path)
+            
+            print(path)
             print("Success saving!")
         } catch let error {
             print("Error saving. \(error)")
@@ -193,10 +197,11 @@ class LocalFileManager {
         guard
             let path = getPathForImage(name: name)?.path,
             FileManager.default.fileExists(atPath: path) else {
-            print("Error getting path.")
+            print("Error getting path for image \(name).")
             return nil
         }
         
+        print(path)
         return UIImage(contentsOfFile: path)
         
     }
@@ -205,7 +210,7 @@ class LocalFileManager {
         
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(name).jpg") else {
-            print("Error getting path.")
+            print("Error getting path for image \(name).")
             return nil
         }
         
@@ -217,7 +222,7 @@ class LocalFileManager {
         
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(name).json") else {
-            print("Error getting path.")
+            print("Error getting path for Json \(name).")
             return nil
         }
         
@@ -253,6 +258,7 @@ class FileManagerViewModel: ObservableObject {
     }
     
 }
+
 
 
 struct Journey_Previews: PreviewProvider {

@@ -9,17 +9,11 @@ import SwiftUI
 
 struct JourneyCell: View {
     
+    var asImageChanged: Bool = false
+    
     let previousMoodValue: Int
     let event: JourneyEvent
     
-    var eventDate: String {
-        let date = event.date
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "fr")
-        formatter.setLocalizedDateFormatFromTemplate("dMMMM")
-        return formatter.string(from: date)
-    }
-
     var currentMoodColor: Color {
         ratingColorMapping[event.moodValue] ?? .purple
     }
@@ -36,26 +30,33 @@ struct JourneyCell: View {
     
     var body: some View {
         
-        HStack {
-            
+        ZStack {
+            HStack{
             Rectangle()
                 .fill(gradient)
                 .frame(width: 10, height: 100)
+                Spacer()
+            }
             
-            Spacer()
+            VStack{
+                HStack{
+                    Spacer()
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
             
-            VStack() {
-                
-                Image(systemName: "arrow.up")
-                    .font(.system(size: 20))
-                    .foregroundColor(.gray)
-                
+            HStack {
+             
                 HStack {
-                    
-//                    Text("\(event.date, style: .date)")
-                    Text(eventDate)
-                        .fontWeight(.semibold)
-                        .font(.caption)
+                Spacer()
+                Text(dateToString(date: event.date, format: "Date"))
+                    .fontWeight(.semibold)
+                    .font(.caption)
+                    .multilineTextAlignment(.trailing)
+                }
+                    .frame(maxWidth: .infinity)
                     
                     Button(action: {
                         self.isShowingImagePicker.toggle()
@@ -66,36 +67,43 @@ struct JourneyCell: View {
                             .scaledToFill()
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
-//                            .overlay(Circle().stroke(Color.gray))
-                        
+                            .overlay(Circle().stroke(Color.gray))
+                            .padding(.horizontal)
                     })
                     .sheet(isPresented: $isShowingImagePicker, content: {
                         ImagePickerView(isPresented: $isShowingImagePicker, selectedImage: self.$pickedImage)
                     })
                     .onChange(of: pickedImage, perform: { value in
+                        print("onchange pickedImage")
                         LocalFileManager.instance.saveImage(image: value, name: event.imageName)
                         shownImage = pickedImage
                     })
                     .onAppear(perform: {
                         shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
                     })
-                    
+//                    .onChange(of: asImageChanged, perform: { value in
+//                        print("onchange asImageChanged")
+//                        shownImage = LocalFileManager.instance.getImage(name: event.imageName) ?? UIImage()
+//                    })
+                
+                HStack{
                     VStack(alignment: .leading) {
-                        Text(event.title)
-                            .font(.callout)
-                            .foregroundColor(Color("AppColor3"))
-                            .fontWeight(.semibold)
-                        Text("Nom de la nouvelle donnée suivie")
-                            .foregroundColor(Color("AppColor2"))
-                            .font(.caption)
-                    }
-                    
+                    Text(event.title)
+                        .font(.callout)
+                        .foregroundColor(Color("AppColor3"))
+                        .fontWeight(.semibold)
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+//                    Text("Nom de la nouvelle donnée suivie")
+//                        .foregroundColor(Color("AppColor2"))
+//                        .font(.caption)
+//                        .multilineTextAlignment(.leading)
                 }
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
                 
             }
-            
-            Spacer()
-            
+            }
         }
     }
     
@@ -104,7 +112,7 @@ struct JourneyCell: View {
 
 struct JourneyCell_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyCell(previousMoodValue: 5, event: MYJOURNEY[0], pickedImage: .constant(UIImage()))
+        JourneyCell(previousMoodValue: 5, event: MYJOURNEY[3], pickedImage: .constant(UIImage()))
             .previewLayout(.sizeThatFits)
             .environment(\.locale, Locale(identifier: "fr"))
     }
