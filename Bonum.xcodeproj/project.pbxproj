@@ -214,6 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				D847BEEC267CC04F00F420E7 /* CustomTabBar.swift */,
+				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
+				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
+				662ACCD0267896C400287EB8 /* PageTab.swift */,
 				662ACCD42678994B00287EB8 /* Buttons.swift */,
 				66DD5F8426734AF000EB3642 /* Diary.swift */,
 				587BB968267C9CA300A103FB /* AddElement.swift */,
@@ -227,16 +230,13 @@
 				66DD5F8826734B7C00EB3642 /* JourneyDetail.swift */,
 				662E8F2F267C87EF005657CB /* JourneyEdit.swift */,
 				66DD5F8226734A9800EB3642 /* MoodTracker.swift */,
-				66DD5F8026734A4900EB3642 /* Onboarding.swift */,
-				662ACCD0267896C400287EB8 /* PageTab.swift */,
-				D847BEEA267CA3AA00F420E7 /* PulsingButton.swift */,
+				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
+				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
+				E9CD0D172683132B002DE485 /* MrBonum.swift */,
 				5890D0FD267B6D2B00448EAC /* ScoreBonum.swift */,
 				58F013F92683E1DE00A4FF98 /* ScoreBonumDetails.swift */,
 				58318E30268231E100965158 /* PopulateHK.swift */,
 				D82D475A2678FACD0099A58F /* UserNotifications.swift */,
-				D847BEE8267C8C8200F420E7 /* MoodCell.swift */,
-				D8F1896F2680C22300DB9C7B /* WheelButton.swift */,
-				E9CD0D172683132B002DE485 /* MrBonum.swift */,
 				D80056282683879000E0EDD2 /* ObsoleteView */,
 			);
 			path = View;

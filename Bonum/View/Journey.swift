@@ -12,6 +12,7 @@ struct Journey: View {
     @State private var isPresented = false
     @State private var isEdited = false
     @State private var newEventData = JourneyEvent.Data()
+    @State private var asImageChanged: Bool = false
 
     @State private var shownImageNew = UIImage()
     @State private var newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
@@ -22,8 +23,8 @@ struct Journey: View {
         }
     }
 
-    var eventsIndices: [Int] {
-        Array(events.indices)
+    var eventsIndices: [(Int, JourneyEvent)] {
+        Array(events.enumerated())
     }
     
     var body: some View {
@@ -64,7 +65,12 @@ struct Journey: View {
                         
                     })
                     .buttonStyle(PlainButtonStyle())
-                    .fullScreenCover(isPresented: $isEdited) {
+                    .fullScreenCover(isPresented: $isEdited, onDismiss: {
+                        asImageChanged.toggle()
+                        newEventData = JourneyEvent.Data()
+                        shownImageNew = UIImage()
+                        newEvent = JourneyEvent(title: "", date: Date(), imageName: UUID().uuidString, type: 0, moodValue: 5, comment: "")
+                    }) {
                         NavigationView {
                             JourneyEdit(event: newEvent, JourneyData: $newEventData, pickedImage: $shownImageNew)
                                 .navigationBarItems(leading: Button("Annuler") {
@@ -80,14 +86,14 @@ struct Journey: View {
                     
                     
                     VStack(spacing: 0) {
-                        ForEach(eventsIndices, id: \.self) { index in
+                        ForEach(eventsIndices, id: \.1.id) { index, event in
                             
                             let event = events[index]
                             let previousMood = events[max(0, index - 1)].moodValue
                             let realIndex: Int? = userData.userJourneyEvents.firstIndex(of: event)
                             
                             NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex!])) {
-                                JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
+                                JourneyCell(asImageChanged: asImageChanged, previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
