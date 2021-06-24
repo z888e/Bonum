@@ -45,7 +45,7 @@ struct WheelButton: View {
                 .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .offset(x: 0, y: -180)
                 .scaleEffect(CGSize(width: 0.8, height: 0.8))
-                .padding(.bottom, 60)
+                .padding(.bottom, 40)
             
             // La bague autour
             //pas fini
@@ -121,7 +121,7 @@ struct WheelButton: View {
                                     {inProgress in
                                         print("In progress: \(inProgress)")
                                         pressButton.toggle()
-                                        AudioServicesPlaySystemSound(1001)
+                                        AudioServicesPlaySystemSound(1013)
                                     }) {
                 print("Long press")
                 pressButton = false
@@ -147,10 +147,10 @@ struct WheelButton: View {
                 
                 ZStack{
                     Circle()
-                        .strokeBorder(Color("AppColor2"),lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColorWhite") : ratingColorMapping[index+1]).opacity(1.0))
+                        .strokeBorder(Color("AppColor2").opacity(0.3),lineWidth: 1)
+                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColorWhite") : Color("AppColor1")))
                         .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .offset(x: -75, y: 0)
+                        .offset(x: -70, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                     
                     Text("\(index+1)")
@@ -158,7 +158,7 @@ struct WheelButton: View {
                         .opacity(0.7)
                         .foregroundColor(Color("AppColor2"))
                         .rotationEffect(.degrees(270))
-                        .offset(x: -90, y: 0)
+                        .offset(x: -85, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                 } // fin ZStack 2
                 .onAppear{

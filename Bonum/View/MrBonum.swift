@@ -101,8 +101,8 @@ struct MrBonum: View { // De 1 à 10.
             ZStack {
                 
                 PathCorps(progress: progress, sf: sFrom, st: sTo)
-                    .fill(Color("AppColor3"))
-                
+                    .fill(progress == 1 ? couleurTeteTo : couleurTeteFrom)
+
                 PathTete(progress: progress, sf: sFrom, st: sTo)
                     .fill(progress == 1 ? couleurTeteTo : couleurTeteFrom)
                 

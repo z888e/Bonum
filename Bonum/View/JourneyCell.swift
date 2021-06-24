@@ -48,6 +48,14 @@ struct JourneyCell: View {
             
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(Color("AppColorWhite"))
+                .shadow(color: Color.red.opacity(0.2),
+                        radius: 5,
+                        x: 7,
+                        y: 7)
+                .shadow(color: Color.white.opacity(0.3),
+                        radius: 5,
+                        x: -5,
+                        y: -5)
                 .frame(width: .infinity, height: 110, alignment: .center)
                 .addBorder(Color("AppColor1"), width: 1, cornerRadius: 25)
                 .padding()

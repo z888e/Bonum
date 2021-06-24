@@ -116,6 +116,10 @@ struct Journey: View {
                                 
                                 NavigationLink(destination: JourneyDetail(event: $userData.userJourneyEvents[realIndex!])) {
                                     JourneyCell(previousMoodValue: previousMood, event: event, pickedImage: $userData.userJourneyEvents[realIndex!].image)
+                                        .shadow(color: Color.white.opacity(0.25),
+                                                                                                                                                                  radius: 5,
+                                                                                                                                                                  x: -5,
+                                                                                                                                                                  y: -5)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -138,7 +142,7 @@ struct Journey: View {
                         
                     }
                 }
-                .padding(.bottom, 50)
+                .padding(.bottom, 80)
             }.navigationBarHidden(true)
             .navigationTitle("Parcours")
             .edgesIgnoringSafeArea(.all)

@@ -63,7 +63,7 @@ struct MoodTracker: View {
                         Spacer()
                     }.padding()
                     
-                    Text("Quelle est votre état de forme en ce moment ?")
+                    Text("Quel est votre état de forme en ce moment ?")
                         .font(.title)
                         .foregroundColor(Color("AppColor2"))
                         .multilineTextAlignment(.center)
