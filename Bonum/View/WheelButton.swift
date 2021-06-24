@@ -35,12 +35,13 @@ struct WheelButton: View {
     
     @Binding var newClic: Bool
     
+    @State var fromLeft: Bool = true
     
     var body: some View {
         
         ZStack{
             
-            MrBonum(mood: selectedValue+1, moodFrom: initValue+1)
+            MrBonum(mood: selectedValue+1, moodFrom: fromLeft ? selectedValue-1+1 : selectedValue+1+1)
                 .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .offset(x: 0, y: -180)
                 .scaleEffect(CGSize(width: 0.8, height: 0.8))
@@ -116,6 +117,7 @@ struct WheelButton: View {
                 }
                 .padding(10)
                 .onTapGesture {
+                    fromLeft = index > selectedValue
                     selectedValue = index
                     selectedAngle = anglePoints[index] - 90
                     pressButton = false
