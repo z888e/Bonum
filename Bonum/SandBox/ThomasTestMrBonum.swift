@@ -185,6 +185,27 @@ struct MrBonum2: View {
 
                     path.addLine(to: CGPoint(x: 53, y: 57))
                     path.addLine(to: CGPoint(x: 45, y: 62))
+                    
+                    
+                    // Jambe 1 :
+
+                    // Dessus de la cuisse :
+                    path.addLine(to: CGPoint(x: 48, y: 70))
+
+                    // Le genoux :
+                    path.addQuadCurve(to: CGPoint(x: 50, y: 76), control: CGPoint(x: 50, y: 73))
+
+                    // Dessus de la jambe :
+                    path.addLine(to: CGPoint(x: 47, y: 95))
+
+                    // Le pied :
+                    path.addQuadCurve(to: CGPoint(x: 40, y: 94), control: CGPoint(x: 43, y: 99))
+
+                    // Dessous de la jambe :
+                    path.addLine(to: CGPoint(x: 43, y: 77))
+
+                    
+                    
                     path.addLine(to: CGPoint(x: 49, y: 70))
 
                     // Le genoux :
@@ -194,7 +215,7 @@ struct MrBonum2: View {
 
                 } // Path
                 .fill(Color("AppColor3"))
-                //                .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
+//                                .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
 
                 // La tête :
                 Path { path in
@@ -211,6 +232,88 @@ struct MrBonum2: View {
 //                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
 //                    .frame(width: 100, height: 100)
 //            )
+            Spacer()
+        }
+    }
+}
+
+struct MrBonum3: View {
+
+    var body: some View {
+        VStack {
+
+            ZStack {
+
+                // Le corps :
+                Path { path in
+                    path.move(to: CGPoint(x: 51, y: 76))
+                    path.addLine(to: CGPoint(x: 48, y: 95))
+
+                    // Le pied :
+                    path.addCurve(to: CGPoint(x: 39, y: 94), control1: CGPoint(x: 46, y: 100), control2: CGPoint(x: 40, y: 100))
+
+                    path.addLine(to: CGPoint(x: 42, y: 77))
+                    path.addLine(to: CGPoint(x: 36, y: 63))
+                    path.addQuadCurve(to: CGPoint(x: 35, y: 54), control: CGPoint(x: 32, y: 57))
+                    path.addLine(to: CGPoint(x: 56, y: 43))
+
+                    // Les épaules :
+                    path.addQuadCurve(to: CGPoint(x: 61, y: 54), control: CGPoint(x: 68, y: 44))
+
+                    path.addLine(to: CGPoint(x: 53, y: 77))
+
+                    // La main :
+                    path.addQuadCurve(to: CGPoint(x: 47, y: 75), control: CGPoint(x: 50, y: 79))
+
+                    path.addLine(to: CGPoint(x: 53, y: 57))
+                    path.addLine(to: CGPoint(x: 45, y: 62))
+                    
+                    
+                    // Jambe 1 :
+
+                    // Dessus de la cuisse :
+                    path.addLine(to: CGPoint(x: 48, y: 70))
+
+                    // Le genoux :
+                    path.addQuadCurve(to: CGPoint(x: 50, y: 76), control: CGPoint(x: 50, y: 73))
+
+                    // Dessus de la jambe :
+                    path.addLine(to: CGPoint(x: 47, y: 95))
+
+                    // Le pied :
+                    path.addQuadCurve(to: CGPoint(x: 40, y: 94), control: CGPoint(x: 43, y: 99))
+
+                    // Dessous de la jambe :
+                    path.addLine(to: CGPoint(x: 43, y: 77))
+
+                    
+                    
+                    path.addLine(to: CGPoint(x: 49, y: 70))
+
+                    // Le genoux :
+                    path.addQuadCurve(to: CGPoint(x: 51, y: 76), control: CGPoint(x: 50, y: 73))
+
+                    path.closeSubpath()
+
+                } // Path
+                .fill(Color("AppColor3"))
+//                                .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
+
+                // La tête :
+                Path { path in
+                    path.addArc(center: CGPoint(x: 74, y: 50), radius: 8, startAngle: .degrees(0), endAngle: .degrees(1), clockwise: true)
+                    path.closeSubpath()
+
+                } // Path
+                .fill(Color.green)
+
+            } // ZStack
+            .frame(width: 100, height: 100)
+            .background(
+                Image("TestBonum5") .resizable()
+                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                    .frame(width: 100, height: 100)
+            )
             Spacer()
         }
     }
@@ -302,15 +405,103 @@ struct MrBonum4: View {
     }
 }
 
+struct MrBonum5: View {
+
+    var body: some View {
+        VStack {
+
+            ZStack {
+
+                // Le corps :
+                Path { path in
+                    path.move(to: CGPoint(x: 34, y: 83))
+                    path.addLine(to: CGPoint(x: 15, y: 75))
+
+                    // Le pied :
+                    path.addCurve(to: CGPoint(x: 18, y: 68), control1: CGPoint(x: 14, y: 72), control2: CGPoint(x: 14, y: 69))
+
+                    path.addLine(to: CGPoint(x: 34, y: 74))
+                    path.addLine(to: CGPoint(x: 37, y: 65))
+                    path.addQuadCurve(to: CGPoint(x: 35, y: 61), control: CGPoint(x: 35, y: 63))
+                    path.addLine(to: CGPoint(x: 41, y: 36))
+
+                    // Les épaules :
+                    path.addQuadCurve(to: CGPoint(x: 51, y: 39), control: CGPoint(x: 48, y: 31))
+
+                    // Le haut du bras :
+                    path.addLine(to: CGPoint(x: 74, y: 44))
+
+                    // La main :
+                    path.addQuadCurve(to: CGPoint(x: 74, y: 50), control: CGPoint(x: 78, y: 47))
+
+                    // Le dessous du bras :
+                    path.addLine(to: CGPoint(x: 52, y: 46))
+                    
+                    // Le ventre :
+                    path.addLine(to: CGPoint(x: 48, y: 62))
+                    
+                    // Jambe 1 :
+                    
+                    // Dessus de la cuisse :
+                    path.addLine(to: CGPoint(x: 59, y: 73))
+
+                    // Le genoux :
+                    path.addQuadCurve(to: CGPoint(x: 62, y: 77), control: CGPoint(x: 60, y: 74))
+                    
+                    // Dessus de la jambe :
+                    path.addLine(to: CGPoint(x: 73, y: 96))
+                    
+                    // Le pied :
+                    path.addQuadCurve(to: CGPoint(x: 64, y: 96), control: CGPoint(x: 71, y: 102))
+
+                    // Dessous de la jambe :
+                    path.addLine(to: CGPoint(x: 45, y: 71))
+                    
+                    // Jambe 2 :
+                    
+                    // Dessus de la cuisse :
+                    path.addLine(to: CGPoint(x: 41, y: 82))
+
+                    // Le genoux :
+                    path.addQuadCurve(to: CGPoint(x: 34, y: 83), control: CGPoint(x: 37, y: 85))
+
+                    path.closeSubpath()
+
+                } // Path
+                .fill(Color.gray)
+//                                .stroke(Color.green, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
+
+                // La tête :
+                Path { path in
+                    path.addArc(center: CGPoint(x: 53, y: 26), radius: 8, startAngle: .degrees(0), endAngle: .degrees(1), clockwise: true)
+                    path.closeSubpath()
+
+                } // Path
+                .fill(Color.red)
+
+            } // ZStack
+            .frame(width: 100, height: 100)
+            .background(
+                Image("TestBonum5") .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+            )
+            Spacer()
+        }
+    }
+}
+
+
 struct ThomasTestMrBonum_Previews: PreviewProvider {
     static var previews: some View {
 
 //        ThomasTestMrBonum()
 
                 ZStack {
-                    MrBonum4()
-                    // MrBonum2()
-                    // MrBonum1()
+                    MrBonum5()
+//                    MrBonum4()
+//                    MrBonum2()
+//                     MrBonum1()
                     Spacer()
                 }
                 .previewLayout(.sizeThatFits)
