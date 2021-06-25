@@ -24,10 +24,10 @@ struct WheelButton: View {
         }
         return array
     }
+    
     @State private var pressButton: Bool = false
     @State private var selectedValue: Int = 0
     @State private var selectedAngle: Double = 0
-    
     @State private var currentAmount: Angle = .degrees(0)
     @State private var finalAmount: Angle = .degrees(0)
     
@@ -45,7 +45,7 @@ struct WheelButton: View {
                 .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .offset(x: 0, y: -180)
                 .scaleEffect(CGSize(width: 0.8, height: 0.8))
-                .padding(.bottom, 60)
+                .padding(.bottom, 40)
             
             // La bague autour
             //pas fini
@@ -72,43 +72,45 @@ struct WheelButton: View {
             ZStack{
                 Circle()
                     .fill(
-                        AngularGradient(gradient: Gradient(colors: [Color("AppColor3").opacity(0.6), Color("AppColor3").opacity(0.8), Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.8),
-                            Color("AppColor3").opacity(0.3)]), center: .center, startAngle: .degrees(-110), endAngle: .degrees(250))
+                        AngularGradient(gradient: Gradient(colors: [Color("AppColor1").opacity(0.6),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.8),
+                            Color("AppColor1").opacity(0.3)]), center: .center, startAngle: .degrees(-110), endAngle: .degrees(250))
                     )
                     .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
             }
@@ -119,7 +121,7 @@ struct WheelButton: View {
                                     {inProgress in
                                         print("In progress: \(inProgress)")
                                         pressButton.toggle()
-                                        AudioServicesPlaySystemSound(1001)
+                                        AudioServicesPlaySystemSound(1013)
                                     }) {
                 print("Long press")
                 pressButton = false
@@ -145,18 +147,18 @@ struct WheelButton: View {
                 
                 ZStack{
                     Circle()
-                        .strokeBorder(Color("AppColor3"),lineWidth: 1)
-                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColorWhite") : ratingColorMapping[index+1]).opacity(1.0))
+                        .strokeBorder(Color("AppColor2").opacity(0.3),lineWidth: 1)
+                        .background(Circle().foregroundColor(index>selectedValue ? Color("AppColorWhite") : Color("AppColor1")))
                         .frame(width: 8, height: 8, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .offset(x: -75, y: 0)
+                        .offset(x: -70, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                     
                     Text("\(index+1)")
                         .font(.system(size: 8))
                         .opacity(0.7)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .rotationEffect(.degrees(270))
-                        .offset(x: -90, y: 0)
+                        .offset(x: -85, y: 0)
                         .rotationEffect(.degrees(anglePoints[index]))
                 } // fin ZStack 2
                 .onAppear{

@@ -93,32 +93,43 @@ struct BonumWidgetEntryView : View {
                 HStack {
                     Image("Jump")
                         .resizable()
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                        .frame(width: 150, height: 170, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .cornerRadius(10.0)
                         .scaledToFill()
-                        .padding(.horizontal, 10)
+                        .opacity(0.95)
+                        .padding(.trailing, 10)
                     
                     //Text(userName)
                     VStack (alignment: .leading) {
                         HStack (alignment: .center) {
                             Text(trueDateW, style: .timer)
-                                .font(.system(size: 18))
+                                .font(.system(size: 17))
                                 .fontWeight(.bold)
                                 + Text(" que vous n'avez pas dit à Bonum comment vous vous sentez.\n")
                         }
-                        .foregroundColor(Color("AppColor1"))
+                        .foregroundColor(Color("AppColor2"))
                         .padding(.trailing, 10)
                         
                         HStack{
-                            Text("Voulez-vous le faire ?")
-                                .foregroundColor(Color("AppColor1"))
-                                .padding(.trailing, 10)
-                            Text("Go")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("AppColor3"))
-                                .frame(width: 30, height: 30, alignment: .center)
+//                            Text("Voulez-vous le faire ?")
+//                                .foregroundColor(Color("AppColor2"))
+//                                .padding(.trailing, 10)
+                            Text("GO")
+                                .font(.system(size: 16))
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("AppColorWhite"))
+                                .frame(width: 150, height: 30, alignment: .center)
                                 .background(Color("AppColor1"))
                                 .cornerRadius(6)
+                                .shadow(color: Color.orange.opacity(0.3),
+                                        radius: 4,
+                                        x: 6,
+                                        y: 6)
+                                .shadow(color: Color.white.opacity(0.25),
+                                        radius: 4,
+                                        x: -3,
+                                        y: -3)
                         }
                     }
                     .font(.system(size: 14))

@@ -255,11 +255,9 @@ let MYELEMENTS: [DataElement] = [MYSTEPSELEMENT, MYHRELEMENT]
 
 let MYJOURNEY : [JourneyEvent] = [
     JourneyEvent(title: "Premier job", date: Date()-(86400*365), imageName: "vie-active", type: 0, moodValue: 7, comment: "Enfin !"),
-    JourneyEvent(title: "Inscription à la salle", date: Date()-(86400*340), imageName: "inscription-salle", type: 0, moodValue: 9, comment: "Let's get physical!"),
-    JourneyEvent(title: "Accident de la route", date: Date()-(86400*330), imageName: "accident", type: 0, moodValue: 8, comment: "Ouch..."),
+//    JourneyEvent(title: "Inscription à la salle", date: Date()-(86400*340), imageName: "inscription-salle", type: 0, moodValue: 9, comment: "Let's get physical!"),
     JourneyEvent(title: "Vacances à Lanzarote", date: Date()-(86400*300), imageName: "lanzarote", type: 0, moodValue: 6, comment: "Après l'effort, le réconfort !"),
     JourneyEvent(title: "Vie à deux", date: Date()-(86400*250), imageName: "vie-a-deux", type: 0, moodValue: 7, comment: "Love is in the air"),
-    JourneyEvent(title: "Déménagement", date: Date()-(86400*100), imageName: "demenagement", type: 0, moodValue: 3, comment: "Ca déménage !"),
     JourneyEvent(title: "Arrêt de la cigarette", date: Date()-(86400*80), imageName: "arret-cigarette", type: 0, moodValue: 8, comment: "Des poumons tout neufs !"),
     JourneyEvent(title: "Naissance d'Emilie", date: Date()-(86400*15), imageName: "naissance-emilie", type: 0, moodValue: 7, comment: "Le petit bout de chou a été livré !")
 ]

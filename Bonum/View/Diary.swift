@@ -66,7 +66,6 @@ struct Diary: View {
                             
                         }.padding(.leading,20)
                         
-                        
                         //TODO : display score calculé
                         ScoreBonum(timeArea : timeArea).padding(.bottom, 20)
                     }
@@ -86,9 +85,9 @@ struct Diary: View {
                             ForEach(Array(sortedElements.enumerated()), id: \.1.id) {index, el in
                                 
                                 NavigationLink(
-                                    destination: DiaryListDetails(element: sortedElements[index], index: index),
+                                    destination: DiaryListDetails(element: sortedElements[index], timeArea: timeArea, index: index),
                                     label: {
-                                        DiaryListCell(element: sortedElements[index])
+                                        DiaryListCell(element: sortedElements[index], timeArea : timeArea)
                                     }
                                 )
                             }

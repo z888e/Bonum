@@ -17,14 +17,37 @@ struct ScoreBonumDetails: View {
         }
     }
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "chevron.left")
+                .foregroundColor(Color("AppColor3"))
+            Text("Journal")
+                .foregroundColor(Color("AppColor3"))
+        }
+    }
+    }
     var body: some View {
         VStack{
+            HStack{
+                btnBack.padding(20).padding(.top, 40)
+                Spacer()
+            }.background(Color("AppColorWhite"))
+            
+            Text("Historique de votre score Bonum").foregroundColor(Color("AppColor2"))
+                .padding(.vertical, 30)
+            
             ScrollView {
                 ForEach(sortedMoodHistory, id: \.self) { moodEntry in
                     MoodCell(mood: moodEntry)
                 }
             }
         }.background(Color("AppColorWhite"))
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

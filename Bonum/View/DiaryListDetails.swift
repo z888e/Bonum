@@ -13,6 +13,7 @@ struct DiaryListDetails: View {
     @State private var showingAlert = false
     
     var element : DataElement
+    var timeArea : String
     var index : IndexSet.ArrayLiteralElement
     var impactMessageToUser : String {
         var res = " "
@@ -27,27 +28,12 @@ Impact indéterminé. Suivez cet élement plus longtemps.
 L'impact sur votre forme semble fort. Continuez !
 """        }else if element.impact >= 2 && element.impact < 3  {
     res = """
-L'impact semble sur votre forme semble maximal. Bravo, continuez !
+L'impact sur votre forme semble maximal. Bravo, continuez !
 """        }
         return res
     }
     
-    var impactMessageColor : Color {
-        var res : Color = Color("AppColorWhite")
-        if element.impact == 0 {
-            res = .gray
-        }else if element.impact > 0 && element.impact < 1 {
-            res = .gray
-        }else if element.impact >= 1 && element.impact < 2  {
-            res = Color.yellow
-        }else if element.impact >= 2 && element.impact < 3  {
-            res = Color("AppColor1")
-        }
-        return res
-    }
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {
@@ -77,7 +63,7 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
                 VStack(spacing:30){
                     Text(element.customName)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .padding(.vertical, 50)
                         .padding(.horizontal, 25)
                     
@@ -86,7 +72,7 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
                             .foregroundColor(Color("AppColor3"))
                     }.padding(20)
                     
-                    DiaryListDetailsGraph(element : element)
+                    DiaryListDetailsGraph(element : element, timeArea : timeArea)
                     
                     Spacer()
                     
@@ -97,9 +83,9 @@ L'impact semble sur votre forme semble maximal. Bravo, continuez !
                             Text("Ne plus suivre cet élément")
                         }.padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .foregroundColor(Color("AppColor3"))
+                        .foregroundColor(Color("AppColor2"))
                         .overlay(RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color("AppColor3"), lineWidth: 2))
+                                    .stroke(Color("AppColor2"), lineWidth: 2))
                         
                         .alert(isPresented: self.$showingAlert) {
                             Alert(title: Text("Interrompre le suivi"), message:   Text("""

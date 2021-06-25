@@ -16,6 +16,7 @@ struct MrBonum: View { // De 1 à 10.
     
     var moodFrom: Int // De 1 à 10. Attention : toujours 1 d'écart entre mood et moodFrom.
     
+    
     // Les 10 dessins de MrBonum (en fait pour l'instant 5 dessins différents et 2 étapes avec le même) :
     let s1: [CGFloat] = [60, 99, 45, 99, 45, 91, 38, 99, 38, 91, 56, 91, 50, 78, 54, 68, 48, 73, 76, 64, 79, 76, 86, 68, 89, 96, 84, 98, 88, 101, 73, 77, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 65, 93, 60, 99, 65, 99, 90, 77]
     let s2: [CGFloat] = [60, 99, 45, 99, 45, 91, 38, 99, 38, 91, 56, 91, 50, 78, 54, 68, 48, 73, 76, 64, 79, 76, 86, 68, 89, 96, 84, 98, 88, 101, 73, 77, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 61, 79, 65, 93, 60, 99, 65, 99, 90, 77]
@@ -101,7 +102,7 @@ struct MrBonum: View { // De 1 à 10.
             ZStack {
                 
                 PathCorps(progress: progress, sf: sFrom, st: sTo)
-                    .fill(Color("AppColor3"))
+                    .fill(progress == 1 ? couleurTeteTo : couleurTeteFrom)
                 
                 PathTete(progress: progress, sf: sFrom, st: sTo)
                     .fill(progress == 1 ? couleurTeteTo : couleurTeteFrom)
@@ -176,7 +177,7 @@ struct PathCorps: Shape {
         
         // Dessus de la cuisse :
         path.addLine(to: CGPoint(x: s[34], y: s[35]))
-
+        
         // Le genoux :
         path.addQuadCurve(to: CGPoint(x: s[36], y: s[37]), control: CGPoint(x: s[38], y: s[39]))
         
@@ -185,7 +186,7 @@ struct PathCorps: Shape {
         
         // Le pied :
         path.addQuadCurve(to: CGPoint(x: s[42], y: s[43]), control: CGPoint(x: s[44], y: s[45]))
-
+        
         // Dessous de la jambe :
         path.addLine(to: CGPoint(x: s[46], y: s[47]))
         
