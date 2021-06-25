@@ -86,6 +86,8 @@ struct DiaryListCell: View {
                             Text("\(timeAreaComment)")
                                 .foregroundColor(Color("AppColor1"))
                                 .italic()
+                                .colorMultiply(.gray)
+                                .opacity(0.7)
                         }
                     }
                 }
